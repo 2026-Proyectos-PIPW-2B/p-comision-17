@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "sass": "^1.100.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "name": "requerimientos-sprint-0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
