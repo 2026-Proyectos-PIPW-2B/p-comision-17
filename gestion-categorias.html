@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Librarium | Alta de categorías</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar bg-primary p-4 fw-bold">
+        <div class="container-fluid d-grid gap-3">
+          <span> <img src="img/logo-reducido.png" class="w-25" /> </span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row min-vh-100">
+        <aside class="col-12 col-md-3 col-lg-2 border-end p-3 bg-secondary">
+          <nav class="d-flex flex-column h-100">
+            <a href="admin.html" class="nav-link mb-4 mt-3 px-3"
+              >Panel de administación</a
+            >
+            <a href="historial-pedidos.html" class="nav-link mb-4 mt-3 px-3">
+              Historial de pedidos
+            </a>
+
+            <div
+              class="accordion accordion-flush bg-secondary"
+              id="menuProductos"
+            >
+              <div class="accordion-item bg-secondary border-0">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-secondary"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#productos"
+                  >
+                    Productos
+                  </button>
+                </h2>
+
+                <div id="productos" class="accordion-collapse collapse mb-4">
+                  <div class="accordion-body mb-2 bg-secondary">
+                    <a href="gestion-categorias.html" class="nav-link">
+                      Gestión categorías
+                    </a>
+
+                    <a href="gestion-stock.html" class="nav-link">
+                      Gestión stock
+                    </a>
+
+                    <a href="alta-productos.html" class="nav-link">
+                      Alta productos
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion accordion-flush bg-secondary" id="menuAdmin">
+              <div class="accordion-item bg-secondary border-0">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-secondary"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#usuarios"
+                  >
+                    Usuarios
+                  </button>
+                </h2>
+
+                <div id="usuarios" class="accordion-collapse collapse mb-4">
+                  <div class="accordion-body mb-2 bg-secondary">
+                    <a href="nuevo-admin.html" class="nav-link">
+                      Nuevo administrador
+                    </a>
+
+                    <a href="gestion-clientes.html" class="nav-link">
+                      Gestión de clientes
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="ajustes.html" class="nav-link mt-3 mb-4 px-3"> Ajustes </a>
+
+            <a
+              href="#"
+              id="btn-cerrarSesion"
+              class="mt-auto fw-bold px-3 text-info"
+            >
+              Cerrar sesión
+            </a>
+          </nav>
+        </aside>
+
+        <main class="col-12 col-md-9 col-lg-10 p-4">
+          <h2 class="display-4 fw-bold text-center p-4">
+            Gestion de categorías
+          </h2>
+
+          <button
+            type="button"
+            class="btn btn-primary text-white rounded-pill p-3 w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            + Nueva Categoría
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content p-3 justify-content-center">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Nueva Categoría
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close btn-info"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form action="">
+                    <div class="row">
+                      <label for="nombreCategoria" class="mt-2" >
+                        Nombre</label
+                      >
+                      <input type="text" id="nombreCategoria" class="form-control mt-2" />
+                      <label for="descripcionCategoria">Descripción</label>
+                      <textarea
+                        id="descripcionCategoria"
+                        rows="3"
+                        cols="3"
+                        class="form-control"
+                      >
+                      </textarea>
+                      <label for="estado" class="mt-2">Estado</label>
+                      <select id="estado" class="form-select">
+                        <option disabled selected> Seleccionar..</option>
+                        <option value="">Activa</option>
+                        <option value="">Inactiva</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-outline-info"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <button type="button" class="btn btn-outline-primary">
+                    Guardar cambios
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table
+              class="table table-hover align-middle table-striped bg-primary"
+            >
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Categoría</th>
+                  <th>Descripción</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Novela</td>
+                  <td>Libros de ficción</td>
+
+                  <td class="text-center">
+                    <button class="btn btn-primary btn-sm me-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#EFEFEF"
+                      >
+                        <path
+                          d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
+                        />
+                      </svg>
+                    </button>
+
+                    <button class="btn btn-primary btn-sm">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#EFEFEF"
+                      >
+                        <path
+                          d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td>Infantil</td>
+                  <td>Libros para niños</td>
+
+                  <td class="text-center">
+                    <button class="btn btn-primary btn-sm me-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#EFEFEF"
+                      >
+                        <path
+                          d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
+                        />
+                      </svg>
+                    </button>
+
+                    <button class="btn btn-primary btn-sm">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#EFEFEF"
+                      >
+                        <path
+                          d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="js/modal.js"></script>
+  </body>
+</html>
