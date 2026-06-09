@@ -16,26 +16,30 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
+
   <body>
     <header>
       <nav class="navbar bg-primary p-4 fw-bold">
-        <div class="container-fluid">
-          <span class="navbar-brand text-white">Librarium</span>
+        <div class="container-fluid d-grid gap-3">
+          <span> <img src="img/logo-reducido.png" class="w-25" /> </span>
         </div>
       </nav>
     </header>
 
     <div class="container-fluid">
       <div class="row min-vh-100">
-        <aside class="col-12 col-md-3 col-lg-2 border-end p-3">
+        <aside class="col-12 col-md-3 col-lg-2 border-end p-3 bg-secondary">
           <nav class="d-flex flex-column h-100">
-            <a href="#" class="nav-link mb-4 mt-3 px-3"> Historial de pedidos </a>
+            <h5 class="fw-bold px-3">Panel de administación</h5>
+            <a href="#" class="nav-link mb-4 mt-3 px-3">
+              Historial de pedidos
+            </a>
 
-            <div class="accordion accordion-flush" id="menuAdmin">
+            <div class="accordion accordion-flush bg-secondary" id="menuAdmin">
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button
-                    class="accordion-button collapsed"
+                    class="accordion-button collapsed bg-secondary"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#productos"
@@ -45,7 +49,7 @@
                 </h2>
 
                 <div id="productos" class="accordion-collapse collapse mb-4">
-                  <div class="accordion-body mb-2">
+                  <div class="accordion-body mb-2 bg-secondary">
                     <a href="#" class="nav-link"> Gestión categorías </a>
 
                     <a href="#" class="nav-link"> Gestión stock </a>
@@ -54,24 +58,26 @@
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div class="accordion accordion-flush bg-secondary" id="menuAdmin">
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button
-                    class="accordion-button collapsed"
+                    class="accordion-button collapsed bg-secondary"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#usuarios"
+                    data-bs-target="#productos"
                   >
                     Usuarios
                   </button>
                 </h2>
 
-                <div id="usuarios" class="accordion-collapse collapse">
-                  <div class="accordion-body">
+                <div id="productos" class="accordion-collapse collapse mb-4">
+                  <div class="accordion-body mb-2 bg-secondary">
                     <a href="#" class="nav-link"> Nuevo administrador </a>
 
-                    <a href="#" class="nav-link"> Gestión clientes </a>
+                    <a href="#" class="nav-link"> Gestión de clientes </a>
                   </div>
                 </div>
               </div>
@@ -79,30 +85,42 @@
 
             <a href="#" class="nav-link mt-3 mb-4 px-3"> Ajustes </a>
 
-            <a href="#" class=" mt-auto fw-bold px-3"> Cerrar sesión </a>
+            <a href="#" class="mt-auto fw-bold px-3 text-info">
+              Cerrar sesión
+            </a>
           </nav>
         </aside>
 
         <main class="col-12 col-md-9 col-lg-10 p-4">
           <section class="mb-4">
-            <div class="card rounded-5">
+            <div class="card rounded-5 bg-secondary border-0">
               <div class="card-body p-4">
                 <div class="row align-items-center">
                   <div class="col-md-8">
-                    <h2 class="card-title">¡Hola, Usuario!</h2>
+                    <h2 class="card-title fw-bold display-3">
+                      ¡Hola,
+                      <span
+                        id="usuario"
+                        class="text-info text-decoration-underline"
+                      >
+                        Usuario</span
+                      >!
+                    </h2>
 
                     <p class="card-text mb-0">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Quia quibusdam neque ipsam voluptatem repudiandae
-                      doloremque rem ad temporibus, nesciunt inventore.
+                      Bienvenido al panel de administración. Desde este espacio
+                      podes gestionar los produtos, categorías y contenido de la
+                      tienda. Utilizá el menú lateral para acceder a las
+                      distintas secciones y mantener actualizada la información
+                      disponible para los clientes.
                     </p>
                   </div>
 
                   <div class="col-md-4 text-center">
                     <img
-                      src="img/leyendo.jpg"
+                      src="img/administradora.png"
                       alt="mujer leyendo"
-                      class="img-fluid w-75"
+                      class="img-fluid"
                     />
                   </div>
                 </div>
@@ -112,8 +130,10 @@
 
           <section class="row g-4 mb-4">
             <div class="col-12 col-md-3 col-lg-3">
-              <div class="card align-items-center rounded-5">
-                <div class="card-body mb-2">
+              <div
+                class="card align-items-center rounded-5 bg-primary border-0"
+              >
+                <div class="card-body mb-2 text-white">
                   <h5 class="card-title text-center mb-4">Ventas</h5>
 
                   <div class="d-flex justify-content-around text-center">
@@ -131,15 +151,17 @@
                   </div>
 
                   <div class="text-center">
-                    <a href="">ver todas</a>
+                    <a href="" class="text-white">ver todas</a>
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="col-12 col-md-3 col-lg-3">
-              <div class="card align-items-center rounded-5">
-                <div class="card-body mb-2">
+              <div
+                class="card align-items-center rounded-5 bg-primary border-0"
+              >
+                <div class="card-body mb-2 text-white">
                   <h5 class="card-title text-center mb-4">Clientes</h5>
 
                   <h6 class="card-subtitle text-center mb-2">Total</h6>
@@ -149,19 +171,19 @@
                   </div>
 
                   <div class="text-center">
-                    <a href="">ver todas</a>
+                    <a href="" class="text-white">ver todas</a>
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="col-lg-6">
-              <div class="card rounded-5">
+              <div class="card rounded-5 border-0">
                 <div class="card-body">
-                  <h5 class="card-title">Últimos pedidos</h5>
+                  <h5 class="card-title fw-bold text-info">Últimos pedidos</h5>
 
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped bg-primary">
                       <thead>
                         <tr>
                           <th>N° Orden</th>
@@ -175,7 +197,7 @@
                     </table>
                   </div>
                   <div class="text-end d-block mt-4">
-                    <a href="">ver todos</a>
+                    <a href="" class="text-info">ver todos</a>
                   </div>
                 </div>
               </div>
