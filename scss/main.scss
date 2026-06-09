@@ -1,5 +1,6 @@
-$primary: #b91526;
-$secondary: #fad6da;
+$primary: #dfa0aa;
+$secondary: #f0eddc;
+$info: #845f4a;
 
 $display-font-sizes: (
   1: 4rem,
@@ -9,6 +10,5 @@ $display-font-sizes: (
   5: 2rem,
   6: 1.5rem,
 );
-
 
 @import "../node_modules/bootstrap/scss/bootstrap";
