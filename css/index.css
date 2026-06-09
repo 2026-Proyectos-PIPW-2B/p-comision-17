@@ -1,0 +1,72 @@
+.custom-logo-box {
+  min-height: 150px;
+}
+
+.book-pillar {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.vertical-text {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.icon-circle {
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 768px) {
+
+  .custom-logo-box,
+  .custom-books-container {
+    min-height: 600px; 
+  }
+
+ 
+  .vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    letter-spacing: 3px;
+  }
+
+  
+  .book-pillar {
+    margin-bottom: 0;
+    border-radius: 0;
+    border-top-left-radius: 12px;  
+    border-top-right-radius: 12px;
+  }
+
+ 
+  .book-pillar:hover {
+    transform: scaleY(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+}
+
+#main-navbar {
+  font-size: 20px
+}
+
+#main-navbar .btn{
+  font-size: 20px;
+}
+
+#navbarNav > ul :hover {
+  border-bottom: 2px solid #007bff;
+  color: #007bff;
+}
+
+#info-section{
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
