@@ -53,20 +53,57 @@
 }
 
 #main-navbar {
-  font-size: 20px
+  font-size: 25px
 }
 
 #main-navbar .btn{
-  font-size: 20px;
+  font-size: 25px;
 }
 
 #navbarNav > ul :hover {
-  border-bottom: 2px solid #007bff;
-  color: #007bff;
+  border-bottom: 2px solid #dfa0aa;
+  color: #dfa0aa;
 }
 
 #info-section{
   border-top: 1px solid #ddd;
   padding-top: 20px;
 }
+
+.card-body{
+
+  h6{
+    font-size: 20px;
+  }
+
+  h3{
+    font-size: 35px;
+  }
+
+  p > i{
+    font-size: 20px;
+    color: #845f4a
+  }
+
+  .price{
+    font-size: 30px;
+  }
+}
+
+
+#catalog-section span{
+  border: 5px solid #845f4a;  
+}
+
+#catalog-section .catalog-card {
+  min-height: 100%;
+}
+
+#catalog-section .catalog-card-img {
+  height: 400px;
+  object-fit: cover;
+  align-items: center;
+}
+ 
+
 
