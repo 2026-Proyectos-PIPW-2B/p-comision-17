@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Librarium | Alta de categorías</title>
+    <title>Librarium | Gestionar Stock</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
+    
   </head>
-
   <body>
     <header>
       <nav class="navbar bg-primary p-4 fw-bold">
@@ -108,9 +108,7 @@
         </aside>
 
         <main class="col-12 col-md-9 col-lg-10 p-4">
-          <h2 class="display-4 fw-bold text-center p-4">
-            Gestion de categorías
-          </h2>
+          <h2 class="display-4 fw-bold text-center p-4">Gestion de stock</h2>
 
           <button
             type="button"
@@ -118,7 +116,7 @@
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
-            + Nueva Categoría
+            + Nuevo Producto
           </button>
 
           <!-- Modal -->
@@ -133,7 +131,7 @@
               <div class="modal-content p-3 justify-content-center">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Nueva Categoría
+                    Nueva Producto
                   </h1>
                   <button
                     type="button"
@@ -145,26 +143,52 @@
                 <div class="modal-body">
                   <form action="">
                     <div class="row">
-                      <label for="nombreCategoria" class="mt-2"></label> Nombre</label>
+                      <label for="tituloStock" class="mt-2">Titulo</label>
                       <input
                         type="text"
-                        id="nombreCategoria"
-                        class="form-control mt-2"
+                        id="tituloStock"
+                        class="form-control m-2"
                       />
-                      <label for="descripcionCategoria">Descripción</label>
+                      <label for="autorStock">Autor</label>
+                      <input
+                        type="text"
+                        id="autorStock"
+                        class="form-control m-2"
+                      />
+                      <label for="precioStock">Precio</label>
+                      <input
+                        type="number"
+                        id="precioStock"
+                        class="form-control m-2"
+                      />
+                      <label for="precioStock">Stock</label>
+                      <input
+                        type="number"
+                        id="cantStock"
+                        class="form-control m-2"
+                      />
+                      <label for="descripcionStock">Descripción</label>
                       <textarea
-                        id="descripcionCategoria"
+                        id="descripcionStock"
                         rows="3"
                         cols="3"
-                        class="form-control"
+                        class="form-control m-2"
                       >
                       </textarea>
-                      <label for="estado" class="mt-2">Estado</label>
-                      <select id="estado" class="form-select">
+                      <label for="tipo">Tipo</label>
+                      <select id="tipo" class="form-select m-2">
                         <option disabled selected>Seleccionar..</option>
-                        <option value="">Activa</option>
-                        <option value="">Inactiva</option>
+                        <option value="">Nuevo</option>
+                        <option value="">Usado</option>
+                        <option value="">Digital</option>
                       </select>
+                      <label for="stockImagen ">Imagen</label>
+                      <input
+                        type="file"
+                        id="stockImagen"
+                        class="form-control m-2"
+                        accept="image/*"
+                      />
                     </div>
                   </form>
                 </div>
@@ -191,8 +215,12 @@
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Titulo</th>
+                  <th>Autor</th>
                   <th>Categoría</th>
-                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+
                   <th class="text-center">Acciones</th>
                 </tr>
               </thead>
@@ -200,8 +228,11 @@
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Novela</td>
-                  <td>Libros de ficción</td>
+                  <td>El Principito</td>
+                  <td>Antoine de Saint-Exupéry</td>
+                  <td>Infantil</td>
+                  <td>18500</td>
+                  <td>12</td>
 
                   <td class="text-center">
                     <button
@@ -215,9 +246,12 @@
                 </tr>
 
                 <tr>
-                  <td>2</td>
-                  <td>Infantil</td>
-                  <td>Libros para niños</td>
+                  <td>1</td>
+                  <td>1984</td>
+                  <td>George Orwell</td>
+                  <td>Novela</td>
+                  <td>24990</td>
+                  <td>8</td>
 
                   <td class="text-center">
                     <button
