@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Librarium | Gestionar Stock</title>
+    <title>Librarium | Usuarios Administradores </title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,13 +11,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
-    
   </head>
+
   <body>
     <header>
       <nav class="navbar bg-primary p-4 fw-bold">
@@ -108,7 +108,27 @@
         </aside>
 
         <main class="col-12 col-md-9 col-lg-10 p-4">
-          <h2 class="display-4 fw-bold text-center p-4">Gestion de stock</h2>
+          <h2 class="display-4 fw-bold text-center p-4">
+            Usuarios Administradores
+          </h2>
+
+          <div class="row align-items-center g-2 mb-4">
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Buscar usuario"
+                />
+              </div>
+            </div>
+
+            <div class="col-auto">
+              <button class="btn btn-outline-primary "> Buscar </button>
+            </div>
 
           <button
             type="button"
@@ -116,7 +136,8 @@
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
-            + Nuevo Producto
+            + Registrar Nuevo Administrador
+
           </button>
 
           <!-- Modal -->
@@ -131,7 +152,7 @@
               <div class="modal-content p-3 justify-content-center">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Nueva Producto
+                    Nueva Categoría
                   </h1>
                   <button
                     type="button"
@@ -143,52 +164,20 @@
                 <div class="modal-body">
                   <form action="">
                     <div class="row">
-                      <label for="tituloStock" class="mt-2">Titulo</label>
+                      <label for="nombreAdmin" class="m-2"></label> Nombre de Usuario </label>
                       <input
                         type="text"
-                        id="tituloStock"
+                        id="nombreAdmin"
                         class="form-control m-2"
                       />
-                      <label for="autorStock">Autor</label>
+                      <label for="contraseñaAdmin">Ingrese Contraseña</label>
                       <input
                         type="text"
-                        id="autorStock"
+                        id="contraseñaAdmin"
                         class="form-control m-2"
                       />
-                      <label for="precioStock">Precio</label>
-                      <input
-                        type="number"
-                        id="precioStock"
-                        class="form-control m-2"
-                      />
-                      <label for="precioStock">Stock</label>
-                      <input
-                        type="number"
-                        id="cantStock"
-                        class="form-control m-2"
-                      />
-                      <label for="descripcionStock">Descripción</label>
-                      <textarea
-                        id="descripcionStock"
-                        rows="3"
-                        cols="3"
-                        class="form-control m-2"
-                      >
-                      </textarea>
-                      <label for="tipo">Tipo</label>
-                      <select id="tipo" class="form-select m-2">
-                        <option disabled selected>Seleccionar..</option>
-                        <option value="">Nuevo</option>
-                        <option value="">Usado</option>
-                        <option value="">Digital</option>
-                      </select>
-                      <label for="stockImagen ">Imagen</label>
-                      <input
-                        type="file"
-                        id="stockImagen"
-                        class="form-control m-2"
-                        accept="image/*"
-                      />
+                      <label for="emailAdmin">Ingrese Email</label>
+                      <input type="email" id="emailAdmin" class="form-control mt-2">
                     </div>
                   </form>
                 </div>
@@ -201,7 +190,7 @@
                     Cancelar
                   </button>
                   <button type="button" class="btn btn-outline-primary">
-                    Guardar cambios
+                    Registrar
                   </button>
                 </div>
               </div>
@@ -215,12 +204,8 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Titulo</th>
-                  <th>Autor</th>
-                  <th>Categoría</th>
-                  <th>Precio</th>
-                  <th>Stock</th>
-
+                  <th>Nombre de Usuario</th>
+                  <th>Emai</th>
                   <th class="text-center">Acciones</th>
                 </tr>
               </thead>
@@ -228,11 +213,8 @@
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>El Principito</td>
-                  <td>Antoine de Saint-Exupéry</td>
-                  <td>Infantil</td>
-                  <td>18500</td>
-                  <td>12</td>
+                  <td>Maria Clara Ornella</td>
+                  <td>clari.ornella@gmail.com</td>
 
                   <td class="text-center">
                     <button
@@ -246,12 +228,9 @@
                 </tr>
 
                 <tr>
-                  <td>1</td>
-                  <td>1984</td>
-                  <td>George Orwell</td>
-                  <td>Novela</td>
-                  <td>24990</td>
-                  <td>8</td>
+                  <td>2</td>
+                  <td>Geraldine Lagarrigue</td>
+                  <td>lagarriguegeraldine@gmail.com</td>
 
                   <td class="text-center">
                     <button
