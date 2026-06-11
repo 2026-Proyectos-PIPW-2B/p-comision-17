@@ -3,32 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Librarium | Login</title>
+    <!-- CSS de Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Iconos de Boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- CSS personalizado con SCSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
+<main class="mb-3">
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-9 col-lg-6 col-xl-5">
-            <img 
-            class="img-fluid" alt="Sample image">
+            <img src="img/logo-primario.png"
+            class="img-fluid logo-login" alt="Logo de Librarium">
         </div>
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <div class="card shadow mt-5" style="border-radius: 1rem;">
             <div class="card-body p-5">
         <form action="">
             
             <!-- Usuario input -->
-        <div>
+        <div class="mb-2">
             <label for="text" class="form-label"></label>
             <input type="user" class="form-control form-control-lg" placeholder="Ingresa tu usuario">
                 
         </div>
 
         <!-- Contraseña input -->
-        <div>
+        <div class="mb-2">
             <label for="password" class="form-label">  </label>
             <input type="password" class="form-control form-control-lg" placeholder="Ingresa tu contraseña">                
         </div>
@@ -50,27 +56,26 @@
         </div>
         
         <!-- Boton "Login" -->
-        <div class="text-center text-lg-start mt-3">
-            <button  type="button" class="btn btn-primary btn-lg w-100"
-              style="background-color: #0d6efd;">Login</button>
+        <div class="text-center text-lg-start mt-4">
+            <button  type="button" class="btn btn btn-outline-primary btn-lg w-100">Login</button>
             <p class="small fw-bold mt-2 text-center">¿No tenés cuenta aún?<a href="#!"
                 class="link-danger m-2">Crear cuenta</a></p>
         </div>
 
         <!-- Botones de red social -->
-         <div class="text-center">
+         <div class="text-center btn-social">
             <p>O puede ingresar con:</p>
             
             <button type="button" id="btnFacebook" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
+                <i class="bi bi-facebook"></i>
             </button>
 
             <button  type="button" id="btnGoogle" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-google"></i>
+                <i class="bi bi-google"></i>
             </button>
 
             <button  type="button" id="btnGithub" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-github"></i>
+                <i class="bi bi-github"></i>
             </button>
          </div>
         </div>
@@ -81,5 +86,51 @@
     </div>
   </div>
 </div>
-</body>
-</html>
+</main>
+
+<footer class="py-3 bg-secondary">
+    <div class="container px-0">
+        <div class="row g-5 justify-content-center">
+            <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info mb-3">
+                    Sobre nosotros
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><a href="#">Conocenos</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info mb-3">
+                    Servicio de atencion al cliente
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><i class="bi bi-whatsapp"> 291-6574839</i></li>
+                    <li><i class="bi bi-envelope-at"> atencion-al-cliente@librarium.com</i></li>
+                    <li><i class="bi bi-clock-history"></i> Horario de atencion: 09:00 a 18:00 Hs. Lunes a viernes</li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info mb-3">
+                    Ayuda
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Medios de pago</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="mt-1 col-12 text-center">
+                    <span class="text-center d-block mb-2">Seguinos</span>
+                    <div class="border p-2 text-center rounded small custom-social-box">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</footer> 
+</body> 
+</html> 

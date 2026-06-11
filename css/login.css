@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+  
+  .logo-login{
+    height: 150%;
+    width: 150%;
+  }
+  
+  i{
+    font-size: 30px;
+  }
+}
+
+footer {
+  h5 {
+    font-size: 20px;
+  }
+
+    a > i{
+        font-size: 20px;
+        padding: 0 5px;
+    }
+    
+    li> a{
+        color: #845f4a;
+        text-decoration: none;
+        font-size: 18px;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    ul > li {
+        font-size: 18px;
+        color: #845f4a; 
+    }
+
+    span{
+        font-size: 25px;
+        color: #dfa0aa;
+    }
+
+}
