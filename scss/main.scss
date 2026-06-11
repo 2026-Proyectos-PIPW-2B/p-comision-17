@@ -2,6 +2,11 @@ $primary: #dfa0aa;
 $secondary: #f0eddc;
 $info: #845f4a;
 
+
+.nav-link:hover {
+    background-color: rgba($primary, .15);
+}
+
 $display-font-sizes: (
   1: 4rem,
   2: 3.5rem,
