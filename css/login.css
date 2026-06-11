@@ -5,6 +5,19 @@ body {
   margin: 0;
 }
 
+#main-navbar {
+  font-size: 25px
+}
+
+#main-navbar .btn{
+  font-size: 25px;
+}
+
+#navbarNav > ul :hover {
+  border-bottom: 2px solid #dfa0aa;
+  color: #dfa0aa;
+}
+
 main {
   flex: 1;
   
