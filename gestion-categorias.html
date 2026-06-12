@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -31,9 +31,10 @@
       <div class="row min-vh-100">
         <aside class="col-12 col-md-3 col-lg-2 border-end p-3 bg-secondary">
           <nav class="d-flex flex-column h-100">
-            
-            <a href="admin.html" class="nav-link  p-3"> Panel de administación</a>
-            <a href="historial-pedidos.html" class="nav-link  p-3">
+            <a href="admin.html" class="nav-link p-3">
+              Panel de administación</a
+            >
+            <a href="historial-pedidos.html" class="nav-link p-3">
               Historial de pedidos
             </a>
 
@@ -48,7 +49,7 @@
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#productos"
-                  > 
+                  >
                     Productos
                   </button>
                 </h2>
@@ -62,7 +63,6 @@
                     <a href="gestion-stock.html" class="nav-link p-3">
                       Gestión stock
                     </a>
-
                   </div>
                 </div>
               </div>
@@ -145,7 +145,7 @@
                 <div class="modal-body">
                   <form action="">
                     <div class="row">
-                      <label for="nombreCategoria" class="mt-2"></label> Nombre</label>
+                      <label for="nombreCategoria" class="mt-2"> Nombre</label>
                       <input
                         type="text"
                         id="nombreCategoria"
@@ -188,29 +188,163 @@
             <table
               class="table table-hover align-middle table-striped bg-primary"
             >
-              <thead>
+              <thead class="text-center">
                 <tr>
                   <th>ID</th>
                   <th>Categoría</th>
                   <th>Descripción</th>
+                  <th class="text-start">Estado</th>
                   <th class="text-center">Acciones</th>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody class="text-center">
                 <tr>
                   <td>1</td>
                   <td>Novela</td>
                   <td>Libros de ficción</td>
+                  <td>
+                    <div class="form-check form-switch m-0">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkNativeSwitch"
+                        checked
+                      />
+                      <label
+                        class="form-check-label"
+                        for="checkNativeSwitch"
+                      ></label>
+                    </div>
+                  </td>
 
                   <td class="text-center">
                     <button
                       class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalBorrar"
                     ></button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="modalBorrar"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      aria-labelledby="modalBorrarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalBorrarLabel">
+                              Borrar Cliente
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            ¿Estas seguro de que quieres <b>borrar</b> esta categoría?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-info">
+                              Si, borrar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-bs-dismiss="modal"
+                            >
+                              No, cancelar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                     <button
                       class="btn btn-outline-primary btn-sm bi bi-pencil"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalEditar"
                     ></button>
+                    <div
+                      class="modal fade"
+                      id="modalEditar"
+                      tabindex="-1"
+                      aria-labelledby="modalEditarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div
+                          class="modal-content p-3 justify-content-center text-start"
+                        >
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalEditarLabel">
+                              Editar Categoría
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close btn-info"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="">
+                              <div class="row">
+                                <label for="nombreCategoria" class="mt-2">
+                                  Nombre</label
+                                >
+                                <input
+                                  type="text"
+                                  id="nombreCategoria"
+                                  class="form-control mt-2"
+                                />
+                                <label for="descripcionCategoria"
+                                  >Descripción</label
+                                >
+                                <textarea
+                                  id="descripcionCategoria"
+                                  rows="3"
+                                  cols="3"
+                                  class="form-control"
+                                >
+                                </textarea>
+                                <label for="estado" class="mt-2">Estado</label>
+                                <select id="estado" class="form-select">
+                                  <option disabled selected>
+                                    Seleccionar..
+                                  </option>
+                                  <option value="">Activa</option>
+                                  <option value="">Inactiva</option>
+                                </select>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-outline-info"
+                              data-bs-dismiss="modal"
+                            >
+                              Cancelar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                            >
+                              Confirmar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
@@ -218,15 +352,148 @@
                   <td>2</td>
                   <td>Infantil</td>
                   <td>Libros para niños</td>
+                  <td>
+                    <div class="form-check form-switch m-0">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkNativeSwitch"
+                        checked
+                      />
+                      <label
+                        class="form-check-label"
+                        for="checkNativeSwitch"
+                      ></label>
+                    </div>
+                  </td>
 
                   <td class="text-center">
                     <button
                       class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalBorrar"
                     ></button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="modalBorrar"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      aria-labelledby="modalBorrarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalBorrarLabel">
+                              Borrar Cliente
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            ¿Estas seguro de que quieres <b>borrar</b> esta categoría?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-info">
+                              Si, borrar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-bs-dismiss="modal"
+                            >
+                              No, cancelar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                     <button
                       class="btn btn-outline-primary btn-sm bi bi-pencil"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalEditar"
                     ></button>
+                    <div
+                      class="modal fade"
+                      id="modalEditar"
+                      tabindex="-1"
+                      aria-labelledby="modalEditarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div
+                          class="modal-content p-3 justify-content-center text-start"
+                        >
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalEditarLabel">
+                              Editar Categoría
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close btn-info"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="">
+                              <div class="row">
+                                <label for="nombreCategoria" class="mt-2">
+                                  Nombre</label
+                                >
+                                <input
+                                  type="text"
+                                  id="nombreCategoria"
+                                  class="form-control mt-2"
+                                />
+                                <label for="descripcionCategoria"
+                                  >Descripción</label
+                                >
+                                <textarea
+                                  id="descripcionCategoria"
+                                  rows="3"
+                                  cols="3"
+                                  class="form-control"
+                                >
+                                </textarea>
+                                <label for="estado" class="mt-2">Estado</label>
+                                <select id="estado" class="form-select">
+                                  <option disabled selected>
+                                    Seleccionar..
+                                  </option>
+                                  <option value="">Activa</option>
+                                  <option value="">Inactiva</option>
+                                </select>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-outline-info"
+                              data-bs-dismiss="modal"
+                            >
+                              Cancelar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                            >
+                              Confirmar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
