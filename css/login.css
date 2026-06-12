@@ -5,12 +5,13 @@ body {
   margin: 0;
 }
 
+/* Personalizado para el navbar */
 #main-navbar {
-  font-size: 25px
+  font-size: 15px
 }
 
 #main-navbar .btn{
-  font-size: 25px;
+  font-size: 15px;
 }
 
 #navbarNav > ul :hover {
