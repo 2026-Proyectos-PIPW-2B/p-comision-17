@@ -152,7 +152,7 @@
               <div class="modal-content p-3 justify-content-center">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Nueva Categoría
+                    Nuevo Administrador
                   </h1>
                   <button
                     type="button"
@@ -201,7 +201,7 @@
             <table
               class="table table-hover align-middle table-striped bg-primary"
             >
-              <thead>
+              <thead class="text-center">
                 <tr>
                   <th>ID</th>
                   <th>Nombre de Usuario</th>
@@ -210,36 +210,252 @@
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody class="text-center">
                 <tr>
                   <td>1</td>
-                  <td>Maria Clara Ornella</td>
+                  <td>ClaraOrnella</td>
                   <td>clari.ornella@gmail.com</td>
 
                   <td class="text-center">
                     <button
                       class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalBorrar"
                     ></button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="modalBorrar"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      aria-labelledby="modalBorrarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1
+                              class="modal-title fs-5"
+                              id="modalBorrarLabel"
+                            >
+                              Borrar Administrador
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">¿Estas seguro de que quieres <b>borrar</b> a este administrador?</div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-info">
+                              Si, borrar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-bs-dismiss="modal"
+                            >
+                              No, cancelar
+                            </button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                     <button
                       class="btn btn-outline-primary btn-sm bi bi-pencil"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalEditar"
                     ></button>
+                    <div
+                      class="modal fade"
+                      id="modalEditar"
+                      tabindex="-1"
+                      aria-labelledby="modalEditarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div
+                          class="modal-content p-3 justify-content-center text-start"
+                        >
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalEditarLabel">
+                              Editar Administrador
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close btn-info"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="">
+                              <div class="row">
+                                <label for="nombreAdmin"
+                                  >Nombre de Usuario
+                                </label>
+                                <input
+                                  type="text"
+                                  id="nombreAdmin"
+                                  class="form-control m-2"
+                                />
+                                <label for="emailAdmin">Ingrese Email</label>
+                                <input
+                                  type="email"
+                                  id="emailAdmin"
+                                  class="form-control m-2"
+                                />
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-outline-info"
+                              data-bs-dismiss="modal"
+                            >
+                              Cancelar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                            >
+                              Confirmar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
                 <tr>
                   <td>2</td>
-                  <td>Geraldine Lagarrigue</td>
+                  <td>GeraldineLagarrigue</td>
                   <td>lagarriguegeraldine@gmail.com</td>
 
                   <td class="text-center">
                     <button
                       class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalBorrar"
                     ></button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="modalBorrar"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      aria-labelledby="modalBorrarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1
+                              class="modal-title fs-5"
+                              id="modalBorrarLabel"
+                            >
+                              Borrar Administrador
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">¿Estas seguro de que quieres <b>borrar</b> a este administrador?</div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-info">
+                              Si, borrar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-bs-dismiss="modal"
+                            >
+                              No, cancelar
+                            </button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                     <button
                       class="btn btn-outline-primary btn-sm bi bi-pencil"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalEditar"
                     ></button>
+                    <div
+                      class="modal fade"
+                      id="modalEditar"
+                      tabindex="-1"
+                      aria-labelledby="modalEditarLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div
+                          class="modal-content p-3 justify-content-center text-start"
+                        >
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalEditarLabel">
+                              Editar Administrador
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close btn-info"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="">
+                              <div class="row">
+                                <label for="nombreAdmin"
+                                  >Nombre de Usuario
+                                </label>
+                                <input
+                                  type="text"
+                                  id="nombreAdmin"
+                                  class="form-control m-2"
+                                />
+                                <label for="emailAdmin">Ingrese Email</label>
+                                <input
+                                  type="email"
+                                  id="emailAdmin"
+                                  class="form-control m-2"
+                                />
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-outline-info"
+                              data-bs-dismiss="modal"
+                            >
+                              Cancelar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                            >
+                              Confirmar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
