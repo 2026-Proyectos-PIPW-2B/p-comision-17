@@ -10,7 +10,7 @@ body {
   min-height: 150px;
 }
 
-/* Pilar de libros */
+/* Pila de libros */
 .book-pillar {
   transition: all 0.3s ease;
   cursor: pointer;
@@ -32,7 +32,7 @@ body {
 
 /* Personalizado para el navbar */
 #main-navbar {
-        font-size: 15px
+  font-size: 15px
 }
 
 #main-navbar .btn{
@@ -112,7 +112,6 @@ main {
     font-size: 15px;
     color: #845f4a
   }
-
   .price{
     font-size: 19px;
   }
