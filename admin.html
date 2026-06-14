@@ -11,45 +11,66 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="./css/admin.css" />
   </head>
 
   <body>
     <header>
       <nav class="navbar bg-primary p-4 fw-bold">
-        <div class="container-fluid d-grid gap-3">
-          <span> <img src="img/logo-reducido.png" class="w-25" /> </span>
+        <div class="container-fluid position-relative">
+          <button
+            class="btn btn-outline-light d-lg-none position-absolute start-0 top-50 translate-middle-y ms-3"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#sidebar"
+          >
+            ☰
+          </button>
+
+          <div class="w-100 text-center text-lg-start">
+            <img src="img/logo-reducido.png" height="40" />
+          </div>
         </div>
       </nav>
     </header>
 
     <div class="container-fluid">
       <div class="row min-vh-100">
-        <aside class="col-12 col-md-3 col-lg-2 border-end p-3 bg-secondary">
+
+        <!-- ==================== SIDEBAR ==================== -->
+
+        <aside
+          class="offcanvas-lg offcanvas-start col-lg-2 border-end p-3 bg-secondary"
+          tabindex="-1"
+          id="sidebar"
+        >
           <nav class="d-flex flex-column h-100">
-            
-            <a href="admin.html" class="nav-link  p-3"> Panel de administación</a>
-            <a href="historial-pedidos.html" class="nav-link  p-3">
+            <a href="admin.html" class="nav-link p-3">
+              Panel de administación</a
+            >
+            <a href="historial-pedidos.html" class="nav-link p-3">
               Historial de pedidos
             </a>
 
-            <div
-              class="accordion accordion-flush bg-secondary"
-              id="menuProductos"
-            >
+            <!-- Acordion Productos-->
+
+            <div class="accordion accordion-flush bg-secondary" id="menuProductos">
               <div class="accordion-item bg-secondary border-0">
                 <h2 class="accordion-header">
                   <button
                     class="accordion-button collapsed bg-secondary nav-link"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#productos"
-                  > 
+                    data-bs-target="#collapseProductos"
+                  >
                     Productos
                   </button>
                 </h2>
 
-                <div id="productos" class="accordion-collapse collapse mb-4">
+                <div
+                  id="collapseProductos"
+                  class="accordion-collapse collapse mb-4"
+                >
                   <div class="accordion-body mb-2 bg-secondary">
                     <a href="gestion-categorias.html" class="nav-link p-3">
                       Gestión categorías
@@ -58,11 +79,12 @@
                     <a href="gestion-stock.html" class="nav-link p-3">
                       Gestión stock
                     </a>
-
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Acordion Usuarios-->
 
             <div class="accordion accordion-flush bg-secondary" id="menuAdmin">
               <div class="accordion-item bg-secondary border-0">
@@ -71,13 +93,16 @@
                     class="accordion-button collapsed bg-secondary nav-link p-3"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#usuarios"
+                    data-bs-target="#collapseUsuarios"
                   >
                     Usuarios
                   </button>
                 </h2>
 
-                <div id="usuarios" class="accordion-collapse collapse mb-4">
+                <div
+                  id="collapseUsuarios"
+                  class="accordion-collapse collapse mb-4"
+                >
                   <div class="accordion-body mb-2 bg-secondary">
                     <a href="nuevo-admin.html" class="nav-link p-3">
                       Usuarios Administradores
@@ -101,9 +126,21 @@
               Cerrar sesión
             </a>
           </nav>
+          <button
+            type="button"
+            class="btn-close d-lg-none position-absolute bottom-0 end-0 m-3"
+            onclick="
+              bootstrap.Offcanvas.getInstance(
+                document.getElementById('sidebar'),
+              ).hide()
+            "
+            aria-label="Close"
+          ></button>
         </aside>
 
-        <main class="col-12 col-md-9 col-lg-10 p-4">
+        <main class="col-12 col-lg-10 p-4">
+          <!-- ==================== BIENVENIDA ==================== -->
+
           <section class="mb-4">
             <div class="card rounded-5 bg-secondary border-0">
               <div class="card-body p-4">
@@ -140,11 +177,14 @@
             </div>
           </section>
 
+          <!-- ==================== ESTADÍSTICAS ==================== -->
+
           <section class="row g-4 mb-4">
+
+            <!-- CARD VENTAS -->
+
             <div class="col-sm-6 col-md-6 col-lg-3">
-              <div
-                class="card align-items-center rounded-5 bg-primary border-0"
-              >
+              <div class="card card-dashboard bg-primary">
                 <div class="card-body mb-2 text-white">
                   <h5 class="card-title text-center mb-4">Ventas</h5>
 
@@ -169,10 +209,10 @@
               </div>
             </div>
 
+            <!-- CARD CLIENTES -->
+
             <div class="col-sm-6 col-md-6 col-lg-3">
-              <div
-                class="card align-items-center rounded-5 bg-primary border-0"
-              >
+              <div class="card card-dashboard bg-primary">
                 <div class="card-body mb-2 text-white">
                   <h5 class="card-title text-center mb-4">Clientes</h5>
 
@@ -188,6 +228,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- ==================== ÚLTIMOS PEDIDOS ==================== -->
 
             <div class="col-lg-6">
               <div class="card rounded-5 border-0">
