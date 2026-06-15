@@ -1,6 +1,7 @@
 html {
     scroll-behavior: smooth;
 }
+
 /* Mini logo */
 .custom-logo-box {
   min-height: 150px;
@@ -8,7 +9,7 @@ html {
 
 /* Personalizado para el navbar */
 #main-navbar {
-        font-size: 15px
+  font-size: 15px
 }
 
 #main-navbar .btn{
