@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -10,7 +14,7 @@ body {
   min-height: 150px;
 }
 
-/* Pilar de libros */
+/* Pila de libros */
 .book-pillar {
   transition: all 0.3s ease;
   cursor: pointer;
@@ -32,11 +36,11 @@ body {
 
 /* Personalizado para el navbar */
 #main-navbar {
-  font-size: 25px
+  font-size: 15px
 }
 
 #main-navbar .btn{
-  font-size: 25px;
+  font-size: 15px;
 }
 
 #navbarNav > ul :hover {
@@ -48,13 +52,11 @@ main {
   flex: 1; 
 }
 
-/* Estilos para pantallas medianas y mayores */
-/* @media para pantallas medianas y mayores */
 @media (min-width: 768px) {
 
   .custom-logo-box,
   .custom-books-container {
-    min-height: 600px; 
+    min-height: 375px; 
   }
 
  
@@ -75,24 +77,27 @@ main {
 
  
   .book-pillar:hover {
+    /* Estira el elemento para arriba */
     transform: scaleY(1.03);
+    /* Agrega una sombra */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    /* Coloca el elemento por encima de otros elementos */
     z-index: 10;
   }
 }
 
 /* Sección de información */
 #info-section {
-    font-size: 18px;
+    font-size: 12px;
 }
 
 #info-section .info-icon-circle {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center; 
-    font-size: 25px;
+    font-size: 20px;
 }
 
 /* Líneas intermedias que solo aparecen de tablets/PC en adelante */
@@ -104,68 +109,78 @@ main {
 
 /* Cuerpo de la tarjetas de los libros */
 .card-body{
-
-  h6{
-    font-size: 20px;
-  }
-
-  h3{
-    font-size: 35px;
-  }
-
+  p {
+    font-size: 21px;
+    }
   p > i{
-    font-size: 20px;
+    font-size: 15px;
     color: #845f4a
   }
-
   .price{
-    font-size: 30px;
+    font-size: 19px;
   }
+
 }
 
-
-#catalog-section span{
-  border: 5px solid #845f4a;  
+#catalog-section span > h4 {
+  border: 2px solid #845f4a;  
 }
 
 #catalog-section .catalog-card {
   min-height: 100%;
 }
 
-#catalog-section .catalog-card-img {
-  height: 400px;
-  object-fit: cover;
-  align-items: center;
+.catalog-img-container {
+    width: 100%;
+    height: 240px;         
+    display: flex;
+    align-items: center;   
+    justify-content: center;
+    padding: 5px;          
+    overflow: hidden;
 }
 
+/* Ajuste de la imagen del libro */
+.catalog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  
+  display: block;
+}
+
+
+.card-title-book {
+    font-size: 0.9rem;     
+    line-height: 1.2;
+  }
 
 
 footer {
   h5 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
     a > i{
-        font-size: 20px;
+        font-size: 15px;
         padding: 0 5px;
     }
     
     li> a{
         color: #845f4a;
         text-decoration: none;
-        font-size: 18px;
+        font-size: 15px;
         &:hover{
             text-decoration: underline;
         }
     }
 
     ul > li {
-        font-size: 18px;
+        font-size: 15px;
         color: #845f4a; 
     }
 
     span{
-        font-size: 25px;
+        font-size: 18px;
         color: #dfa0aa;
     }
 

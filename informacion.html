@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librarium | Tienda online</title>
+    <!-- Link de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Link de CSS personalizado -->
+    <link rel="stylesheet" href="css/informacion.css">
+    <!-- Link de íconos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Link de CSS con SCSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    
+
+</head>
+<body>
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3" id="main-navbar">
+
+        <div class="container-fluid">
+        <!-- Logo de la empresa -->
+        <section>
+            <a href="index.html">
+            <img src="img/logo-reducido-primario.png" alt="Logo de Librarium" class="img-fluid" style="width: 40px;">
+            </a>
+        </section>
+            
+            <!-- Menu collapse -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                
+            <!-- Links de navegación -->
+                <ul class="navbar-nav mx-auto text-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="categorias.html">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ebooks.html">Ebooks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="importados.html">Importados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="outlet.html">Outlet</a>
+                    </li>
+                </ul>
+
+            <!-- Botones de acción -->
+                <div class="d-flex align-items-center justify-content-center mt-3 mt-lg-0 gap-3" id="action-buttons">
+                    <a href="login.html" class="btn btn-outline-secondary" style="color: #dfa0aa; ">Iniciar Sesión</a>
+                    
+                    <a href="#" class="btn btn-outline-primary rounded-pill position-relative" aria-label="Carrito de compras">
+                        <i class="bi bi-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </a>
+                </div>
+
+            </div> 
+        </div> 
+    </nav>
+</header>
+
+<main class="container-fluid my-3" style="max-width: 90%;">
+    <section class="mb-5" id="conocenos">
+        <span class="border-top flex-grow-1 border-primary-subtle"></span>
+    <div class="col-md-4 mb-3"></div>
+        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
+        Sobre nosotras
+        <span class="border-top flex-grow-1 border-primary-subtle"></span>
+        </h4>
+    <ul class="list-unstyled p-0 m-0">
+        <li>
+            <p class="text-muted" style="font-size: 18px; line-height: 1.4; text-align: justify;">
+            Somos <strong>María Clara Ornella</strong> y <strong>Geraldine Lagarrigue Gonzalez</strong>, estudiantes de la Tecnicatura en Programación de Páginas Web y Apps Móviles. Diseñamos e implementamos <em>Librarium</em> como nuestro proyecto integrador para la materia Introducción a la Programación Web. 
+            <br><br>
+            Este espacio digital representa nuestros primeros pasos firmes en el desarrollo frontend, donde logramos articular la grilla responsiva de <strong>Bootstrap</strong> junto con la interactividad dinámica de <strong>JavaScript</strong>. Con el fin de llevar la plataforma al siguiente nivel y lograr un e-commerce estético y profesional, investigamos y aprendimos de manera autónoma nuevas herramientas de estilos y efectos CSS avanzados. Así, logramos fusionar la lógica del código con la calidez del universo literario en un refugio virtual único para los lectores.
+            </p>
+        </li>
+    </ul>
+</div>
+</section>
+<section class="mb-5" id="preguntas-frecuentes">  
+    <span class="border-top flex-grow-1 border-primary-subtle"></span>
+    <div class="col-md-4 mb-3"></div>
+        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
+        Preguntas frecuentes
+    <span class="border-top flex-grow-1 border-primary-subtle"></span>
+        </h4>
+    <ul class="list-unstyled p-0 m-0" style="font-size: 18px; line-height: 1.4; text-align: justify;">
+        <li class="mb-2 text-muted">
+            <strong class="text-dark">¿Hacen envíos?</strong><br>
+            Sí, realizamos envíos a todo el país a través de correo privado y mensajería express.
+        </li>
+        <li class="mb-2 text-muted">
+            <strong class="text-dark">¿Qué medios de pago aceptan?</strong><br>
+            Aceptamos tarjetas de crédito/débito, transferencias bancarias y Mercado Pago.
+        </li>
+        <li class="text-muted">
+            <strong class="text-dark">¿Se pueden hacer cambios?</strong><br>
+            Sí, tenés hasta 30 días desde la entrega para cambiar tu ejemplar en perfectas condiciones.
+        </li>
+    </ul>
+</section>
+
+<section class="mb-5" id="medios-pago">  
+    <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
+        Medios de pago
+        <span class="border-top flex-grow-1 border-primary-subtle"></span>
+    </h4>
+    <ul class="list-unstyled p-0 m-0" style="font-size: 18px; line-height: 1.4; text-align: justify;">
+        <li class="mb-2 text-muted">
+            <strong class="text-dark"><i class="bi bi-credit-card-2-back me-1"></i> Tarjetas de Crédito y Débito:</strong><br>
+            Aceptamos Visa, Mastercard, American Express y Cabal de cualquier entidad bancaria.
+        </li>
+        <li class="mb-2 text-muted">
+            <strong class="text-dark"><i class="bi bi-qr-code-scan me-1"></i> Billeteras Virtuales:</strong><br>
+            Pagá de forma rápida y segura escaneando nuestro QR con Mercado Pago, Ualá o Modo.
+        </li>
+        <li class="text-muted">
+            <strong class="text-dark"><i class="bi bi-bank me-1"></i> Transferencia o Efectivo:</strong><br>
+            Obtené un 10% de descuento abonando por transferencia directa, Rapipago o Pagofácil.
+        </li>
+    </ul>
+</section>
+<section class="mb-5" id="devoluciones">  
+    <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
+        Cambios y devoluciones
+        <span class="border-top flex-grow-1 border-primary-subtle"></span>
+    </h4>
+    <ul class="list-unstyled p-0 m-0" style="font-size: 18px; line-height: 1.4; text-align: justify;">
+        <li class="mb-2 text-muted">
+            <strong class="text-dark"><i class="bi bi-arrow-left-right me-1"></i> Plazo para cambios:</strong><br>
+            Tenés hasta 30 días corridos desde el momento de la entrega para solicitar el cambio de cualquier libro.
+        </li>
+        <li class="mb-2 text-muted">
+            <strong class="text-dark"><i class="bi bi-journal-check me-1"></i> Estado del ejemplar:</strong><br>
+            Para poder realizar el cambio, el libro debe encontrarse en perfectas condiciones, sin marcas, dobleces ni signos de uso.
+        </li>
+        <li class="text-muted">
+            <strong class="text-dark"><i class="bi bi-chat-left-text me-1"></i> ¿Cómo inicio el trámite?</strong><br>
+            Es súper fácil: escribinos a través de nuestro formulario de contacto o redes sociales indicando tu número de pedido y el título que querés cambiar.
+        </li>
+    </ul>
+</section>
+</main>
+
+<footer class="pt-3 bg-secondary">
+    <div class="container px-0">
+        <div class="row g-5 justify-content-center">
+                        <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info">
+                    Servicio de atencion al cliente
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><i class="bi bi-whatsapp"> 291-6574839</i></li>
+                    <li><i class="bi bi-envelope-at"> atencion-al-cliente@librarium.com</i></li>
+                    <li><i class="bi bi-clock-history"></i> Horario de atencion: 09:00 a 18:00 Hs. Lunes a viernes</li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info">
+                    Sobre nosotros
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><a href="informacion.html#conocenos">Conocenos</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info">
+                    Ayuda
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><a href="informacion.html#preguntas-frecuentes">Preguntas Frecuentes</a></li>
+                    <li><a href="informacion.html#medios-pago">Medios de pago</a></li>
+                    <li><a href="informacion.html#devoluciones">Devoluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="mt-1 col-12 text-center">
+                    <span class="text-center d-block mb-2">Seguinos</span>
+                    <div class="border p-2 text-center rounded small custom-social-box">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</footer> 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
