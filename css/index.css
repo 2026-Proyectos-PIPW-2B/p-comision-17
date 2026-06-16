@@ -188,3 +188,17 @@ footer {
  
 
 
+/* Carrito */
+
+.cart-product-img {
+  width: 100px;
+  height: 120px;
+  object-fit: contain;
+  padding: 0.25rem;
+  border: 1px solid #eee;
+  border-radius: 0.5rem;
+}
+
+.product-cant button:hover {
+  background-color: #f8f9fa;
+}

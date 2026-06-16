@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Librarium | Historial de Pedidos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar bg-primary p-4 fw-bold">
+        <div class="container-fluid position-relative">
+          <button
+            class="btn btn-outline-light d-lg-none position-absolute start-0 top-50 translate-middle-y ms-3"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#sidebar"
+          >
+            ☰
+          </button>
+
+          <div class="w-100 text-center text-lg-start">
+            <section>
+            <a href="index.html">
+              <img
+                src="img/logo-reducido.png"
+                alt="Logo de Librarium"
+                class="img-fluid"
+                style="width: 40px"
+              />
+            </a>
+          </section>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row min-vh-100">
+
+        <!-- ==================== SIDEBAR ==================== -->
+
+        <aside
+          class="offcanvas-lg offcanvas-start col-lg-2 border-end p-3 bg-secondary"
+          tabindex="-1"
+          id="sidebar"
+        >
+          <nav class="d-flex flex-column h-100">
+            <a href="admin.html" class="nav-link p-3">
+              Panel de administación</a
+            >
+            <a href="historial-pedidos.html" class="nav-link p-3">
+              Historial de pedidos
+            </a>
+
+            <!-- Acordion Productos-->
+
+            <div class="accordion accordion-flush bg-secondary" id="menuProductos">
+              <div class="accordion-item bg-secondary border-0">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-secondary nav-link"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseProductos"
+                  >
+                    Productos
+                  </button>
+                </h2>
+
+                <div
+                  id="collapseProductos"
+                  class="accordion-collapse collapse mb-4"
+                >
+                  <div class="accordion-body mb-2 bg-secondary">
+                    <a href="gestion-categorias.html" class="nav-link p-3">
+                      Gestión categorías
+                    </a>
+
+                    <a href="gestion-stock.html" class="nav-link p-3">
+                      Gestión stock
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Acordion Usuarios-->
+
+            <div class="accordion accordion-flush bg-secondary" id="menuAdmin">
+              <div class="accordion-item bg-secondary border-0">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-secondary nav-link p-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseUsuarios"
+                  >
+                    Usuarios
+                  </button>
+                </h2>
+
+                <div
+                  id="collapseUsuarios"
+                  class="accordion-collapse collapse mb-4"
+                >
+                  <div class="accordion-body mb-2 bg-secondary">
+                    <a href="nuevo-admin.html" class="nav-link p-3">
+                      Usuarios Administradores
+                    </a>
+
+                    <a href="gestion-clientes.html" class="nav-link p-3">
+                      Gestión de clientes
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="ajustes.html" class="nav-link p-3"> Ajustes </a>
+
+            <a
+              href="#"
+              id="btn-cerrarSesion"
+              class="mt-auto fw-bold px-3 text-info"
+            >
+              Cerrar sesión
+            </a>
+          </nav>
+          <button
+            type="button"
+            class="btn-close d-lg-none position-absolute bottom-0 end-0 m-3"
+            onclick="
+              bootstrap.Offcanvas.getInstance(
+                document.getElementById('sidebar'),
+              ).hide()
+            "
+            aria-label="Close"
+          ></button>
+        </aside>
+
+        <main class="col-12 col-lg-10 p-4">
+          <!-- TÍTULO -->
+
+          <h2 class="display-4 fw-bold text-center p-4">
+            Historial de Pedidos
+          </h2>
+
+          <div class="row align-items-center g-2 mb-4">
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input
+                  type="search"
+                  id="buscarPedido"
+                  class="form-control"
+                  placeholder="Buscar pedido o cliente"
+                />
+              </div>
+            </div>
+
+            <!-- FILTROS -->
+
+            <div class="dropdown col-auto">
+              <button
+                id="filtroEstado"
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Filtrar por estado
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Todos</a></li>
+                <li><a class="dropdown-item" href="#">Completado</a></li>
+                <li><a class="dropdown-item" href="#">Pendiente</a></li>
+                <li><a class="dropdown-item" href="#">Cancelado</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ==================== Tabla de pedidos ==================== -->
+
+          <div class="card card-dashboard">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  id="tablaPedidos"
+                  class="table table-striped table-hover"
+                >
+                  <thead class="text-center">
+                    <tr>
+                      <th>ID Pedido</th>
+                      <th>Cliente</th>
+                      <th>Fecha</th>
+                      <th>Productos</th>
+                      <th>Total</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="text-center">
+                    <tr>
+                      <td>12345</td>
+                      <td>Juan Pérez</td>
+                      <td>2024-06-15</td>
+                      <td>3</td>
+                      <td>$15000</td>
+                      <td><span class="badge bg-success">Completado</span></td>
+                      <td>
+                        <button
+                          class="btn btn-link text-info p-0"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalDetallePedido"
+                        >
+                          Ver detalle
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>12346</td>
+                      <td>María Gómez</td>
+                      <td>2024-06-14</td>
+                      <td>2</td>
+                      <td>$8500</td>
+                      <td>
+                        <span class="badge bg-warning text-dark"
+                          >Pendiente</span
+                        >
+                      </td>
+                      <td>
+                        <button
+                          class="btn btn-link text-info p-0"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalDetallePedido"
+                        >
+                          Ver detalle
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>12347</td>
+                      <td>Carlos López</td>
+                      <td>2024-06-13</td>
+                      <td>1</td>
+                      <td>$4500</td>
+                      <td><span class="badge bg-danger">Cancelado</span></td>
+                      <td>
+                        <button
+                          class="btn btn-link text-info p-0"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalDetallePedido"
+                        >
+                          Ver detalle
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- PAGINACIÓN -->
+
+            <nav aria-label="Paginación de pedidos">
+              <ul class="pagination justify-content-center mt-4">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+
+                <li class="page-item">
+                  <a class="page-link" href="#">2</a>
+                </li>
+
+                <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+                </li>
+
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="js/modal.js"></script>
+  </body>
+</html>
