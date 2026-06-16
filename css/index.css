@@ -25,6 +25,7 @@ body {
 .vertical-text {
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-right: 15px; 
 }
 
 .icon-circle {
