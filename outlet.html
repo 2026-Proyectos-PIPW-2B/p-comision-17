@@ -105,15 +105,28 @@
         </div>
       </nav>
     </header>
-
     <main class="container-fluid my-4">
-      <div class="row">
+      <div class="col-11 col-sm-10 mx-auto d-md-none mb-3 px-0">
+        <button
+          class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#sidebar"
+          aria-expanded="false"
+          aria-controls="sidebar"
+        >
+          <span><i class="bi bi-sliders"></i> Ver Filtros</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </div>
+
+      <div class="row justify-content-center justify-content-md-start">
         <aside
           id="sidebar"
-          class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse custom-sidebar"
+          class="col-11 col-sm-10 col-md-3 col-lg-2 bg-light sidebar custom-sidebar collapse d-md-block mb-4 mb-md-0 mx-auto mx-md-0 rounded rounded-md-0 border border-md-0"
         >
           <div
-            class="position-sticky pt-4 px-3 sidebar-content h-100 d-flex flex-column"
+            class="pt-3 pb-3 pt-md-4 px-2 px-md-3 sidebar-content d-flex flex-column"
           >
             <h4 class="bar-item mb-3 fw-bold text-primary">Filtros</h4>
 
@@ -128,104 +141,118 @@
             </div>
 
             <h5 class="bar-item mb-3 fw-semibold">Categorías</h5>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-categoria"
-                type="checkbox"
-                id="categoria1"
-                value="Juvenil"
-              />
-              <label class="form-check-label" for="categoria1">Juvenil</label>
-            </div>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-categoria"
-                type="checkbox"
-                id="categoria2"
-                value="Infantil"
-              />
-              <label class="form-check-label" for="categoria2">Infantil</label>
-            </div>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-categoria"
-                type="checkbox"
-                id="categoria3"
-                value="Terror"
-              />
-              <label class="form-check-label" for="categoria3">Terror</label>
-            </div>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-categoria"
-                type="checkbox"
-                id="categoria4"
-                value="Romance"
-              />
-              <label class="form-check-label" for="categoria4">Romance</label>
-            </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input checkbox-categoria"
-                type="checkbox"
-                id="categoria5"
-                value="Clásico"
-              />
-              <label class="form-check-label" for="categoria5">Clásico</label>
+            <div
+              class="d-flex flex-row flex-wrap gap-2 flex-md-column mb-4 mb-md-0"
+            >
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-categoria"
+                  type="checkbox"
+                  id="categoria1"
+                  value="Juvenil"
+                />
+                <label class="form-check-label" for="categoria1">Juvenil</label>
+              </div>
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-categoria"
+                  type="checkbox"
+                  id="categoria2"
+                  value="Infantil"
+                />
+                <label class="form-check-label" for="categoria2"
+                  >Infantil</label
+                >
+              </div>
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-categoria"
+                  type="checkbox"
+                  id="categoria3"
+                  value="Terror"
+                />
+                <label class="form-check-label" for="categoria3">Terror</label>
+              </div>
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-categoria"
+                  type="checkbox"
+                  id="categoria4"
+                  value="Romance"
+                />
+                <label class="form-check-label" for="categoria4">Romance</label>
+              </div>
+              <div class="form-check mb-md-4">
+                <input
+                  class="form-check-input checkbox-categoria"
+                  type="checkbox"
+                  id="categoria5"
+                  value="Clásico"
+                />
+                <label class="form-check-label" for="categoria5">Clásico</label>
+              </div>
             </div>
 
             <h5 class="bar-item mb-3 fw-semibold">Formato</h5>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-formato"
-                type="checkbox"
-                id="formato1"
-                value="Tapa blanda"
-              />
-              <label class="form-check-label" for="formato1">Tapa blanda</label>
-            </div>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-formato"
-                type="checkbox"
-                id="formato2"
-                value="Tapa dura"
-              />
-              <label class="form-check-label" for="formato2">Tapa dura</label>
-            </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input checkbox-formato"
-                type="checkbox"
-                id="formato3"
-                value="Ebook"
-              />
-              <label class="form-check-label" for="formato3">Ebook</label>
+            <div
+              class="d-flex flex-row flex-wrap gap-2 flex-md-column mb-4 mb-md-0"
+            >
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-formato"
+                  type="checkbox"
+                  id="formato1"
+                  value="Tapa blanda"
+                />
+                <label class="form-check-label" for="formato1"
+                  >Tapa blanda</label
+                >
+              </div>
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-formato"
+                  type="checkbox"
+                  id="formato2"
+                  value="Tapa dura"
+                />
+                <label class="form-check-label" for="formato2">Tapa dura</label>
+              </div>
+              <div class="form-check mb-md-4">
+                <input
+                  class="form-check-input checkbox-formato"
+                  type="checkbox"
+                  id="formato3"
+                  value="Ebook"
+                />
+                <label class="form-check-label" for="formato3">Ebook</label>
+              </div>
             </div>
 
             <h5 class="bar-item mb-3 fw-semibold">Estado</h5>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-tipo"
-                type="checkbox"
-                id="tipoFiltro1"
-                value="Nuevo"
-              />
-              <label class="form-check-label" for="tipoFiltro1">Nuevo</label>
-            </div>
-            <div class="form-check mb-2">
-              <input
-                class="form-check-input checkbox-tipo"
-                type="checkbox"
-                id="tipoFiltro2"
-                value="Usado"
-              />
-              <label class="form-check-label" for="tipoFiltro2">Usado</label>
+            <div class="d-flex flex-row flex-wrap gap-2 flex-md-column">
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-tipo"
+                  type="checkbox"
+                  id="tipoFiltro1"
+                  value="Nuevo"
+                />
+                <label class="form-check-label" for="tipoFiltro1">Nuevo</label>
+              </div>
+              <div class="form-check mb-md-2">
+                <input
+                  class="form-check-input checkbox-tipo"
+                  type="checkbox"
+                  id="tipoFiltro2"
+                  value="Usado"
+                />
+                <label class="form-check-label" for="tipoFiltro2">Usado</label>
+              </div>
             </div>
           </div>
         </aside>
 
-        <section class="col-md-9 col-lg-10" id="catalog-section">
+        <section class="col-12 col-md-9 col-lg-10" id="catalog-section">
           <div class="container px-0">
             <div
               id="catalog-container"
