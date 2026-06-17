@@ -1,5 +1,5 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 /* Mini logo */
 .custom-logo-box {
@@ -8,10 +8,10 @@ html {
 
 /* Personalizado para el navbar */
 #main-navbar {
-        font-size: 15px
+  font-size: 15px;
 }
 
-#main-navbar .btn{
+#main-navbar .btn {
   font-size: 15px;
 }
 
@@ -20,51 +20,66 @@ html {
   color: #dfa0aa;
 }
 
-
 /* Limita el ancho del elemento principal al 80% centrado en pantallas grandes */
 @media (min-width: 992px) {
-    .custom-main-boxed {
-        max-width: 80% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
+  .custom-main-boxed {
+    max-width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }
 
+@media (max-width: 767.98px) {
+ 
+  .contenedor-boton-filtros,
+  #sidebar {
+    width: 90% !important;
+    max-width: 440px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-right: none !important;
+  }
+
+  
+  #sidebar .sidebar-content {
+    max-height: 450px !important;
+  }
+}
+
+/* Sidebar */
 .custom-sidebar {
-    min-height: 100vh; 
-    border-right: 1px solid #e0e0e0; 
-    padding-bottom: 2rem;
+  border-right: 1px solid #e0e0e0;
+  padding-bottom: 2rem;
 }
 
 .form-check-label {
-    font-size: 0.95rem;
-    color: #495057;
-    cursor: pointer;
-    user-select: none;
+  font-size: 0.95rem;
+  color: #495057;
+  cursor: pointer;
+  user-select: none;
 }
 
 .form-check:hover .form-check-label {
-    color: #000;
-    font-weight: 500;
+  color: #000;
+  font-weight: 500;
 }
 
 /* Cuerpo de la tarjetas de los libros */
-.card-body{
+.card-body {
   p {
     font-size: 21px;
-    }
-  p > i{
-    font-size: 15px;
-    color: #845f4a
   }
-  .price{
+  p > i {
+    font-size: 15px;
+    color: #845f4a;
+  }
+  .price {
     font-size: 19px;
   }
-
 }
 
 #catalog-section span > h4 {
-  border: 2px solid #845f4a;  
+  border: 2px solid #845f4a;
 }
 
 #catalog-section .catalog-card {
@@ -72,57 +87,54 @@ html {
 }
 
 .catalog-img-container {
-    width: 100%;
-    height: 240px;         
-    display: flex;
-    align-items: center;   
-    justify-content: center;
-    padding: 5px;          
-    overflow: hidden;
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  overflow: hidden;
 }
 
 /* Ajuste de la imagen del libro */
 .catalog-card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;  
+  object-fit: contain;
   display: block;
 }
 
-
 .card-title-book {
-    font-size: 0.9rem;     
-    line-height: 1.2;
-  }
-
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
 
 footer {
   h5 {
     font-size: 18px;
   }
 
-    a > i{
-        font-size: 15px;
-        padding: 0 5px;
-    }
-    
-    li> a{
-        color: #845f4a;
-        text-decoration: none;
-        font-size: 15px;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
+  a > i {
+    font-size: 15px;
+    padding: 0 5px;
+  }
 
-    ul > li {
-        font-size: 15px;
-        color: #845f4a; 
+  li > a {
+    color: #845f4a;
+    text-decoration: none;
+    font-size: 15px;
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    span{
-        font-size: 18px;
-        color: #dfa0aa;
-    }
+  ul > li {
+    font-size: 15px;
+    color: #845f4a;
+  }
 
+  span {
+    font-size: 18px;
+    color: #dfa0aa;
+  }
 }
