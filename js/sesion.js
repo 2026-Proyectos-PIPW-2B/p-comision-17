@@ -32,6 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Mostrar nombre de usuario en páginas que tengan el span#usuario
+  const usuarioNombre = document.getElementById("usuario");
+  if (usuarioNombre && user && user.usuario) {
+    usuarioNombre.textContent = user.usuario;
+  }
+
   // Si existe botón fijo en páginas admin/ajustes con id btn-cerrarSesion, enlazarlo
   const fixedBtn = document.getElementById("btn-cerrarSesion");
   if (fixedBtn) {
