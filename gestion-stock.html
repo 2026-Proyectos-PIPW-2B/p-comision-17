@@ -32,15 +32,15 @@
 
           <div class="w-100 text-center text-lg-start">
             <section>
-            <a href="index.html">
-              <img
-                src="img/logo-reducido.png"
-                alt="Logo de Librarium"
-                class="img-fluid"
-                style="width: 40px"
-              />
-            </a>
-          </section>
+              <a href="index.html">
+                <img
+                  src="img/logo-reducido.png"
+                  alt="Logo de Librarium"
+                  class="img-fluid"
+                  style="width: 40px"
+                />
+              </a>
+            </section>
           </div>
         </div>
       </nav>
@@ -166,92 +166,129 @@
 
           <!-- Modal Nuevo Producto -->
           <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content p-3 justify-content-center">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Nueva Producto
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close btn-info"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <form action="">
-                    <div class="row">
-                      <label for="tituloStock" class="mt-2">Titulo</label>
-                      <input
-                        type="text"
-                        id="tituloStock"
-                        class="form-control m-2"
-                      />
-                      <label for="autorStock">Autor</label>
-                      <input
-                        type="text"
-                        id="autorStock"
-                        class="form-control m-2"
-                      />
-                      <label for="precioStock">Precio</label>
-                      <input
-                        type="number"
-                        id="precioStock"
-                        class="form-control m-2"
-                      />
-                      <label for="precioStock">Stock</label>
-                      <input
-                        type="number"
-                        id="cantStock"
-                        class="form-control m-2"
-                      />
-                      <label for="descripcionStock">Descripción</label>
-                      <textarea
-                        id="descripcionStock"
-                        rows="3"
-                        cols="3"
-                        class="form-control m-2"
-                      >
-                      </textarea>
-                      <label for="tipo">Tipo</label>
-                      <select id="tipo" class="form-select m-2">
-                        <option disabled selected>Seleccionar..</option>
-                        <option value="">Nuevo</option>
-                        <option value="">Usado</option>
-                        <option value="">Digital</option>
-                      </select>
-                      <label for="stockImagen ">Imagen</label>
-                      <input
-                        type="file"
-                        id="stockImagen"
-                        class="form-control m-2"
-                        accept="image/*"
-                      />
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-outline-info"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancelar
-                  </button>
-                  <button type="button" class="btn btn-outline-primary">
-                    Guardar cambios
-                  </button>
-                </div>
-              </div>
-            </div>
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content p-3 justify-content-center">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Nuevo Producto
+        </h1>
+        <button
+          type="button"
+          class="btn-close btn-info"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-nuevo-producto" action="">
+          <div class="row">
+            <label for="tituloStock" class="mt-2">Titulo</label>
+            <input
+              type="text"
+              id="tituloStock"
+              class="form-control m-2"
+              required
+            />
+            
+            <label for="autorStock">Autor</label>
+            <input
+              type="text"
+              id="autorStock"
+              class="form-control m-2"
+              required
+            />
+
+            <label for="categoriaStock">Categoría</label>
+            <select id="categoriaStock" class="form-select m-2" required>
+              <option disabled selected value="">Seleccionar..</option>
+              <option value="Juvenil">Juvenil</option>
+              <option value="Infantil">Infantil</option>
+              <option value="Terror">Terror</option>
+              <option value="Romance">Romance</option>
+              <option value="Clásico">Clásico</option>
+            </select>
+            
+            <label for="precioStock">Precio</label>
+            <input
+              type="number"
+              id="precioStock"
+              class="form-control m-2"
+              required
+            />
+            
+            <label for="cantStock">Stock</label>
+            <input
+              type="number"
+              id="cantStock"
+              class="form-control m-2"
+              required
+            />
+            
+            <label for="descripcionStock">Descripción</label>
+            <textarea
+              id="descripcionStock"
+              rows="3"
+              cols="3"
+              class="form-control m-2"
+            ></textarea>
+            
+            <label for="formatoStock">Formato</label>
+            <select
+              id="formatoStock"
+              class="form-select m-2"
+              required
+            >
+              <option disabled selected value="">
+                Seleccionar..
+              </option>
+              <option value="Tapa blanda">Tapa blanda</option>
+              <option value="Tapa dura">Tapa dura</option>
+              <option value="Ebook">Ebook</option>
+            </select>
+            
+            <label for="tipoStock">Tipo</label>
+            <select id="tipoStock" class="form-select m-2" required>
+              <option disabled selected value="">Seleccionar..</option>
+              <option value="Nuevo">Nuevo</option>
+              <option value="Usado">Usado</option>
+              <option value="Digital">Digital</option>
+            </select>
+            
+            <label for="stockImagen">Imagen</label>
+            <input
+              type="file"
+              id="stockImagen"
+              class="form-control m-2"
+              accept="image/*"
+            />
           </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-info"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          id="btn-guardar-producto"
+        >
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
           <!-- ======================= TABLA DE STOCK ==================== -->
 
@@ -274,52 +311,8 @@
                     </tr>
                   </thead>
 
-                  <tbody class="text-center">
-                    <tr>
-                      <td>1</td>
-                      <td>El Principito</td>
-                      <td>Antoine de Saint-Exupéry</td>
-                      <td>Infantil</td>
-                      <td>18500</td>
-                      <td>12</td>
-
-                      <td class="text-center">
-                        <button
-                          class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalBorrar"
-                        ></button>
-
-                        <button
-                          class="btn btn-outline-primary btn-sm bi bi-pencil"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalEditar"
-                        ></button>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>1</td>
-                      <td>1984</td>
-                      <td>George Orwell</td>
-                      <td>Novela</td>
-                      <td>24990</td>
-                      <td>8</td>
-
-                      <td class="text-center">
-                        <button
-                          class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalBorrar"
-                        ></button>
-
-                        <button
-                          class="btn btn-outline-primary btn-sm bi bi-pencil"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalEditar"
-                        ></button>
-                      </td>
-                    </tr>
+                  <tbody class="text-center" id="tabla-stock-body">
+                    <!-- Aqui se agregan dinamicamente los productos -->
                   </tbody>
                 </table>
 
@@ -391,54 +384,92 @@
                         ></button>
                       </div>
                       <div class="modal-body">
-                        <form action="">
+                        <form id="form-editar-producto">
                           <div class="row">
-                            <label for="tituloStock" class="mt-2">Titulo</label>
-                            <input
-                              type="text"
-                              id="tituloStock"
-                              class="form-control m-2"
-                            />
-                            <label for="autorStock">Autor</label>
-                            <input
-                              type="text"
-                              id="autorStock"
-                              class="form-control m-2"
-                            />
-                            <label for="precioStock">Precio</label>
-                            <input
-                              type="number"
-                              id="precioStock"
-                              class="form-control m-2"
-                            />
-                            <label for="precioStock">Stock</label>
-                            <input
-                              type="number"
-                              id="cantStock"
-                              class="form-control m-2"
-                            />
-                            <label for="descripcionStock">Descripción</label>
-                            <textarea
-                              id="descripcionStock"
-                              rows="3"
-                              cols="3"
-                              class="form-control m-2"
+                            <label for="tituloEditar" class="mt-2"
+                              >Título</label
                             >
-                            </textarea>
-                            <label for="tipo">Tipo</label>
-                            <select id="tipo" class="form-select m-2">
-                              <option disabled selected>Seleccionar..</option>
-                              <option value="">Nuevo</option>
-                              <option value="">Usado</option>
-                              <option value="">Digital</option>
-                            </select>
-                            <label for="stockImagen ">Imagen</label>
                             <input
-                              type="file"
-                              id="stockImagen"
+                              type="text"
+                              id="tituloEditar"
                               class="form-control m-2"
-                              accept="image/*"
+                              required
                             />
+
+                            <label for="autorEditar">Autor</label>
+                            <input
+                              type="text"
+                              id="autorEditar"
+                              class="form-control m-2"
+                              required
+                            />
+
+                            <label for="categoriaEditar">Categoría</label>
+                            <select
+                              id="categoriaEditar"
+                              class="form-select m-2"
+                              required
+                            >
+                              <option disabled selected value="">
+                                Seleccionar..
+                              </option>
+                              <option value="Juvenil">Juvenil</option>
+                              <option value="Infantil">Infantil</option>
+                              <option value="Terror">Terror</option>
+                              <option value="Romance">Romance</option>
+                              <option value="Clásico">Clásico</option>
+                            </select>
+
+                            <label for="formatoEditar">Formato</label>
+                            <select
+                              id="formatoEditar"
+                              class="form-select m-2"
+                              required
+                            >
+                              <option disabled selected value="">
+                                Seleccionar..
+                              </option>
+                              <option value="Tapa blanda">Tapa blanda</option>
+                              <option value="Tapa dura">Tapa dura</option>
+                              <option value="Ebook">Ebook</option>
+                            </select>
+
+                            <label for="tipoEditar">Tipo / Estado</label>
+                            <select
+                              id="tipoEditar"
+                              class="form-select m-2"
+                              required
+                            >
+                              <option disabled selected value="">
+                                Seleccionar..
+                              </option>
+                              <option value="Nuevo">Nuevo</option>
+                              <option value="Usado">Usado</option>
+                              <option value="Digital">Digital</option>
+                            </select>
+
+                            <label for="precioEditar">Precio</label>
+                            <input
+                              type="number"
+                              id="precioEditar"
+                              class="form-control m-2"
+                              required
+                            />
+
+                            <label for="cantEditar">Stock</label>
+                            <input
+                              type="number"
+                              id="cantEditar"
+                              class="form-control m-2"
+                              required
+                            />
+
+                            <label for="descripcionEditar">Descripción</label>
+                            <textarea
+                              id="descripcionEditar"
+                              rows="3"
+                              class="form-control m-2"
+                            ></textarea>
                           </div>
                         </form>
                       </div>
@@ -471,5 +502,6 @@
     ></script>
 
     <script src="js/modal.js"></script>
+    <script src="js/admin-stock.js"></script>
   </body>
 </html>

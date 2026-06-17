@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Librarium | Importados</title>
+    <title>Librarium | Categorías</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <!-- Link de CSS personalizado -->
-    <link rel="stylesheet" href="css/importados.css" />
+    <link rel="stylesheet" href="css/categorias.css" />
     <!-- Link de íconos de Bootstrap -->
     <link
       rel="stylesheet"
@@ -116,200 +116,186 @@
             class="position-sticky pt-4 px-3 sidebar-content h-100 d-flex flex-column"
           >
             <h4 class="bar-item mb-3 fw-bold text-primary">Filtros</h4>
-            <input
-              class="form-control mb-4"
-              type="text"
-              placeholder="Buscar por título o autor"
-            />
+
+            <div class="form-outline">
+              <input
+                type="search"
+                id="search-input"
+                class="form-control mb-4"
+                placeholder="Buscar por título o autor"
+                aria-label="Search"
+              />
+            </div>
 
             <h5 class="bar-item mb-3 fw-semibold">Categorías</h5>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" id="categoria1" />
+              <input
+                class="form-check-input checkbox-categoria"
+                type="checkbox"
+                id="categoria1"
+                value="Juvenil"
+              />
               <label class="form-check-label" for="categoria1">Juvenil</label>
             </div>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" id="categoria2" />
+              <input
+                class="form-check-input checkbox-categoria"
+                type="checkbox"
+                id="categoria2"
+                value="Infantil"
+              />
               <label class="form-check-label" for="categoria2">Infantil</label>
             </div>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" id="categoria3" />
+              <input
+                class="form-check-input checkbox-categoria"
+                type="checkbox"
+                id="categoria3"
+                value="Terror"
+              />
               <label class="form-check-label" for="categoria3">Terror</label>
             </div>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" id="categoria4" />
+              <input
+                class="form-check-input checkbox-categoria"
+                type="checkbox"
+                id="categoria4"
+                value="Romance"
+              />
               <label class="form-check-label" for="categoria4">Romance</label>
             </div>
             <div class="form-check mb-4">
-              <input class="form-check-input" type="checkbox" id="categoria5" />
+              <input
+                class="form-check-input checkbox-categoria"
+                type="checkbox"
+                id="categoria5"
+                value="Clásico"
+              />
               <label class="form-check-label" for="categoria5">Clásico</label>
             </div>
 
             <h5 class="bar-item mb-3 fw-semibold">Formato</h5>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" id="formato1" />
+              <input
+                class="form-check-input checkbox-formato"
+                type="checkbox"
+                id="formato1"
+                value="Tapa blanda"
+              />
               <label class="form-check-label" for="formato1">Tapa blanda</label>
             </div>
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" id="formato2" />
+              <input
+                class="form-check-input checkbox-formato"
+                type="checkbox"
+                id="formato2"
+                value="Tapa dura"
+              />
               <label class="form-check-label" for="formato2">Tapa dura</label>
             </div>
-            <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" id="formato3" />
+            <div class="form-check mb-4">
+              <input
+                class="form-check-input checkbox-formato"
+                type="checkbox"
+                id="formato3"
+                value="Ebook"
+              />
               <label class="form-check-label" for="formato3">Ebook</label>
+            </div>
+
+            <h5 class="bar-item mb-3 fw-semibold">Tipo / Estado</h5>
+            <div class="form-check mb-2">
+              <input
+                class="form-check-input checkbox-tipo"
+                type="checkbox"
+                id="tipoFiltro1"
+                value="Nuevo"
+              />
+              <label class="form-check-label" for="tipoFiltro1">Nuevo</label>
+            </div>
+            <div class="form-check mb-2">
+              <input
+                class="form-check-input checkbox-tipo"
+                type="checkbox"
+                id="tipoFiltro2"
+                value="Usado"
+              />
+              <label class="form-check-label" for="tipoFiltro2">Usado</label>
+            </div>
+            <div class="form-check mb-2">
+              <input
+                class="form-check-input checkbox-tipo"
+                type="checkbox"
+                id="tipoFiltro3"
+                value="Digital"
+              />
+              <label class="form-check-label" for="tipoFiltro3">Digital</label>
             </div>
           </div>
         </aside>
 
         <section class="col-md-9 col-lg-10" id="catalog-section">
-              <div class="container px-0">
-    <div class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center">
-        <!-- Card 1 -->
-        <div class="col">
-            <div class="card h-100 shadow-sm border-1 catalog-card">
-                <div class="catalog-img-container">
-                    <img src="img-portadas/Una corte de rosas y espinas.webp" class="catalog-card-img" alt="Portada de 'Una corte de rosas y espinas'">
-                </div>
-                <div class="card-body d-flex flex-column p-3">
-                    <span class="text-muted small fw-semibold mb-1">Sarah J. Maas</span>
-                    
-                    <p class="card-title-book fw-bold mb-1">Una corte de rosas y espinas</p>
-                        
-                        <p class="stars-rating text-warning small mb-2">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star"></i>
-                        </p>
-                        
-                        <p class="price fw-bold text-dark mb-3">$60.000</p>
-
-                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 2 -->
-         <div class="col">
-            <div class="card h-100 shadow-sm border-1 catalog-card">
-                <div class="catalog-img-container">
-                    <img src="img-portadas/Alchemised.webp" class="catalog-card-img" alt="Portada de 'Alchemised'">
-                </div>
-                <div class="card-body d-flex flex-column p-3">
-                    <span class="text-muted small fw-semibold mb-1">SenLiYu</span>
-                    
-                    <p class="card-title-book fw-bold mb-1">Alchemised</p>
-                    <p class="stars-rating text-warning small mb-2">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star"></i>
-                    </p>
-                    <p class="price fw-bold text-dark mb-3">$70.000</p>
-
-                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
-    
-
-    <!-- Card 3 -->
-    <div class="col">
-        <div class="card h-100 shadow-sm border-1 catalog-card">
-            <div class="catalog-img-container">
-                <img src="img-portadas/Orgullo y prejuicio.webp" class="catalog-card-img" alt="Portada de 'Orgullo y prejuicio'">
-            </div>
-            <div class="card-body d-flex flex-column p-3">
-                <span class="text-muted small fw-semibold mb-1">Jane Austen</span>
-                <p class="card-title-book fw-bold mb-1">Orgullo y prejuicio</p>
-                <p class="stars-rating text-warning small mb-2">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star"></i>
-                </p>
-                <p class="price fw-bold text-dark mb-3">$80.000</p>
-
-                <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="col">
-        <div class="card h-100 shadow-sm border-1 catalog-card">
-            <div class="catalog-img-container">
-                <img src="img-portadas/El brillo de las luciérnagas.webp" class="catalog-card-img" alt="Portada de 'El brillo de las luciérnagas'">
-            </div>
-            <div class="card-body d-flex flex-column p-3">
-                <span class="text-muted small fw-semibold mb-1">Paul Pen</span>
-                <p class="card-title-book fw-bold mb-1">El brillo de las luciérnagas</p>
-                <p class="stars-rating text-warning small mb-2">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star"></i>
-                </p>
-                <p class="price fw-bold text-dark mb-3">$40.000</p>
-
-                <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
-            </div>
-        </div>
-    </div>
+          <div class="container px-0">
+            <div
+              id="catalog-container"
+              class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center"
+            ></div>
+          </div>
         </section>
       </div>
     </main>
 
-<footer class="pt-3 bg-secondary">
-    <div class="container px-0">
+    <footer class="pt-3 bg-secondary">
+      <div class="container px-0">
         <div class="row g-5 justify-content-center">
-                        <div class="col-12 col-md-4 text-center">
-                <h5 class="fw-bold text-info">
-                    Servicio de atencion al cliente
-                </h5>
-                <ul class="list-unstyled d-flex flex-column gap-2">
-                    <li><i class="bi bi-whatsapp"> 291-6574839</i></li>
-                    <li><i class="bi bi-envelope-at"> atencion-al-cliente@librarium.com</i></li>
-                    <li><i class="bi bi-clock-history"></i> Horario de atencion: 09:00 a 18:00 Hs. Lunes a viernes</li>
-                </ul>
-            </div>
+          <div class="col-12 col-md-4 text-center">
+            <h5 class="fw-bold text-info">Servicio de atencion al cliente</h5>
+            <ul class="list-unstyled d-flex flex-column gap-2">
+              <li><i class="bi bi-whatsapp"> 291-6574839</i></li>
+              <li>
+                <i class="bi bi-envelope-at">
+                  atencion-al-cliente@librarium.com</i
+                >
+              </li>
+              <li>
+                <i class="bi bi-clock-history"></i> Horario de atencion: 09:00 a
+                18:00 Hs. Lunes a viernes
+              </li>
+            </ul>
+          </div>
 
-            <div class="col-12 col-md-4 text-center">
-                <h5 class="fw-bold text-info">
-                    Sobre nosotros
-                </h5>
-                <ul class="list-unstyled d-flex flex-column gap-2">
-                    <li><a href="informacion.html#conocenos">Conocenos</a></li>
-                </ul>
-            </div>
+          <div class="col-12 col-md-4 text-center">
+            <h5 class="fw-bold text-info">Sobre nosotros</h5>
+            <ul class="list-unstyled d-flex flex-column gap-2">
+              <li><a href="informacion.html#conocenos">Conocenos</a></li>
+            </ul>
+          </div>
 
-            <div class="col-12 col-md-4 text-center">
-                <h5 class="fw-bold text-info">
-                    Ayuda
-                </h5>
-                <ul class="list-unstyled d-flex flex-column gap-2">
-                    <li><a href="informacion.html#preguntas-frecuentes">Preguntas Frecuentes</a></li>
-                    <li><a href="informacion.html#medios-pago">Medios de pago</a></li>
-                    <li><a href="informacion.html#devoluciones">Devoluciones</a></li>
-                </ul>
-            </div>
+          <div class="col-12 col-md-4 text-center">
+            <h5 class="fw-bold text-info">Ayuda</h5>
+            <ul class="list-unstyled d-flex flex-column gap-2">
+              <li>
+                <a href="informacion.html#preguntas-frecuentes"
+                  >Preguntas Frecuentes</a
+                >
+              </li>
+              <li><a href="informacion.html#medios-pago">Medios de pago</a></li>
+              <li><a href="informacion.html#devoluciones">Devoluciones</a></li>
+            </ul>
+          </div>
 
-            <div class="mt-1 col-12 text-center">
-                    <span class="text-center d-block mb-2">Seguinos</span>
-                    <div class="border p-2 text-center rounded small custom-social-box">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
+          <div class="mt-1 col-12 text-center">
+            <span class="text-center d-block mb-2">Seguinos</span>
+            <div class="border p-2 text-center rounded small custom-social-box">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
         </div>
-    </div>
-</footer> 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/localstorage.js"></script>
-<script src="js/sesion.js"></script>
+      </div>
+    </footer>
+    <script src="js/admin-stock.js"></script>
+    <script src="js/categorias.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
