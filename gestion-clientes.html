@@ -203,42 +203,42 @@
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">
-                    <form action="">
+                  <form action="">
+                    <div class="modal-body">
                       <div class="row">
-                        <label for="nombreAdmin">Nombre de Usuario </label>
+                        <label for="inputNombre">Nombre de Usuario </label>
                         <input
                           type="text"
-                          id="nombreAdmin"
+                          id="inputNombre"
                           class="form-control m-2"
                         />
-                        <label for="contraseñaAdmin">Ingrese Contraseña</label>
+                        <label for="inputContraseña">Ingrese Contraseña</label>
                         <input
                           type="text"
-                          id="contraseñaAdmin"
+                          id="inputContraseña"
                           class="form-control m-2"
                         />
-                        <label for="emailAdmin">Ingrese Email</label>
+                        <label for="inputEmail">Ingrese Email</label>
                         <input
                           type="email"
-                          id="emailAdmin"
+                          id="inputEmail"
                           class="form-control m-2"
                         />
                       </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-outline-info"
-                      data-bs-dismiss="modal"
-                    >
-                      Cancelar
-                    </button>
-                    <button type="button" class="btn btn-outline-primary">
-                      Guardar Cambios
-                    </button>
-                  </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-outline-info"
+                        data-bs-dismiss="modal"
+                      >
+                        Cancelar
+                      </button>
+                      <button type="submit" class="btn btn-outline-primary">
+                        Guardar Cambios
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -407,42 +407,42 @@
                           aria-label="Close"
                         ></button>
                       </div>
-                      <div class="modal-body">
-                        <form action="">
+                      <form action="">
+                        <div class="modal-body">
                           <div class="row">
-                            <label for="nombreAdmin">Nombre de Usuario </label>
+                            <label for="editarNombre">Nombre de Usuario </label>
                             <input
                               type="text"
-                              id="nombreAdmin"
+                              id="editarNombre"
                               class="form-control m-2"
                             />
-                            <label for="emailAdmin">Ingrese Email</label>
+                            <label for="editarEmail">Ingrese Email</label>
                             <input
                               type="email"
-                              id="emailAdmin"
+                              id="editarEmail"
                               class="form-control m-2"
                             />
-                            <label for="estado" class="m-2">Estado</label>
-                            <select id="estado" class="form-select">
+                            <label for="editarEstado" class="m-2">Estado</label>
+                            <select id="editarEstado" class="form-select">
                               <option disabled selected>Seleccionar..</option>
-                              <option value="">Activo</option>
-                              <option value="">Inactivo</option>
+                              <option value="activo">Activo</option>
+                              <option value="inactivo">Inactivo</option>
                             </select>
                           </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-outline-info"
-                          data-bs-dismiss="modal"
-                        >
-                          Cancelar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary">
-                          Confirmar
-                        </button>
-                      </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-outline-info"
+                            data-bs-dismiss="modal"
+                          >
+                            Cancelar
+                          </button>
+                          <button type="submit" class="btn btn-outline-primary">
+                            Confirmar
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -461,5 +461,8 @@
 
     <script src="js/modal.js"></script>
     <script src="./js/sesion.js"></script>
+    <!-- Validator -->
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="js/validaciones.js"></script>
   </body>
 </html>
