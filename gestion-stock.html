@@ -48,8 +48,6 @@
 
     <div class="container-fluid">
       <div class="row min-vh-100">
-        <!-- ==================== SIDEBAR ==================== -->
-
         <aside
           class="offcanvas-lg offcanvas-start col-lg-2 border-end p-3 bg-secondary"
           tabindex="-1"
@@ -62,8 +60,6 @@
             <a href="historial-pedidos.html" class="nav-link p-3">
               Historial de pedidos
             </a>
-
-            <!-- Acordion Productos-->
 
             <div
               class="accordion accordion-flush bg-secondary"
@@ -97,8 +93,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Acordion Usuarios-->
 
             <div class="accordion accordion-flush bg-secondary" id="menuAdmin">
               <div class="accordion-item bg-secondary border-0">
@@ -164,7 +158,6 @@
             + Nuevo Producto
           </button>
 
-          <!-- Modal Nuevo Producto -->
           <div
             class="modal fade"
             id="exampleModal"
@@ -204,20 +197,24 @@
                         required
                       />
 
-                      <label for="categoriaStock">Categoría</label>
+                      <label for="categoriaStock"
+                        >Categoría
+                        <small class="text-muted"
+                          >(Ctrl/Cmd para elegir varias)</small
+                        ></label
+                      >
                       <select
                         id="categoriaStock"
                         class="form-select m-2"
+                        multiple
                         required
                       >
-                        <option disabled selected value="">
-                          Seleccionar..
-                        </option>
                         <option value="Juvenil">Juvenil</option>
                         <option value="Infantil">Infantil</option>
                         <option value="Terror">Terror</option>
-                        <option value="Romance">Romance</option>
                         <option value="Clásico">Clásico</option>
+                        <option value="Importados">Importados</option>
+                        <option value="Packs">Packs</option>
                       </select>
 
                       <label for="precioStock">Precio</label>
@@ -244,16 +241,18 @@
                         class="form-control m-2"
                       ></textarea>
 
-                      <label for="formatoStock">Formato</label>
+                      <label for="formatoStock"
+                        >Formato
+                        <small class="text-muted"
+                          >(Ctrl/Cmd para elegir varios)</small
+                        ></label
+                      >
                       <select
                         id="formatoStock"
                         class="form-select m-2"
                         multiple
                         required
                       >
-                        <option disabled selected value="">
-                          Seleccionar..
-                        </option>
                         <option value="Tapa blanda">Tapa blanda</option>
                         <option value="Tapa dura">Tapa dura</option>
                         <option value="Ebook">Ebook</option>
@@ -298,8 +297,6 @@
             </div>
           </div>
 
-          <!-- ======================= TABLA DE STOCK ==================== -->
-
           <div class="card card-dashboard">
             <div class="card-body">
               <div class="table-responsive">
@@ -314,17 +311,13 @@
                       <th>Categoría</th>
                       <th>Precio</th>
                       <th>Stock</th>
-
                       <th>Acciones</th>
                     </tr>
                   </thead>
 
-                  <tbody class="text-center" id="tabla-stock-body">
-                    <!-- Aqui se agregan dinamicamente los productos -->
-                  </tbody>
+                  <tbody class="text-center" id="tabla-stock-body"></tbody>
                 </table>
 
-                <!-- Modal Borrar -->
                 <div
                   class="modal fade"
                   id="modalBorrar"
@@ -366,8 +359,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Modal Editar -->
 
                 <div
                   class="modal fade"
@@ -412,15 +403,18 @@
                               required
                             />
 
-                            <label for="categoriaEditar">Categoría</label>
+                            <label for="categoriaEditar"
+                              >Categoría
+                              <small class="text-muted"
+                                >(Ctrl/Cmd para elegir varias)</small
+                              ></label
+                            >
                             <select
                               id="categoriaEditar"
                               class="form-select m-2"
+                              multiple
                               required
                             >
-                              <option disabled selected value="">
-                                Seleccionar..
-                              </option>
                               <option value="Juvenil">Juvenil</option>
                               <option value="Infantil">Infantil</option>
                               <option value="Terror">Terror</option>
@@ -428,15 +422,18 @@
                               <option value="Clásico">Clásico</option>
                             </select>
 
-                            <label for="formatoEditar">Formato</label>
+                            <label for="formatoEditar"
+                              >Formato
+                              <small class="text-muted"
+                                >(Ctrl/Cmd para elegir varios)</small
+                              ></label
+                            >
                             <select
                               id="formatoEditar"
                               class="form-select m-2"
+                              multiple
                               required
                             >
-                              <option disabled selected value="">
-                                Seleccionar..
-                              </option>
                               <option value="Tapa blanda">Tapa blanda</option>
                               <option value="Tapa dura">Tapa dura</option>
                               <option value="Ebook">Ebook</option>
@@ -489,7 +486,11 @@
                         >
                           Cancelar
                         </button>
-                        <button type="button" class="btn btn-outline-primary">
+                        <button
+                          type="button"
+                          class="btn btn-outline-primary"
+                          id="btn-confirmar-editar"
+                        >
                           Confirmar
                         </button>
                       </div>

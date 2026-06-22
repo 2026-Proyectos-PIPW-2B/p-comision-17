@@ -1,10 +1,10 @@
 // ==================== 1. STOCK INICIAL POR DEFECTO ====================
-// Agregamos formato y tipo por defecto a los libros iniciales
+// El formato y las categorías se manejan como Arrays [] para admitir selecciones múltiples
 const stockInicial = [
-    { id: 1, titulo: "Una corte de rosas y espinas", autor: "Sarah J. Maas", categoria: "Juvenil", formato: "Tapa blanda", tipo: "Nuevo", precio: 60000, stock: 5, imagen: "img-portadas/Una corte de rosas y espinas.webp" },
-    { id: 2, titulo: "Alchemised", autor: "SenLiYu", categoria: "Romance", formato: "Tapa dura", tipo: "Nuevo", precio: 70000, stock: 8, imagen: "img-portadas/Alchemised.webp" },
-    { id: 3, titulo: "Orgullo y prejuicio", autor: "Jane Austen", categoria: "Clásico", formato: "Tapa blanda", tipo: "Usado", precio: 80000, stock: 12, imagen: "img-portadas/Orgullo y prejuicio.webp" },
-    { id: 4, titulo: "El brillo de las luciérnagas", autor: "Paul Pen", categoria: "Terror", formato: "Ebook", tipo: "Digital", precio: 40000, stock: 3, imagen: "img-portadas/El brillo de las luciérnagas.webp" }
+    { id: 1, titulo: "Una corte de rosas y espinas", autor: "Sarah J. Maas", categoria: ["Juvenil"], formato: ["Tapa blanda"], tipo: "Nuevo", precio: 60000, stock: 5, imagen: "img-portadas/Una corte de rosas y espinas.webp" },
+    { id: 2, titulo: "Alchemised", autor: "SenLiYu", categoria: ["Romance"], formato: ["Tapa dura"], tipo: "Nuevo", precio: 70000, stock: 8, imagen: "img-portadas/Alchemised.webp" },
+    { id: 3, titulo: "Orgullo y prejuicio", autor: "Jane Austen", categoria: ["Clásico"], formato: ["Tapa blanda"], tipo: "Usado", precio: 80000, stock: 12, imagen: "img-portadas/Orgullo y prejuicio.webp" },
+    { id: 4, titulo: "El brillo de las luciérnagas", autor: "Paul Pen", categoria: ["Terror"], formato: ["Ebook"], tipo: "Digital", precio: 40000, stock: 3, imagen: "img-portadas/El brillo de las luciérnagas.webp" }
 ];
 
 // Variable global para saber qué ID se está editando o borrando
@@ -35,12 +35,20 @@ function renderizarTablaStock() {
     tablaBody.innerHTML = ""; // Limpiar contenido previo
 
     productos.forEach(prod => {
+        // Asegurar que formato y categoria siempre sean tratados como arrays para evitar errores de ejecución
+        const categoriasArray = Array.isArray(prod.categoria) ? prod.categoria : [prod.categoria];
+        const formatosArray = Array.isArray(prod.formato) ? prod.formato : [prod.formato];
+
         const fila = document.createElement("tr");
         fila.innerHTML = `
             <td>${prod.id}</td>
             <td>${prod.titulo}</td>
             <td>${prod.autor}</td>
-            <td><span class="badge bg-secondary-subtle text-dark">${prod.categoria}</span></td>
+            <td>
+                <span class="badge bg-secondary-subtle text-dark">${categoriasArray.join(', ')}</span>
+                <br>
+                <small class="text-muted">(${formatosArray.join(', ')})</small>
+            </td>
             <td>$${prod.precio.toLocaleString('es-AR')}</td>
             <td>${prod.stock}</td>
             <td>
@@ -69,17 +77,23 @@ document.getElementById("btn-guardar-producto")?.addEventListener("click", () =>
     // Capturamos los datos usando los IDs del modal de NUEVO producto
     const titulo = document.getElementById("tituloStock").value.trim();
     const autor = document.getElementById("autorStock").value.trim();
-    const categoria = document.getElementById("categoriaStock").value;
-    const formato = document.getElementById("formatoStock").value;
+    
+    // Captura de select multiple: transforma las opciones elegidas en un Array real
+    const categoriaSelect = document.getElementById("categoriaStock");
+    const categoria = Array.from(categoriaSelect.selectedOptions).map(opt => opt.value);
+    
+    const formatoSelect = document.getElementById("formatoStock");
+    const formato = Array.from(formatoSelect.selectedOptions).map(opt => opt.value);
+
     const tipo = document.getElementById("tipoStock").value;
     const precio = parseFloat(document.getElementById("precioStock").value);
     const stock = parseInt(document.getElementById("cantStock").value);
     const descripcion = document.getElementById("descripcionStock").value.trim();
     const imagenInput = document.getElementById("stockImagen");
 
-    // Validación estricta de todos los campos obligatorios
-    if (!titulo || !autor || !categoria || !formato || !tipo || isNaN(precio) || isNaN(stock)) {
-        alert("Por favor, completa todos los campos requeridos.");
+    // Validación estricta incluyendo el tamaño de los arreglos múltiples
+    if (!titulo || !autor || categoria.length === 0 || formato.length === 0 || !tipo || isNaN(precio) || isNaN(stock)) {
+        alert("Por favor, completa todos los campos requeridos y selecciona al menos una categoría y formato.");
         return;
     }
 
@@ -100,13 +114,13 @@ document.getElementById("btn-guardar-producto")?.addEventListener("click", () =>
         nombreImagen = "img-portadas/" + imagenInput.files[0].name;
     }
 
-    // Crear el nuevo objeto Libro con toda la información unificada
+    // Crear el nuevo objeto Libro con arreglos dinámicos
     const nuevoLibro = {
         id: nuevoId,
         titulo: titulo,
         autor: autor,
-        categoria: categoria,
-        formato: formato,
+        categoria: categoria, // Array []
+        formato: formato,     // Array []
         tipo: tipo,
         precio: precio,
         stock: stock,
@@ -156,30 +170,57 @@ window.cargarDatosEnModalEditar = function(id) {
     const producto = productos.find(p => p.id === id);
 
     if (producto) {
-        // Rellenamos los campos usando los IDs únicos que le pusimos al Modal de Edición
+        // Rellenamos los campos textuales usando los IDs únicos del modal de edición
         document.getElementById("tituloEditar").value = producto.titulo;
         document.getElementById("autorEditar").value = producto.autor;
-        document.getElementById("categoriaEditar").value = producto.categoria;
-        document.getElementById("formatoEditar").value = producto.formato || "Tapa blanda";
         document.getElementById("tipoEditar").value = producto.tipo || "Nuevo";
         document.getElementById("precioEditar").value = producto.precio;
         document.getElementById("cantEditar").value = producto.stock;
         document.getElementById("descripcionEditar").value = producto.descripcion || "";
+
+        // Asegurar que los datos recuperados sean tratados como arrays
+        const categoriasGuardadas = Array.isArray(producto.categoria) ? producto.categoria : [producto.categoria];
+        const formatosGuardados = Array.isArray(producto.formato) ? producto.formato : [producto.formato];
+
+        // Pre-selección en elementos Múltiples de Categoría
+        const selectCategoria = document.getElementById("categoriaEditar");
+        Array.from(selectCategoria.options).forEach(option => {
+            option.selected = categoriasGuardadas.includes(option.value);
+        });
+
+        // Pre-selección en elementos Múltiples de Formato
+        const selectFormato = document.getElementById("formatoEditar");
+        Array.from(selectFormato.options).forEach(option => {
+            option.selected = formatosGuardados.includes(option.value);
+        });
     }
 };
 
 // Guardar los cambios corregidos al hacer clic en el botón de confirmar del modalEditar
-document.querySelector("#modalEditar .btn-outline-primary")?.addEventListener("click", () => {
+document.getElementById("btn-confirmar-editar")?.addEventListener("click", () => {
     if (idProductoSeleccionado !== null) {
         let productos = obtenerProductos();
         const index = productos.findIndex(p => p.id === idProductoSeleccionado);
 
         if (index !== -1) {
-            // Reemplazamos los datos del libro viejo por los nuevos que están en el formulario de edición
+            // Volvemos a capturar las selecciones múltiples como arreglos actualizados
+            const categoriaSelect = document.getElementById("categoriaEditar");
+            const categoriasActualizadas = Array.from(categoriaSelect.selectedOptions).map(opt => opt.value);
+
+            const formatoSelect = document.getElementById("formatoEditar");
+            const formatosActualizados = Array.from(formatoSelect.selectedOptions).map(opt => opt.value);
+
+            // Validación mínima para evitar enviar arreglos vacíos al editar
+            if (categoriasActualizadas.length === 0 || formatosActualizados.length === 0) {
+                alert("Debes seleccionar al menos una categoría y un formato.");
+                return;
+            }
+
+            // Reemplazamos los datos del objeto viejo por las modificaciones del formulario
             productos[index].titulo = document.getElementById("tituloEditar").value.trim();
             productos[index].autor = document.getElementById("autorEditar").value.trim();
-            productos[index].categoria = document.getElementById("categoriaEditar").value;
-            productos[index].formato = document.getElementById("formatoEditar").value;
+            productos[index].categoria = categoriasActualizadas;
+            productos[index].formato = formatosActualizados;
             productos[index].tipo = document.getElementById("tipoEditar").value;
             productos[index].precio = parseFloat(document.getElementById("precioEditar").value);
             productos[index].stock = parseInt(document.getElementById("cantEditar").value);
@@ -195,7 +236,6 @@ document.querySelector("#modalEditar .btn-outline-primary")?.addEventListener("c
         }
     }
 });
-
 
 // Inicializar el script cargando la tabla apenas se procese el documento
 document.addEventListener("DOMContentLoaded", renderizarTablaStock);

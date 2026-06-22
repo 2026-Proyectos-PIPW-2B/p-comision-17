@@ -138,3 +138,24 @@ footer {
     color: #dfa0aa;
   }
 }
+
+/* Estados dinámicos para el Badge de Stock */
+.stock-alto {
+    background-color: #d1e7dd !important; /* Verde sutil */
+    color: #0f5132 !important;
+}
+
+.stock-medio {
+    background-color: #fff3cd !important; /* Amarillo sutil */
+    color: #664d03 !important;
+}
+
+.stock-bajo {
+    background-color: #f8d7da !important; /* Rojo sutil */
+    color: #842029 !important;
+}
+
+.stock-agotado {
+    background-color: #e2e3e5 !important; /* Gris sutil */
+    color: #41464b !important;
+}
