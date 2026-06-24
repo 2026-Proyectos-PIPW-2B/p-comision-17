@@ -163,6 +163,7 @@
                 </span>
                 <input
                   type="search"
+                  id="inputBuscarUsuario"
                   class="form-control"
                   placeholder="Buscar cliente"
                 />
@@ -170,7 +171,7 @@
             </div>
 
             <div class="col-auto">
-              <button class="btn btn-outline-primary">Buscar</button>
+              <button class="btn btn-outline-primary" type="button" id="btnBuscarUsuario">Buscar</button>
             </div>
 
             <button
@@ -212,18 +213,22 @@
                           id="inputNombre"
                           class="form-control m-2"
                         />
+                         <div id="errorNombre" class="invalid-feedback"></div>
+
                         <label for="inputContraseña">Ingrese Contraseña</label>
                         <input
-                          type="text"
+                          type="password"
                           id="inputContraseña"
                           class="form-control m-2"
                         />
+                        <div id="errorContraseña" class="invalid-feedback"></div>
                         <label for="inputEmail">Ingrese Email</label>
                         <input
                           type="email"
                           id="inputEmail"
                           class="form-control m-2"
                         />
+                        <div id="errorEmail" class="invalid-feedback"></div>
                       </div>
                     </div>
                     <div class="modal-footer">
@@ -235,7 +240,7 @@
                         Cancelar
                       </button>
                       <button type="submit" class="btn btn-outline-primary">
-                        Guardar Cambios
+                        Registrar
                       </button>
                     </div>
                   </form>
@@ -264,7 +269,7 @@
                     </tr>
                   </thead>
 
-                  <tbody class="text-center">
+                  <tbody class="text-center" id="tablaClientes">
                     <tr>
                       <td>3</td>
                       <td>Cliente1</td>
@@ -368,7 +373,7 @@
                         cliente?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-info">
+                        <button type="button" class="btn btn-outline-info" id="confirmarBorrarBtn">
                           Si, borrar
                         </button>
                         <button
@@ -438,7 +443,7 @@
                           >
                             Cancelar
                           </button>
-                          <button type="submit" class="btn btn-outline-primary">
+                          <button type="submit" class="btn btn-outline-primary" id="confirmarEditarBtn" >
                             Confirmar
                           </button>
                         </div>
@@ -460,9 +465,11 @@
     ></script>
 
     <script src="js/modal.js"></script>
-    <script src="./js/sesion.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/localstorage.js"></script>
     <!-- Validator -->
     <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
     <script src="js/validaciones.js"></script>
+    <script src="js/usuarios.js"></script>
   </body>
 </html>

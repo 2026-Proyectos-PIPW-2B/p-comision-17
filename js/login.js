@@ -2,7 +2,7 @@ function iniciarSesion() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const usuarios = JSON.parse(localStorage.getItem("Usuarios")) || [];
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const usuarioEncontrado = usuarios.find(
     (usuario) => usuario.usuario === username && usuario.password === password,
   );
@@ -40,7 +40,7 @@ const tipoUsuarioInput = document.getElementById("tipoUsuario");
 function actualizarTipoUsuario() {
   if (!usernameInput || !tipoUsuarioInput) return;
   const nombre = usernameInput.value.trim().toLowerCase();
-  const usuarios = JSON.parse(localStorage.getItem("Usuarios")) || [];
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const encontrado = usuarios.find(
     (u) => u.usuario && u.usuario.toLowerCase() === nombre,
   );
