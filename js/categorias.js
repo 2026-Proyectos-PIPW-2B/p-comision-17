@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       col.setAttribute("data-format", formatosArray.join(","));
       col.setAttribute("data-type", libro.tipo || "Nuevo");
 
-      // Modificamos el diseño de la card agregándole interacción con el Modal
       col.innerHTML = `
                 <div class="card h-100 shadow-sm border-1 catalog-card" 
                      style="cursor: pointer;" 
@@ -75,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const libro = productos.find((p) => p.id === id);
 
     if (libro) {
-      // Mapear elementos del modal
       document.getElementById("modalLibroImagen").src = libro.imagen;
       document.getElementById("modalLibroImagen").alt =
         `Portada de ${libro.titulo}`;
@@ -84,32 +82,30 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("modalLibroPrecio").textContent =
         `$${libro.precio.toLocaleString("es-AR")}`;
 
-      // Carga condicional de la descripción
       document.getElementById("modalLibroDescripcion").textContent =
         libro.descripcion && libro.descripcion.trim() !== ""
           ? libro.descripcion
           : "Este maravilloso título no cuenta con descripción de momento.";
 
-      // Control dinámico de las insignias de Stock
       const stockBadge = document.getElementById("modalLibroStock");
       const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
       if (libro.stock >= 10) {
         stockBadge.textContent = `${libro.stock} unidades disponibles`;
         stockBadge.className = "badge fw-bold stock-alto";
-        btnCarrito.disabled = false;
+        if (btnCarrito) btnCarrito.disabled = false;
       } else if (libro.stock >= 5) {
         stockBadge.textContent = `${libro.stock} unidades disponibles`;
         stockBadge.className = "badge fw-bold stock-medio";
-        btnCarrito.disabled = false;
+        if (btnCarrito) btnCarrito.disabled = false;
       } else if (libro.stock >= 1) {
         stockBadge.textContent = `¡Últimas ${libro.stock} unidades!`;
         stockBadge.className = "badge fw-bold stock-bajo";
-        btnCarrito.disabled = false;
+        if (btnCarrito) btnCarrito.disabled = false;
       } else {
         stockBadge.textContent = "Agotado temporalmente";
         stockBadge.className = "badge fw-bold stock-agotado";
-        btnCarrito.disabled = true; // Deshabilita el botón si no hay stock
+        if (btnCarrito) btnCarrito.disabled = true;
       }
     }
   };
@@ -142,24 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const catLibroArray = catLibroStr
         ? catLibroStr.split(",").map((c) => c.trim())
         : [];
-
       const formLibroStr = item.getAttribute("data-format") || "";
       const formLibroArray = formLibroStr
         ? formLibroStr.split(",").map((f) => f.trim())
         : [];
-
       const tipoLibro = (item.getAttribute("data-type") || "").trim();
 
       const pasaBuscador = title.includes(query) || author.includes(query);
-
       const pasaCategoria =
         categoriesMarcadas.length === 0 ||
         categoriesMarcadas.some((c) => catLibroArray.includes(c));
-
       const pasaFormato =
         formatosMarcados.length === 0 ||
         formatosMarcados.some((f) => formLibroArray.includes(f));
-
       const pasaTipo =
         tiposMarcados.length === 0 || tiposMarcados.includes(tipoLibro);
 
@@ -171,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Vincular escuchadores
   searchInput?.addEventListener("input", filtrarLibros);
   checkboxesCategoria.forEach((cb) =>
     cb.addEventListener("change", filtrarLibros),
@@ -181,10 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   checkboxesTipo.forEach((cb) => cb.addEventListener("change", filtrarLibros));
 
-  // Render inicial
   renderizarCatalogo();
 
-  // Interceptar parámetros URL
   const urlParams = new URLSearchParams(window.location.search);
   const filtroURL = urlParams.get("filtro");
 

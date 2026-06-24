@@ -1,10 +1,50 @@
 // ==================== 1. STOCK INICIAL POR DEFECTO ====================
 // El formato y las categorías se manejan como Arrays [] para admitir selecciones múltiples
 const stockInicial = [
-    { id: 1, titulo: "Una corte de rosas y espinas", autor: "Sarah J. Maas", categoria: ["Juvenil"], formato: ["Tapa blanda"], tipo: "Nuevo", precio: 60000, stock: 5, imagen: "img-portadas/Una corte de rosas y espinas.webp" },
-    { id: 2, titulo: "Alchemised", autor: "SenLiYu", categoria: ["Romance"], formato: ["Tapa dura"], tipo: "Nuevo", precio: 70000, stock: 8, imagen: "img-portadas/Alchemised.webp" },
-    { id: 3, titulo: "Orgullo y prejuicio", autor: "Jane Austen", categoria: ["Clásico"], formato: ["Tapa blanda"], tipo: "Usado", precio: 80000, stock: 12, imagen: "img-portadas/Orgullo y prejuicio.webp" },
-    { id: 4, titulo: "El brillo de las luciérnagas", autor: "Paul Pen", categoria: ["Terror"], formato: ["Ebook"], tipo: "Digital", precio: 40000, stock: 3, imagen: "img-portadas/El brillo de las luciérnagas.webp" }
+  {
+    id: 1,
+    titulo: "Una corte de rosas y espinas",
+    autor: "Sarah J. Maas",
+    categoria: ["Juvenil"],
+    formato: ["Tapa blanda"],
+    tipo: "Nuevo",
+    precio: 60000,
+    stock: 5,
+    imagen: "img-portadas/Una corte de rosas y espinas.webp",
+  },
+  {
+    id: 2,
+    titulo: "Alchemised",
+    autor: "SenLiYu",
+    categoria: ["Romance"],
+    formato: ["Tapa dura"],
+    tipo: "Nuevo",
+    precio: 70000,
+    stock: 8,
+    imagen: "img-portadas/Alchemised.webp",
+  },
+  {
+    id: 3,
+    titulo: "Orgullo y prejuicio",
+    autor: "Jane Austen",
+    categoria: ["Clásico"],
+    formato: ["Tapa blanda"],
+    tipo: "Usado",
+    precio: 80000,
+    stock: 12,
+    imagen: "img-portadas/Orgullo y prejuicio.webp",
+  },
+  {
+    id: 4,
+    titulo: "El brillo de las luciérnagas",
+    autor: "Paul Pen",
+    categoria: ["Terror"],
+    formato: ["Ebook"],
+    tipo: "Digital",
+    precio: 40000,
+    stock: 3,
+    imagen: "img-portadas/El brillo de las luciérnagas.webp",
+  },
 ];
 
 // Variable global para saber qué ID se está editando o borrando
@@ -12,44 +52,47 @@ let idProductoSeleccionado = null;
 
 // Obtener productos de localStorage o inicializar con los datos por defecto
 function obtenerProductos() {
-    let productos = localStorage.getItem("librarium_stock");
-    if (!productos) {
-        localStorage.setItem("librarium_stock", JSON.stringify(stockInicial));
-        return stockInicial;
-    }
-    return JSON.parse(productos);
+  let productos = localStorage.getItem("librarium_stock");
+  if (!productos) {
+    localStorage.setItem("librarium_stock", JSON.stringify(stockInicial));
+    return stockInicial;
+  }
+  return JSON.parse(productos);
 }
 
 // Guardar lista actualizada en localStorage
 function guardarProductos(productos) {
-    localStorage.setItem("librarium_stock", JSON.stringify(productos));
+  localStorage.setItem("librarium_stock", JSON.stringify(productos));
 }
-
 
 // ==================== 2. RENDERIZAR LA TABLA DE STOCK ====================
 function renderizarTablaStock() {
-    const tablaBody = document.getElementById("tabla-stock-body");
-    if (!tablaBody) return; // Evita errores si no estamos en la página de stock
+  const tablaBody = document.getElementById("tabla-stock-body");
+  if (!tablaBody) return; // Evita errores si no estamos en la página de stock
 
-    const productos = obtenerProductos();
-    tablaBody.innerHTML = ""; // Limpiar contenido previo
+  const productos = obtenerProductos();
+  tablaBody.innerHTML = ""; // Limpiar contenido previo
 
-    productos.forEach(prod => {
-        // Asegurar que formato y categoria siempre sean tratados como arrays para evitar errores de ejecución
-        const categoriasArray = Array.isArray(prod.categoria) ? prod.categoria : [prod.categoria];
-        const formatosArray = Array.isArray(prod.formato) ? prod.formato : [prod.formato];
+  productos.forEach((prod) => {
+    // Asegurar que formato y categoria siempre sean tratados como arrays para evitar errores de ejecución
+    const categoriasArray = Array.isArray(prod.categoria)
+      ? prod.categoria
+      : [prod.categoria];
+    const formatosArray = Array.isArray(prod.formato)
+      ? prod.formato
+      : [prod.formato];
 
-        const fila = document.createElement("tr");
-        fila.innerHTML = `
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
             <td>${prod.id}</td>
             <td>${prod.titulo}</td>
             <td>${prod.autor}</td>
             <td>
-                <span class="badge bg-secondary-subtle text-dark">${categoriasArray.join(', ')}</span>
+                <span class="badge bg-secondary-subtle text-dark">${categoriasArray.join(", ")}</span>
                 <br>
-                <small class="text-muted">(${formatosArray.join(', ')})</small>
+                <small class="text-muted">(${formatosArray.join(", ")})</small>
             </td>
-            <td>$${prod.precio.toLocaleString('es-AR')}</td>
+            <td>$${prod.precio.toLocaleString("es-AR")}</td>
             <td>${prod.stock}</td>
             <td>
                 <button 
@@ -67,65 +110,82 @@ function renderizarTablaStock() {
                 </button>
             </td>
         `;
-        tablaBody.appendChild(fila);
-    });
+    tablaBody.appendChild(fila);
+  });
 }
 
-
 // ==================== 3. ACCIÓN: CREAR NUEVO PRODUCTO ====================
-document.getElementById("btn-guardar-producto")?.addEventListener("click", () => {
+document
+  .getElementById("btn-guardar-producto")
+  ?.addEventListener("click", () => {
     // Capturamos los datos usando los IDs del modal de NUEVO producto
     const titulo = document.getElementById("tituloStock").value.trim();
     const autor = document.getElementById("autorStock").value.trim();
-    
+
     // Captura de select multiple: transforma las opciones elegidas en un Array real
     const categoriaSelect = document.getElementById("categoriaStock");
-    const categoria = Array.from(categoriaSelect.selectedOptions).map(opt => opt.value);
-    
+    const categoria = Array.from(categoriaSelect.selectedOptions).map(
+      (opt) => opt.value,
+    );
+
     const formatoSelect = document.getElementById("formatoStock");
-    const formato = Array.from(formatoSelect.selectedOptions).map(opt => opt.value);
+    const formato = Array.from(formatoSelect.selectedOptions).map(
+      (opt) => opt.value,
+    );
 
     const tipo = document.getElementById("tipoStock").value;
     const precio = parseFloat(document.getElementById("precioStock").value);
     const stock = parseInt(document.getElementById("cantStock").value);
-    const descripcion = document.getElementById("descripcionStock").value.trim();
+    const descripcion = document
+      .getElementById("descripcionStock")
+      .value.trim();
     const imagenInput = document.getElementById("stockImagen");
 
     // Validación estricta incluyendo el tamaño de los arreglos múltiples
-    if (!titulo || !autor || categoria.length === 0 || formato.length === 0 || !tipo || isNaN(precio) || isNaN(stock)) {
-        alert("Por favor, completa todos los campos requeridos y selecciona al menos una categoría y formato.");
-        return;
+    if (
+      !titulo ||
+      !autor ||
+      categoria.length === 0 ||
+      formato.length === 0 ||
+      !tipo ||
+      isNaN(precio) ||
+      isNaN(stock)
+    ) {
+      alert(
+        "Por favor, completa todos los campos requeridos y selecciona al menos una categoría y formato.",
+      );
+      return;
     }
 
     let productos = obtenerProductos();
-    
+
     // Cálculo de ID Autoincremental Académico (Bucle For)
     let idMasAlto = 0;
     for (let i = 0; i < productos.length; i++) {
-        if (productos[i].id > idMasAlto) {
-            idMasAlto = productos[i].id;
-        }
+      if (productos[i].id > idMasAlto) {
+        idMasAlto = productos[i].id;
+      }
     }
     const nuevoId = idMasAlto + 1;
 
     // Manejo de la ruta de la imagen
     let nombreImagen = "img-portadas/default-book.webp";
     if (imagenInput.files && imagenInput.files[0]) {
-        nombreImagen = "img-portadas/" + imagenInput.files[0].name;
+      nombreImagen = "img-portadas/" + imagenInput.files[0].name;
     }
 
     // Crear el nuevo objeto Libro con arreglos dinámicos
     const nuevoLibro = {
-        id: nuevoId,
-        titulo: titulo,
-        autor: autor,
-        categoria: categoria, // Array []
-        formato: formato,     // Array []
-        tipo: tipo,
-        precio: precio,
-        stock: stock,
-        descripcion: descripcion,
-        imagen: nombreImagen
+      id: nuevoId,
+      titulo: titulo,
+      autor: autor,
+      categoria: categoria, // Array []
+      formato: formato, // Array []
+      tipo: tipo,
+      precio: precio,
+      stock: stock,
+      descripcion: descripcion,
+      imagen: nombreImagen,
     };
 
     // Guardar en el array, actualizar localStorage y refrescar la tabla
@@ -134,108 +194,138 @@ document.getElementById("btn-guardar-producto")?.addEventListener("click", () =>
 
     // Resetear el formulario de carga y cerrar el modal de Bootstrap de forma limpia
     document.getElementById("form-nuevo-producto").reset();
-    const modalInstance = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
+    const modalInstance = bootstrap.Modal.getInstance(
+      document.getElementById("exampleModal"),
+    );
     modalInstance.hide();
 
     renderizarTablaStock();
-});
-
+  });
 
 // ==================== 4. ACCIÓN: CONFIGURAR ID PARA BORRAR ====================
-window.configurarIdBorrar = function(id) {
-    idProductoSeleccionado = id;
+window.configurarIdBorrar = function (id) {
+  idProductoSeleccionado = id;
 };
 
 // Evento para el botón "Si, borrar" adentro de tu modalBorrar
-document.querySelector("#modalBorrar .btn-outline-info")?.addEventListener("click", () => {
+document
+  .querySelector("#modalBorrar .btn-outline-info")
+  ?.addEventListener("click", () => {
     if (idProductoSeleccionado !== null) {
-        let productos = obtenerProductos();
-        productos = productos.filter(p => p.id !== idProductoSeleccionado);
-        guardarProductos(productos);
-        renderizarTablaStock();
-        
-        // Cerrar modalBorrar automáticamente
-        const modalInstance = bootstrap.Modal.getInstance(document.getElementById("modalBorrar"));
-        modalInstance.hide();
-    }
-});
+      let productos = obtenerProductos();
+      productos = productos.filter((p) => p.id !== idProductoSeleccionado);
+      guardarProductos(productos);
+      renderizarTablaStock();
 
+      // Cerrar modalBorrar automáticamente
+      const modalInstance = bootstrap.Modal.getInstance(
+        document.getElementById("modalBorrar"),
+      );
+      modalInstance.hide();
+    }
+  });
 
 // ==================== 5. ACCIÓN: EDITAR PRODUCTO EXISTENTE ====================
 
 // Cargar los datos viejos en los inputs correspondientes del modalEditar
-window.cargarDatosEnModalEditar = function(id) {
-    idProductoSeleccionado = id;
-    const productos = obtenerProductos();
-    const producto = productos.find(p => p.id === id);
+window.cargarDatosEnModalEditar = function (id) {
+  idProductoSeleccionado = id;
+  const productos = obtenerProductos();
+  const producto = productos.find((p) => p.id === id);
 
-    if (producto) {
-        // Rellenamos los campos textuales usando los IDs únicos del modal de edición
-        document.getElementById("tituloEditar").value = producto.titulo;
-        document.getElementById("autorEditar").value = producto.autor;
-        document.getElementById("tipoEditar").value = producto.tipo || "Nuevo";
-        document.getElementById("precioEditar").value = producto.precio;
-        document.getElementById("cantEditar").value = producto.stock;
-        document.getElementById("descripcionEditar").value = producto.descripcion || "";
+  if (producto) {
+    // Rellenamos los campos textuales usando los IDs únicos del modal de edición
+    document.getElementById("tituloEditar").value = producto.titulo;
+    document.getElementById("autorEditar").value = producto.autor;
+    document.getElementById("tipoEditar").value = producto.tipo || "Nuevo";
+    document.getElementById("precioEditar").value = producto.precio;
+    document.getElementById("cantEditar").value = producto.stock;
+    document.getElementById("descripcionEditar").value =
+      producto.descripcion || "";
 
-        // Asegurar que los datos recuperados sean tratados como arrays
-        const categoriasGuardadas = Array.isArray(producto.categoria) ? producto.categoria : [producto.categoria];
-        const formatosGuardados = Array.isArray(producto.formato) ? producto.formato : [producto.formato];
+    // Asegurar que los datos recuperados sean tratados como arrays
+    const categoriasGuardadas = Array.isArray(producto.categoria)
+      ? producto.categoria
+      : [producto.categoria];
+    const formatosGuardados = Array.isArray(producto.formato)
+      ? producto.formato
+      : [producto.formato];
 
-        // Pre-selección en elementos Múltiples de Categoría
-        const selectCategoria = document.getElementById("categoriaEditar");
-        Array.from(selectCategoria.options).forEach(option => {
-            option.selected = categoriasGuardadas.includes(option.value);
-        });
+    // Pre-selección en elementos Múltiples de Categoría
+    const selectCategoria = document.getElementById("categoriaEditar");
+    Array.from(selectCategoria.options).forEach((option) => {
+      option.selected = categoriasGuardadas.includes(option.value);
+    });
 
-        // Pre-selección en elementos Múltiples de Formato
-        const selectFormato = document.getElementById("formatoEditar");
-        Array.from(selectFormato.options).forEach(option => {
-            option.selected = formatosGuardados.includes(option.value);
-        });
-    }
+    // Pre-selección en elementos Múltiples de Formato
+    const selectFormato = document.getElementById("formatoEditar");
+    Array.from(selectFormato.options).forEach((option) => {
+      option.selected = formatosGuardados.includes(option.value);
+    });
+  }
 };
 
 // Guardar los cambios corregidos al hacer clic en el botón de confirmar del modalEditar
-document.getElementById("btn-confirmar-editar")?.addEventListener("click", () => {
+document
+  .getElementById("btn-confirmar-editar")
+  ?.addEventListener("click", () => {
     if (idProductoSeleccionado !== null) {
-        let productos = obtenerProductos();
-        const index = productos.findIndex(p => p.id === idProductoSeleccionado);
+      let productos = obtenerProductos();
+      const index = productos.findIndex((p) => p.id === idProductoSeleccionado);
 
-        if (index !== -1) {
-            // Volvemos a capturar las selecciones múltiples como arreglos actualizados
-            const categoriaSelect = document.getElementById("categoriaEditar");
-            const categoriasActualizadas = Array.from(categoriaSelect.selectedOptions).map(opt => opt.value);
+      if (index !== -1) {
+        // Volvemos a capturar las selecciones múltiples como arreglos actualizados
+        const categoriaSelect = document.getElementById("categoriaEditar");
+        const categoriasActualizadas = Array.from(
+          categoriaSelect.selectedOptions,
+        ).map((opt) => opt.value);
 
-            const formatoSelect = document.getElementById("formatoEditar");
-            const formatosActualizados = Array.from(formatoSelect.selectedOptions).map(opt => opt.value);
+        const formatoSelect = document.getElementById("formatoEditar");
+        const formatosActualizados = Array.from(
+          formatoSelect.selectedOptions,
+        ).map((opt) => opt.value);
 
-            // Validación mínima para evitar enviar arreglos vacíos al editar
-            if (categoriasActualizadas.length === 0 || formatosActualizados.length === 0) {
-                alert("Debes seleccionar al menos una categoría y un formato.");
-                return;
-            }
-
-            // Reemplazamos los datos del objeto viejo por las modificaciones del formulario
-            productos[index].titulo = document.getElementById("tituloEditar").value.trim();
-            productos[index].autor = document.getElementById("autorEditar").value.trim();
-            productos[index].categoria = categoriasActualizadas;
-            productos[index].formato = formatosActualizados;
-            productos[index].tipo = document.getElementById("tipoEditar").value;
-            productos[index].precio = parseFloat(document.getElementById("precioEditar").value);
-            productos[index].stock = parseInt(document.getElementById("cantEditar").value);
-            productos[index].descripcion = document.getElementById("descripcionEditar").value.trim();
-
-            // Guardamos el array modificado en localStorage y redibujamos la tabla
-            guardarProductos(productos);
-            renderizarTablaStock();
-
-            // Cerrar el modalEditar de forma automática
-            const modalInstance = bootstrap.Modal.getInstance(document.getElementById("modalEditar"));
-            modalInstance.hide();
+        // Validación mínima para evitar enviar arreglos vacíos al editar
+        if (
+          categoriasActualizadas.length === 0 ||
+          formatosActualizados.length === 0
+        ) {
+          alert("Debes seleccionar al menos una categoría y un formato.");
+          return;
         }
+
+        // Reemplazamos los datos del objeto viejo por las modificaciones del formulario
+        productos[index].titulo = document
+          .getElementById("tituloEditar")
+          .value.trim();
+        productos[index].autor = document
+          .getElementById("autorEditar")
+          .value.trim();
+        productos[index].categoria = categoriasActualizadas;
+        productos[index].formato = formatosActualizados;
+        productos[index].tipo = document.getElementById("tipoEditar").value;
+        productos[index].precio = parseFloat(
+          document.getElementById("precioEditar").value,
+        );
+        productos[index].stock = parseInt(
+          document.getElementById("cantEditar").value,
+        );
+        productos[index].descripcion = document
+          .getElementById("descripcionEditar")
+          .value.trim();
+
+        // Guardamos el array modificado en localStorage y redibujamos la tabla
+        guardarProductos(productos);
+        renderizarTablaStock();
+
+        // Cerrar el modalEditar de forma automática
+        const modalInstance = bootstrap.Modal.getInstance(
+          document.getElementById("modalEditar"),
+        );
+        modalInstance.hide();
+      }
     }
-});
+  });
 
 // Inicializar el script cargando la tabla apenas se procese el documento
 document.addEventListener("DOMContentLoaded", renderizarTablaStock);

@@ -33,15 +33,15 @@
 
           <div class="w-100 text-center text-lg-start">
             <section>
-            <a href="index.html">
-              <img
-                src="img/logo-reducido.png"
-                alt="Logo de Librarium"
-                class="img-fluid"
-                style="width: 40px"
-              />
-            </a>
-          </section>
+              <a href="index.html">
+                <img
+                  src="img/logo-reducido.png"
+                  alt="Logo de Librarium"
+                  class="img-fluid"
+                  style="width: 40px"
+                />
+              </a>
+            </section>
           </div>
         </div>
       </nav>
@@ -171,153 +171,127 @@
 
           <!-- Modal Nueva Categoría -->
           <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content p-3 justify-content-center">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Nueva Categoría
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close btn-info"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <form action="">
-                    <div class="row">
-                      <label for="nombreCategoria" class="mt-2"> Nombre</label>
-                      <input
-                        type="text"
-                        id="nombreCategoria"
-                        class="form-control mt-2"
-                      />
-                      <label for="descripcionCategoria">Descripción</label>
-                      <textarea
-                        id="descripcionCategoria"
-                        rows="3"
-                        cols="3"
-                        class="form-control"
-                      >
-                      </textarea>
-                      <label for="estado" class="mt-2">Estado</label>
-                      <select id="estado" class="form-select">
-                        <option disabled selected>Seleccionar..</option>
-                        <option value="">Activa</option>
-                        <option value="">Inactiva</option>
-                      </select>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-outline-info"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancelar
-                  </button>
-                  <button type="button" class="btn btn-outline-primary">
-                    Guardar cambios
-                  </button>
-                </div>
-              </div>
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content p-3 justify-content-center">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Asignar Libros a Categoría Especial
+        </h1>
+        <button
+          type="button"
+          class="btn-close btn-info"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-nueva-categoria">
+          <div class="row">
+            <label for="nombreCategoria" class="mt-2">Seleccionar Categoría del Index</label>
+            <select
+              id="nombreCategoria"
+              class="form-select mt-2"
+              required
+            >
+              <option disabled selected value="">
+                Seleccionar..
+              </option>
+              <option value="recomendados">Recomendados</option>
+              <option value="novedades">Novedades</option>
+              <option value="importados">
+                Importados más vendidos
+              </option>
+            </select>
+
+            <label for="buscadorLibrosModal" class="mt-3 fw-bold">Buscar Libro</label>
+            <div class="input-group mt-1 mb-2">
+              <span class="input-group-text bg-light border-primary-subtle text-primary">
+                <i class="bi bi-search"></i>
+              </span>
+              <input 
+                type="text" 
+                id="buscadorLibrosModal" 
+                class="form-control border-primary-subtle" 
+                placeholder="Escribe el título o autor para filtrar rápido..."
+              />
             </div>
+
+            <label for="librosSeleccionados" class="mt-2">
+              Seleccionar Libros
+              <small class="text-muted d-block"
+                >(Mantén presionado Ctrl/Cmd para elegir varios)</small
+              >
+            </label>
+            <select
+              id="librosSeleccionados"
+              class="form-select mt-2"
+              multiple
+              style="height: 220px; overflow-y: auto;"
+              required
+            ></select>
+
+            <label for="descripcionCategoria" class="mt-3"
+              >Descripción / Notas</label
+            >
+            <textarea
+              id="descripcionCategoria"
+              rows="2"
+              class="form-control mt-2"
+            ></textarea>
+
+            <label for="estado" class="mt-3">Estado</label>
+            <select id="estado" class="form-select mt-2">
+              <option value="Activa" selected>Activa</option>
+              <option value="Inactiva">Inactiva</option>
+            </select>
           </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-info"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          id="btn-guardar-categoria-especial"
+        >
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
           <!-- ==================== Tabla de categorías ==================== -->
 
           <div class="card card-dashboard">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table
-                  class="table table-hover align-middle table-striped bg-primary"
-                >
-                  <thead class="text-center">
-                    <tr>
-                      <th>ID</th>
-                      <th>Categoría</th>
-                      <th>Descripción</th>
-                      <th class="text-start">Estado</th>
-                      <th class="text-center">Acciones</th>
-                    </tr>
-                  </thead>
-
-                  <tbody class="text-center">
-                    <tr>
-                      <td>1</td>
-                      <td>Novela</td>
-                      <td>Libros de ficción</td>
-                      <td>
-                        <div class="form-check form-switch m-0">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            checked
-                          />
-                          <label
-                            class="form-check-label"
-                            for="checkNativeSwitch"
-                          ></label>
-                        </div>
-                      </td>
-
-                      <td class="text-center">
-                        <button
-                          class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalBorrar"
-                        ></button>
-
-                        <button
-                          class="btn btn-outline-primary btn-sm bi bi-pencil"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalEditar"
-                        ></button>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>2</td>
-                      <td>Infantil</td>
-                      <td>Libros para niños</td>
-                      <td>
-                        <div class="form-check form-switch m-0">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            checked
-                          />
-                          <label
-                            class="form-check-label"
-                            for="checkNativeSwitch"
-                          ></label>
-                        </div>
-                      </td>
-
-                      <td class="text-center">
-                        <button
-                          class="btn btn-outline-primary btn-sm me-2 bi bi-trash"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalBorrar"
-                        ></button>
-
-                        <button
-                          class="btn btn-outline-primary btn-sm bi bi-pencil"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalEditar"
-                        ></button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle table-striped bg-primary">
+        <thead class="text-center">
+          <tr>
+            <th>ID</th>
+            <th>Categoría</th>
+            <th>Descripción</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="text-center" id="tabla-categorias-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
                 <!-- Modal Borrar -->
                 <div
@@ -364,74 +338,43 @@
 
                 <!-- Modal Editar -->
 
-                <div
-                  class="modal fade"
-                  id="modalEditar"
-                  tabindex="-1"
-                  aria-labelledby="modalEditarLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div
-                      class="modal-content p-3 justify-content-center text-start"
-                    >
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalEditarLabel">
-                          Editar Categoría
-                        </h1>
-                        <button
-                          type="button"
-                          class="btn-close btn-info"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <form action="">
-                          <div class="row">
-                            <label for="nombreCategoria" class="mt-2">
-                              Nombre</label
-                            >
-                            <input
-                              type="text"
-                              id="nombreCategoria"
-                              class="form-control mt-2"
-                            />
-                            <label for="descripcionCategoria"
-                              >Descripción</label
-                            >
-                            <textarea
-                              id="descripcionCategoria"
-                              rows="3"
-                              cols="3"
-                              class="form-control"
-                            >
-                            </textarea>
-                            <label for="estado" class="mt-2">Estado</label>
-                            <select id="estado" class="form-select">
-                              <option disabled selected>Seleccionar..</option>
-                              <option value="">Activa</option>
-                              <option value="">Inactiva</option>
-                            </select>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-outline-info"
-                          data-bs-dismiss="modal"
-                        >
-                          Cancelar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary">
-                          Confirmar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-3 justify-content-center text-start">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalEditarLabel">Editar Categoría Especial</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-editar-categoria">
+          <div class="row">
+            <label for="editNombreCategoria" class="mt-2 fw-bold">Categoría del Index</label>
+            <select id="editNombreCategoria" class="form-select mt-2" required>
+              <option value="recomendados">Recomendados</option>
+              <option value="novedades">Novedades</option>
+              <option value="importados">Importados más vendidos</option>
+            </select>
+
+            <label for="editBuscador" class="mt-3 fw-bold">Buscar Libro</label>
+            <input type="text" id="editBuscador" class="form-control mt-1" placeholder="Filtrar libros...">
+
+            <label for="editLibrosSeleccionados" class="mt-3 fw-bold">Seleccionar Libros</label>
+            <select id="editLibrosSeleccionados" class="form-select mt-2" multiple style="height: 180px;" required>
+            </select>
+
+            <label for="editDescripcion" class="mt-3 fw-bold">Descripción</label>
+            <textarea id="editDescripcion" rows="2" class="form-control mt-2"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-outline-primary" id="btn-guardar-edicion">Confirmar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+              
             </div>
           </div>
         </main>
@@ -446,5 +389,6 @@
 
     <script src="js/modal.js"></script>
     <script src="./js/sesion.js"></script>
+    <script src="js/admin-categorias.js"></script>
   </body>
 </html>

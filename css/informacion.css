@@ -1,5 +1,5 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -10,15 +10,15 @@ body {
 }
 
 main {
-  flex: 1; 
+  flex: 1;
 }
 
 /* Personalizado para el navbar */
 #main-navbar {
-  font-size: 15px
+  font-size: 15px;
 }
 
-#main-navbar .btn{
+#main-navbar .btn {
   font-size: 15px;
 }
 
@@ -29,53 +29,50 @@ main {
 
 /* Estilos generales para la sección de Información */
 #info {
-    padding: 20px 0;
+  padding: 20px 0;
 }
 
 /* Animación y estilo de los títulos de las secciones */
 #info .class-titles {
-    color: #495057;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
+  color: #495057;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
 /* Efecto interactivo al pasar el mouse por cada bloque de texto */
 #info ul li {
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
-
 
 footer {
   h5 {
     font-size: 18px;
   }
 
-    a > i{
-        font-size: 15px;
-        padding: 0 5px;
-    }
-    
-    li> a{
-        color: #845f4a;
-        text-decoration: none;
-        font-size: 15px;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
+  a > i {
+    font-size: 15px;
+    padding: 0 5px;
+  }
 
-    ul > li {
-        font-size: 15px;
-        color: #845f4a; 
+  li > a {
+    color: #845f4a;
+    text-decoration: none;
+    font-size: 15px;
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    span{
-        font-size: 18px;
-        color: #dfa0aa;
-    }
+  ul > li {
+    font-size: 15px;
+    color: #845f4a;
+  }
 
+  span {
+    font-size: 18px;
+    color: #dfa0aa;
+  }
 }
- 

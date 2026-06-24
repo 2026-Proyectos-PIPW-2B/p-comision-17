@@ -1,5 +1,5 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -11,10 +11,10 @@ body {
 
 /* Personalizado para el navbar */
 #main-navbar {
-  font-size: 15px
+  font-size: 15px;
 }
 
-#main-navbar .btn{
+#main-navbar .btn {
   font-size: 15px;
 }
 
@@ -25,13 +25,13 @@ body {
 
 main {
   flex: 1;
-  
-  .logo-login{
+
+  .logo-login {
     height: 150%;
     width: 150%;
   }
-  
-  i{
+
+  i {
     font-size: 30px;
   }
 }
@@ -41,28 +41,27 @@ footer {
     font-size: 18px;
   }
 
-    a > i{
-        font-size: 15px;
-        padding: 0 5px;
-    }
-    
-    li> a{
-        color: #845f4a;
-        text-decoration: none;
-        font-size: 15px;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
+  a > i {
+    font-size: 15px;
+    padding: 0 5px;
+  }
 
-    ul > li {
-        font-size: 15px;
-        color: #845f4a; 
+  li > a {
+    color: #845f4a;
+    text-decoration: none;
+    font-size: 15px;
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    span{
-        font-size: 18px;
-        color: #dfa0aa;
-    }
+  ul > li {
+    font-size: 15px;
+    color: #845f4a;
+  }
 
+  span {
+    font-size: 18px;
+    color: #dfa0aa;
+  }
 }
