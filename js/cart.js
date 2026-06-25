@@ -22,7 +22,7 @@ if (!usuarioActivo) {
 
     localStorage.setItem("shop", JSON.stringify(shop));
   }
-
+git 
   cart = shop.carts[userId];
 
   console.log("carrito: ", cart);
