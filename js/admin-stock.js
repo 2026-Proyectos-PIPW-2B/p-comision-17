@@ -50,6 +50,11 @@ const stockInicial = [
 // Variable global para saber qué ID se está editando o borrando
 let idProductoSeleccionado = null;
 
+function obtenerTerminoBusqueda() {
+  const buscador = document.getElementById("buscador-stock");
+  return buscador ? buscador.value.toLowerCase().trim() : "";
+}
+
 // Obtener productos de localStorage o inicializar con los datos por defecto
 function obtenerProductos() {
   let productos = localStorage.getItem("librarium_stock");
@@ -71,9 +76,31 @@ function renderizarTablaStock() {
   if (!tablaBody) return; // Evita errores si no estamos en la página de stock
 
   const productos = obtenerProductos();
+  const terminoBusqueda = obtenerTerminoBusqueda();
   tablaBody.innerHTML = ""; // Limpiar contenido previo
 
-  productos.forEach((prod) => {
+  const productosFiltrados = productos.filter((prod) => {
+    const titulo = (prod.titulo || "").toLowerCase();
+    const autor = (prod.autor || "").toLowerCase();
+    return (
+      terminoBusqueda === "" ||
+      titulo.includes(terminoBusqueda) ||
+      autor.includes(terminoBusqueda)
+    );
+  });
+
+  if (productosFiltrados.length === 0) {
+    tablaBody.innerHTML = `
+      <tr>
+        <td colspan="7" class="text-center text-muted py-4">
+          No se encontraron libros con ese criterio de búsqueda.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  productosFiltrados.forEach((prod) => {
     // Asegurar que formato y categoria siempre sean tratados como arrays para evitar errores de ejecución
     const categoriasArray = Array.isArray(prod.categoria)
       ? prod.categoria
@@ -203,6 +230,11 @@ document
   });
 
 // ==================== 4. ACCIÓN: CONFIGURAR ID PARA BORRAR ====================
+
+const buscadorStock = document.getElementById("buscador-stock");
+if (buscadorStock) {
+  buscadorStock.addEventListener("input", renderizarTablaStock);
+}
 window.configurarIdBorrar = function (id) {
   idProductoSeleccionado = id;
 };

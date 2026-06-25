@@ -75,7 +75,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="categorias.html?filtro=Outlet"
+                <a class="nav-link" href="categorias.html?filtro=Usado"
                   >Outlet</a
                 >
               </li>
@@ -282,6 +282,29 @@
 
         <section class="col-12 col-md-9 col-lg-10" id="catalog-section">
           <div class="container px-0">
+            <div
+              class="d-flex justify-content-center justify-content-md-end align-items-center mb-3 px-1"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <label
+                  for="sort-select"
+                  class="form-label mb-0 small fw-medium text-muted text-nowrap"
+                >
+                  <i class="bi bi-sort-down-alt me-1"></i>Ordenar por:
+                </label>
+                <select
+                  id="sort-select"
+                  class="form-select form-select-sm border-secondary-subtle"
+                  style="width: 200px"
+                >
+                  <option value="predeterminado">Relevancia</option>
+                  <option value="az">Título: A a la Z</option>
+                  <option value="za">Título: Z a la A</option>
+                  <option value="precio-desc">Precio: Mayor a Menor</option>
+                  <option value="precio-asc">Precio: Menor a Mayor</option>
+                </select>
+              </div>
+            </div>
             <div
               id="catalog-container"
               class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center"
