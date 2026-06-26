@@ -35,12 +35,41 @@ localStorage.setItem("shop", JSON.stringify(shop));
 
 console.log(cart);
 
-function renderCart () {
-    cartContainer.innerHTML = "";
+function renderCart() {
+  
+  console.log("holaa", cart.items);
 
-    cart.items.forEach((item) =>{
-        console.log(item);
-    });
+  if (!cartContainer || !cart) return;
+
+  cartContainer.innerHTML = "";
+
+  cart.items.forEach((item) => {
+    console.log(item);
+  });
+
+  
 }
 
-renderCart()
+window.addToCart = function (productId) {
+
+  console.log("Agregando:", productId);
+
+  const item = cart.items.find(
+    item => item.productId == productId
+  );
+
+  if (item) {
+    item.quantity++;
+  } else {
+    cart.items.push({
+      productId: Number(productId),
+      quantity: 1
+    });
+  }
+
+  console.log(cart.items);
+
+  localStorage.setItem("shop", JSON.stringify(shop));
+
+  renderCart();
+};

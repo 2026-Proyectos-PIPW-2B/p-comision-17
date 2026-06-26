@@ -1,3 +1,5 @@
+let libroActual = null;
+
 document.addEventListener("DOMContentLoaded", () => {
   const catalogContainer = document.getElementById("catalog-container");
   const searchInput = document.getElementById("search-input");
@@ -61,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <i class="bi bi-star"></i>
                         </p>
                         <p class="price fw-bold text-dark mb-3">$${libro.precio.toLocaleString("es-AR")}</p>
-                        <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill" onclick="event.stopPropagation();">Ver Detalles</button>
+                        <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill" >Ver Detalles</button>
                     </div>
                 </div>
             `;
@@ -73,8 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
   window.verDetalleLibro = function (id) {
     const productos = obtenerProductos();
     const libro = productos.find((p) => p.id === id);
+    console.log("Entró a verDetalleLibro", id);
+    console.log(window.verDetalleLibro);
 
     if (libro) {
+      libroActual = libro;
       // Mapear elementos del modal
       document.getElementById("modalLibroImagen").src = libro.imagen;
       document.getElementById("modalLibroImagen").alt =
@@ -93,6 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // Control dinámico de las insignias de Stock
       const stockBadge = document.getElementById("modalLibroStock");
       const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
+
+      console.log("Libro:", libro.id);
+
+      btnCarrito.dataset.id = libro.id;
+
+      console.log("dataset:", btnCarrito.dataset.id);
 
       if (libro.stock >= 10) {
         stockBadge.textContent = `${libro.stock} unidades disponibles`;
@@ -209,4 +220,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, 100);
   }
+});
+
+const btnCarrito =
+  document.getElementById("modalBtnAgregarCarrito");
+
+console.log(btnCarrito);
+
+btnCarrito?.addEventListener("click", () => {
+
+  console.log("CLICK");
+  console.log(libroActual);
+
+  if (!libroActual) return;
+
+  window.addToCart(libroActual.id);
+
 });
