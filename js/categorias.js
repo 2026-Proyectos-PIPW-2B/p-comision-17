@@ -75,8 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.verDetalleLibro = function (id) {
     const productos = obtenerProductos();
     const libro = productos.find((p) => p.id === id);
-    console.log("Entró a verDetalleLibro", id);
-    console.log(window.verDetalleLibro);
 
     if (libro) {
       libroActual = libro;
@@ -99,11 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const stockBadge = document.getElementById("modalLibroStock");
       const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
-      console.log("Libro:", libro.id);
 
       btnCarrito.dataset.id = libro.id;
-
-      console.log("dataset:", btnCarrito.dataset.id);
 
       if (libro.stock >= 10) {
         stockBadge.textContent = `${libro.stock} unidades disponibles`;
@@ -222,18 +217,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const btnCarrito =
-  document.getElementById("modalBtnAgregarCarrito");
-
-console.log(btnCarrito);
+const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
 btnCarrito?.addEventListener("click", () => {
 
-  console.log("CLICK");
-  console.log(libroActual);
-
   if (!libroActual) return;
 
-  window.addToCart(libroActual.id);
+  window.agregarCart(libroActual.id);
+  const toastBody = document.querySelector("#toastCarrito .toast-body");
 
+toastBody.innerHTML = `
+  <i class="bi bi-check-circle-fill me-2"></i>
+  <strong>¡${libroActual.titulo}</strong> agregado al carrito!
+`;
+
+const toast = new bootstrap.Toast(
+  document.getElementById("toastCarrito"),
+);
+
+toast.show();
 });

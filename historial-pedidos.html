@@ -32,15 +32,15 @@
 
           <div class="w-100 text-center text-lg-start">
             <section>
-            <a href="index.html">
-              <img
-                src="img/logo-reducido.png"
-                alt="Logo de Librarium"
-                class="img-fluid"
-                style="width: 40px"
-              />
-            </a>
-          </section>
+              <a href="index.html">
+                <img
+                  src="img/logo-reducido.png"
+                  alt="Logo de Librarium"
+                  class="img-fluid"
+                  style="width: 40px"
+                />
+              </a>
+            </section>
           </div>
         </div>
       </nav>
@@ -48,7 +48,6 @@
 
     <div class="container-fluid">
       <div class="row min-vh-100">
-
         <!-- ==================== SIDEBAR ==================== -->
 
         <aside
@@ -66,7 +65,10 @@
 
             <!-- Acordion Productos-->
 
-            <div class="accordion accordion-flush bg-secondary" id="menuProductos">
+            <div
+              class="accordion accordion-flush bg-secondary"
+              id="menuProductos"
+            >
               <div class="accordion-item bg-secondary border-0">
                 <h2 class="accordion-header">
                   <button
@@ -214,65 +216,7 @@
                     </tr>
                   </thead>
 
-                  <tbody class="text-center">
-                    <tr>
-                      <td>12345</td>
-                      <td>Juan Pérez</td>
-                      <td>2024-06-15</td>
-                      <td>3</td>
-                      <td>$15000</td>
-                      <td><span class="badge bg-success">Completado</span></td>
-                      <td>
-                        <button
-                          class="btn btn-link text-info p-0"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalDetallePedido"
-                        >
-                          Ver detalle
-                        </button>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>12346</td>
-                      <td>María Gómez</td>
-                      <td>2024-06-14</td>
-                      <td>2</td>
-                      <td>$8500</td>
-                      <td>
-                        <span class="badge bg-warning text-dark"
-                          >Pendiente</span
-                        >
-                      </td>
-                      <td>
-                        <button
-                          class="btn btn-link text-info p-0"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalDetallePedido"
-                        >
-                          Ver detalle
-                        </button>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>12347</td>
-                      <td>Carlos López</td>
-                      <td>2024-06-13</td>
-                      <td>1</td>
-                      <td>$4500</td>
-                      <td><span class="badge bg-danger">Cancelado</span></td>
-                      <td>
-                        <button
-                          class="btn btn-link text-info p-0"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalDetallePedido"
-                        >
-                          Ver detalle
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tbody id="tablaPedidosBody" class="text-center"></tbody>
                 </table>
               </div>
             </div>
@@ -280,30 +224,7 @@
             <!-- PAGINACIÓN -->
 
             <nav aria-label="Paginación de pedidos">
-              <ul class="pagination justify-content-center mt-4">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-
-                <li class="page-item">
-                  <a class="page-link" href="#">2</a>
-                </li>
-
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
+              <ul id="paginacionPedidos" class="pagination justify-content-center mt-4">
               </ul>
             </nav>
           </div>
@@ -316,7 +237,8 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="js/modal.js"></script>
+    <!--<script src="js/modal.js"></script>-->
     <script src="./js/sesion.js"></script>
+    <script src="js/panel-admin.js"></script>
   </body>
 </html>

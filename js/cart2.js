@@ -1,33 +1,64 @@
-const shop = JSON.parse(localStorage.getItem("shop"));
+const shop = JSON.parse(localStorage.getItem("shop")) || {
+  carts: {},
+  orders: [],
+  usarOrders: {},
+};
 const productos = JSON.parse(localStorage.getItem("librarium_stock")) || [];
-const usuarioActivo = JSON.parse(localStorage.getItem("UsuarioLoggeado"));
+const usuarioActivo =
+  JSON.parse(localStorage.getItem("UsuarioLoggeado")) || null;
 
 let cart = null;
 
-function initializeCart() {
+function inicializarCart() {
   if (!usuarioActivo) return;
 
   const userId = usuarioActivo.id;
 
+  // Carrito
   if (!shop.carts[userId]) {
     shop.carts[userId] = {
       items: [],
     };
+  }
 
-    localStorage.setItem("shop", JSON.stringify(shop));
+  // Historial pedidos global
+  if (!shop.orders) {
+    shop.orders = [];
+  }
+
+  // Historial por usuario
+  if (!shop.userOrders) {
+    shop.userOrders = {};
+  }
+
+  if (!shop.userOrders[userId]) {
+    shop.userOrders[userId] = [];
   }
 
   cart = shop.carts[userId];
+
+  guardarShop();
 }
 
-function saveShop() {
+function guardarShop() {
   localStorage.setItem("shop", JSON.stringify(shop));
 }
 
-window.addToCart = function (productId) {
-      console.log("AGREGANDO");
-  console.log("Entró", productId);
-  console.log(cart);
+//Actualizar el Badge
+
+function actualizarCartBadge() {
+  const badge = document.getElementById("cart-badge");
+
+  if (!badge || !cart) return;
+
+  const total = cart.items.reduce((acum, item) => {
+    return acum + item.quantity;
+  }, 0);
+
+  badge.textContent = total;
+}
+
+window.agregarCart = function (productId) {
   if (!cart) return;
 
   const item = cart.items.find((item) => item.productId == productId);
@@ -41,27 +72,20 @@ window.addToCart = function (productId) {
     });
   }
 
-  saveShop();
-
+  guardarShop();
   renderCart();
+  actualizarCartBadge();
 };
 
 function renderCart() {
-     console.log("RENDER");
   const cartContainer = document.getElementById("cart-items");
-
-  console.log("cartContainer:", cartContainer);
-  console.log("cart:", cart);
+  let subtotal = 0;
 
   if (!cartContainer || !cart) {
-    console.log("Salió por el primer if");
     return;
   }
 
-  console.log("items:", cart.items);
-
   if (cart.items.length === 0) {
-    console.log("Entró al carrito vacío");
     cartContainer.innerHTML = `
       <p class="text-center text-muted">
         Tu carrito está vacío.
@@ -69,8 +93,6 @@ function renderCart() {
     `;
     return;
   }
-
-  console.log("Tiene productos");
 
   cartContainer.innerHTML = "";
 
@@ -141,6 +163,50 @@ function renderCart() {
   });
 }
 
+function renderResumen() {
+  const subtotal = document.getElementById("subtotal");
+  const descuentoEfect = document.getElementById("descuentoEfect");
+  const total = document.getElementById("total");
+
+  if (!subtotal || !descuentoEfect || !total) {
+    return;
+  }
+
+  if (!cart) {
+    return;
+  }
+
+  let subtotalCompra = 0;
+
+  cart.items.forEach((item) => {
+    const producto = productos.find(
+      (p) => Number(p.id) === Number(item.productId),
+    );
+
+    if (!producto) return;
+
+    subtotalCompra += producto.precio * item.quantity;
+  });
+
+  const descuento = subtotalCompra * 0.1;
+  const totalDescuento = subtotalCompra - descuento;
+
+  subtotal.textContent = `$${subtotalCompra.toLocaleString("es-AR")}`;
+
+  descuentoEfect.textContent = `-$${descuento.toLocaleString("es-AR")}`;
+
+  total.textContent = `$${totalDescuento.toLocaleString("es-AR")}`;
+
+  const btnFinalizar = document.getElementById("btnFinalizar");
+  if (cart.items.length === 0) {
+    btnFinalizar.disabled = true;
+    btnFinalizar.textContent = "Carrito vacío";
+  } else {
+    btnFinalizar.disabled = false;
+    btnFinalizar.textContent = "Finalizar compra";
+  }
+}
+
 const cartContainer = document.getElementById("cart-items");
 
 cartContainer?.addEventListener("click", (e) => {
@@ -152,8 +218,10 @@ cartContainer?.addEventListener("click", (e) => {
       (item) => Number(item.productId) !== productId,
     );
 
-    saveShop();
+    guardarShop();
     renderCart();
+    renderResumen();
+    actualizarCartBadge();
     return;
   }
 
@@ -166,8 +234,10 @@ cartContainer?.addEventListener("click", (e) => {
   if (e.target.classList.contains("btn-plus")) {
     item.quantity++;
 
-    saveShop();
+    guardarShop();
     renderCart();
+    renderResumen();
+    actualizarCartBadge();
     return;
   }
 
@@ -177,10 +247,88 @@ cartContainer?.addEventListener("click", (e) => {
       item.quantity--;
     }
 
-    saveShop();
+    guardarShop();
     renderCart();
+    renderResumen();
+    actualizarCartBadge();
   }
 });
 
-initializeCart();
+function finalizarCompra() {
+  if (!cart || cart.items.length === 0) {
+    return;
+  }
+
+  let subtotal = 0;
+
+  cart.items.forEach((item) => {
+    const producto = productos.find(
+      (p) => Number(p.id) === Number(item.productId),
+    );
+
+    if (!producto) return;
+
+    subtotal += producto.precio * item.quantity;
+  });
+
+  const descuento = subtotal * 0.1;
+  const total = subtotal - descuento;
+
+  const compra = {
+    id: Date.now(),
+    userId: usuarioActivo.id,
+    fecha: new Date().toLocaleDateString("es-AR"),
+    items: [...cart.items],
+    subtotal,
+    descuento,
+    total,
+    estado: "Pendiente",
+  };
+
+  // Historial global
+  shop.orders.push(compra);
+
+  // Historial del usuario
+  shop.userOrders[usuarioActivo.id].push(compra);
+
+  // Descontar stock
+  cart.items.forEach((item) => {
+    const producto = productos.find(
+      (p) => Number(p.id) === Number(item.productId),
+    );
+
+    if (producto) {
+      producto.stock -= item.quantity;
+    }
+  });
+
+  localStorage.setItem("librarium_stock", JSON.stringify(productos));
+
+  // Vaciar carrito
+  cart.items = [];
+
+  guardarShop();
+
+  renderCart();
+  renderResumen();
+  actualizarCartBadge();
+
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("modalConfirmarCompra"),
+  );
+
+  modal.hide();
+
+  const toast = new bootstrap.Toast(document.getElementById("toastCompra"));
+
+  toast.show();
+}
+
+inicializarCart();
 renderCart();
+renderResumen();
+actualizarCartBadge();
+
+const btnConfirmarCompra = document.getElementById("btnConfirmarCompra");
+
+btnConfirmarCompra?.addEventListener("click", finalizarCompra);
