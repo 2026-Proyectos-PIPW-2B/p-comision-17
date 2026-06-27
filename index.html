@@ -24,78 +24,102 @@
         id="main-navbar"
       >
         <div class="container-fluid">
-          <section>
-            <img
-              src="img/logo-reducido-primario.png"
-              alt="Logo de Librarium"
-              class="img-fluid"
-              style="width: 40px"
-            />
-          </section>
+        <!-- Logo de la empresa -->
+        <section>
+            <img src="img/logo-reducido-primario.png" alt="Logo de Librarium" class="img-fluid" style="width: 40px;">
+        </section>
+            
+            <!-- Menu collapse -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                
+            <!-- Links de navegación -->
+                <ul class="navbar-nav mx-auto text-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="categorias.html?filtro=todos">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categorias.html?filtro=Ebook">Ebooks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categorias.html?filtro=Importados">Importados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categorias.html?filtro=Outlet">Outlet</a>
+                    </li>
+                </ul>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto text-center gap-3">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="categorias.html?filtro=todos"
-                  >Categorías</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="categorias.html?filtro=Ebook"
-                  >Ebooks</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="categorias.html?filtro=Importados"
-                  >Importados</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="categorias.html?filtro=Outlet"
-                  >Outlet</a
-                >
-              </li>
-            </ul>
+            <!-- Botones de acción -->
+                <div class="d-flex align-items-center justify-content-center mt-3 mt-lg-0 gap-3" id="action-buttons">
+                    <a href="login.html" class="btn btn-outline-secondary" style="color: #dfa0aa; ">Iniciar Sesión</a>
+                    
+                    <a href="carrito.html" class="btn btn-outline-primary rounded-pill position-relative" aria-label="Carrito de compras">
+                        <i class="bi bi-cart"></i>
+                        <span 
+                        id="cart-badge"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </a>
+                </div>
 
-            <div
-              class="d-flex align-items-center justify-content-center mt-3 mt-lg-0 gap-3"
-              id="action-buttons"
-            >
-              <a
-                href="login.html"
-                class="btn btn-outline-secondary"
-                style="color: #dfa0aa"
-                >Iniciar Sesión</a
-              >
+            </div> 
+        </div> 
+    </nav>
+</header>
 
-              <a
-                href="carrito.html"
-                class="btn btn-outline-primary rounded-pill position-relative"
-                aria-label="Carrito de compras"
-              >
-                <i class="bi bi-cart"></i>
-                <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                >
-                  0
-                </span>
-              </a>
-            </div>
+<main class="container-fluid my-3" style="max-width: 90%;">
+    <!-- Logo de la empresa -->
+  <div class="row g-2 align-items-stretch">
+    
+    <div class="col-12 col-md-5 d-flex">
+      <div class="w-100 border p-4 d-flex align-items-center justify-content-center bg-light rounded text-center custom-logo-box">
+        <div>
+          <img src="img/logo-primario.png" alt="Logo  de Librarium" class="img-fluid" style="width: 500px;">
+          <p style="font-size: small;">El refugio de los que aman perderse en un buen libro</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categorías de libros -->
+    <div class="col-12 col-md-7">
+      <div class="d-flex flex-column flex-md-row h-100 text-center fw-bold custom-books-container" id="categories-section">
+        
+        <div class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar" style="background-color: #d4bba9;">
+        <a href="categorias.html?filtro=Packs" class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0" style="text-decoration: none; color: inherit;">
+          <span class="vertical-text fs-5 fs-md-4 mb-0 mb-md-5">Packs</span>
+          <div class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center" style="margin-right: 5px;">
+            <img src="https://cdn-icons-png.flaticon.com/128/3330/3330300.png" class="img-fluid" style="width: 30px;">
+          </div>
+        </a>
+        </div>
+
+        <div class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar" style="background-color: #b09079;">
+        <a href="categorias.html?filtro=Terror" class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0" style="text-decoration: none; color: inherit;">
+          <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5">Terror</span>
+          <div class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center" style="margin-right: 5px;">
+            <img src="https://cdn-icons-png.flaticon.com/128/5810/5810118.png" class="img-fluid" style="width: 30px;">
+          </div>
+        </a>
+        </div>
+
+        <div class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar" style="background-color: #916d54;">
+        <a href="categorias.html?filtro=Clásico" class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0" style="text-decoration: none; color: inherit;">
+          <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5">Clásicos</span>
+          <div class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center" style="margin-right: 5px;">
+            <img src="https://cdn-icons-png.flaticon.com/128/5318/5318807.png" class="img-fluid" style="width: 30px;">
+          </div>
+        </a>
+        </div>
+
+        <div class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar" style="background-color: #bd7d79;">
+        <a href="categorias.html?filtro=Juvenil" class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0" style="text-decoration: none; color: inherit;">
+          <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5">Juveniles</span>
+          <div class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center" style="margin-right: 5px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1669/1669386.png" class="img-fluid" style="width: 30px;">
           </div>
         </div>
       </nav>

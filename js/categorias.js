@@ -1,3 +1,5 @@
+let libroActual = null;
+
 document.addEventListener("DOMContentLoaded", () => {
   const catalogContainer = document.getElementById("catalog-container");
   const searchInput = document.getElementById("search-input");
@@ -119,11 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star"></i>
                         </p>
-                        <p class="price fw-bold text-dark mb-3">
-                            ${aplicarDescuentoEbook ? `$${precioFinal.toLocaleString("es-AR")}` : `${tieneDescuento ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9em;">$${libro.precio.toLocaleString("es-AR")}</span> ` : ""}$${precioFinal.toLocaleString("es-AR")}`}
-                          ${tieneDescuento && !aplicarDescuentoEbook ? `<span class="badge bg-danger-subtle text-danger font-monospace small ms-1" style="font-size: 0.75rem;">-${descuentoPorcentaje}%</span>` : ""}
-                        </p>
-                        <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill" onclick="event.stopPropagation();">Ver Detalles</button>
+                        <p class="price fw-bold text-dark mb-3">$${libro.precio.toLocaleString("es-AR")}</p>
+                        <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill" >Ver Detalles</button>
                     </div>
                 </div>
             `;
@@ -140,28 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const libro = productos.find((p) => p.id === id);
 
     if (libro) {
-      const formatosArray = Array.isArray(libro.formato)
-        ? libro.formato
-        : [libro.formato];
-
-      // Aplicar dinámicamente el descuento en el modal
-      const esEbook = formatosArray.some(
-        (f) => f.toLowerCase().trim() === "ebook",
-      );
-      const aplicarDescuentoEbook = esEbook && filtroEbookActivo;
-      const esUsado = libro.tipo === "Usado";
-
-      let precioFinal = libro.precio;
-      let tieneDescuento = false;
-
-      if (aplicarDescuentoEbook) {
-        precioFinal = libro.precio * 0.6;
-        tieneDescuento = true;
-      } else if (esUsado) {
-        precioFinal = libro.precio * 0.5;
-        tieneDescuento = true;
-      }
-
+      libroActual = libro;
+      // Mapear elementos del modal
       document.getElementById("modalLibroImagen").src = libro.imagen;
       document.getElementById("modalLibroImagen").alt =
         `Portada de ${libro.titulo}`;
@@ -180,20 +159,27 @@ document.addEventListener("DOMContentLoaded", () => {
         libro.descripcion || "No hay descripción disponible para este libro.";
 
       const stockBadge = document.getElementById("modalLibroStock");
-      if (stockBadge) {
-        stockBadge.textContent = `${libro.stock} unidades`;
-      }
+      const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
-      // Desactivar o activar botón según la disponibilidad real
-      const btnAgregar = document.getElementById("modalBtnAgregarCarrito");
-      if (btnAgregar) {
-        if (parseInt(libro.stock) === 0) {
-          btnAgregar.disabled = true;
-          btnAgregar.innerHTML = `<i class="bi bi-x-circle me-2"></i>Sin Stock`;
-        } else {
-          btnAgregar.disabled = false;
-          btnAgregar.innerHTML = `<i class="bi bi-cart-plus me-2"></i>Agregar al carrito`;
-        }
+
+      btnCarrito.dataset.id = libro.id;
+
+      if (libro.stock >= 10) {
+        stockBadge.textContent = `${libro.stock} unidades disponibles`;
+        stockBadge.className = "badge fw-bold stock-alto";
+        btnCarrito.disabled = false;
+      } else if (libro.stock >= 5) {
+        stockBadge.textContent = `${libro.stock} unidades disponibles`;
+        stockBadge.className = "badge fw-bold stock-medio";
+        btnCarrito.disabled = false;
+      } else if (libro.stock >= 1) {
+        stockBadge.textContent = `¡Últimas ${libro.stock} unidades!`;
+        stockBadge.className = "badge fw-bold stock-bajo";
+        btnCarrito.disabled = false;
+      } else {
+        stockBadge.textContent = "Agotado temporalmente";
+        stockBadge.className = "badge fw-bold stock-agotado";
+        btnCarrito.disabled = true; // Deshabilita el botón si no hay stock
       }
     }
   };
@@ -301,4 +287,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, 100);
   }
+});
+
+const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
+
+btnCarrito?.addEventListener("click", () => {
+
+  if (!libroActual) return;
+
+  window.agregarCart(libroActual.id);
+  const toastBody = document.querySelector("#toastCarrito .toast-body");
+
+toastBody.innerHTML = `
+  <i class="bi bi-check-circle-fill me-2"></i>
+  <strong>¡${libroActual.titulo}</strong> agregado al carrito!
+`;
+
+const toast = new bootstrap.Toast(
+  document.getElementById("toastCarrito"),
+);
+
+toast.show();
 });

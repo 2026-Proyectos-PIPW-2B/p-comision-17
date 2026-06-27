@@ -1,3 +1,5 @@
+// Local Usuarios
+
 if (!localStorage.getItem("usuarios")) {
   localStorage.setItem(
     "usuarios",
@@ -43,5 +45,19 @@ if (!localStorage.getItem("usuarios")) {
         estado: "inactivo",
       },
     ]),
+  );
+}
+
+
+
+//Local Compras
+
+if (!localStorage.getItem("shop")) {
+  localStorage.setItem(
+    "shop",
+    JSON.stringify({
+      carts: {},
+      orders: []
+    })
   );
 }
