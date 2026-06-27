@@ -1,5 +1,5 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -25,22 +25,22 @@ body {
 .vertical-text {
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-right: 15px; 
+  margin-right: 15px;
 }
 
 .icon-circle {
   width: 42px;
   height: 42px;
   font-size: 1.2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Personalizado para el navbar */
 #main-navbar {
-  font-size: 15px
+  font-size: 15px;
 }
 
-#main-navbar .btn{
+#main-navbar .btn {
   font-size: 15px;
 }
 
@@ -50,17 +50,15 @@ body {
 }
 
 main {
-  flex: 1; 
+  flex: 1;
 }
 
 @media (min-width: 768px) {
-
   .custom-logo-box,
   .custom-books-container {
-    min-height: 375px; 
+    min-height: 375px;
   }
 
- 
   .vertical-text {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
@@ -68,15 +66,13 @@ main {
     letter-spacing: 3px;
   }
 
-  
   .book-pillar {
     margin-bottom: 0;
     border-radius: 0;
-    border-top-left-radius: 12px;  
+    border-top-left-radius: 12px;
     border-top-right-radius: 12px;
   }
 
- 
   .book-pillar:hover {
     /* Estira el elemento para arriba */
     transform: scaleY(1.03);
@@ -89,42 +85,41 @@ main {
 
 /* Sección de información */
 #info-section {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 #info-section .info-icon-circle {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    font-size: 20px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 }
 
 /* Líneas intermedias que solo aparecen de tablets/PC en adelante */
 @media (min-width: 768px) {
-    .border-end-md {
-        border-right: 1px solid #e0e0e0 !important;
-    }
+  .border-end-md {
+    border-right: 1px solid #e0e0e0 !important;
+  }
 }
 
 /* Cuerpo de la tarjetas de los libros */
-.card-body{
+.card-body {
   p {
     font-size: 21px;
-    }
-  p > i{
-    font-size: 15px;
-    color: #845f4a
   }
-  .price{
+  p > i {
+    font-size: 15px;
+    color: #845f4a;
+  }
+  .price {
     font-size: 19px;
   }
-
 }
 
 #catalog-section span > h4 {
-  border: 2px solid #845f4a;  
+  border: 2px solid #845f4a;
 }
 
 #catalog-section .catalog-card {
@@ -132,62 +127,57 @@ main {
 }
 
 .catalog-img-container {
-    width: 100%;
-    height: 240px;         
-    display: flex;
-    align-items: center;   
-    justify-content: center;
-    padding: 5px;          
-    overflow: hidden;
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  overflow: hidden;
 }
 
 /* Ajuste de la imagen del libro */
 .catalog-card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;  
+  object-fit: contain;
   display: block;
 }
 
-
 .card-title-book {
-    font-size: 0.9rem;     
-    line-height: 1.2;
-  }
-
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
 
 footer {
   h5 {
     font-size: 18px;
   }
 
-    a > i{
-        font-size: 15px;
-        padding: 0 5px;
-    }
-    
-    li> a{
-        color: #845f4a;
-        text-decoration: none;
-        font-size: 15px;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
+  a > i {
+    font-size: 15px;
+    padding: 0 5px;
+  }
 
-    ul > li {
-        font-size: 15px;
-        color: #845f4a; 
+  li > a {
+    color: #845f4a;
+    text-decoration: none;
+    font-size: 15px;
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    span{
-        font-size: 18px;
-        color: #dfa0aa;
-    }
+  ul > li {
+    font-size: 15px;
+    color: #845f4a;
+  }
 
+  span {
+    font-size: 18px;
+    color: #dfa0aa;
+  }
 }
- 
-
 
 /* Carrito */
 

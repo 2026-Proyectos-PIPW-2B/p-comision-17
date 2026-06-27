@@ -1,9 +1,9 @@
- .nav-link:hover {
-    background-color: #d5d2c0c5 !important;
+.nav-link:hover {
+  background-color: #d5d2c0c5 !important;
 }
 
 .accordion-button {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .card-dashboard {

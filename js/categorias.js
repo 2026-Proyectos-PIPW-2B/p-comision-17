@@ -3,11 +3,16 @@ let libroActual = null;
 document.addEventListener("DOMContentLoaded", () => {
   const catalogContainer = document.getElementById("catalog-container");
   const searchInput = document.getElementById("search-input");
+  // Capturar el nuevo selector de ordenamiento creado en el HTML
+  const sortSelect = document.getElementById("sort-select");
 
   // Agrupar los elementos de control (Checkboxes del Sidebar)
   const checkboxesCategoria = document.querySelectorAll(".checkbox-categoria");
   const checkboxesFormato = document.querySelectorAll(".checkbox-formato");
   const checkboxesTipo = document.querySelectorAll(".checkbox-tipo");
+
+  // Variables globales para recordar el estado del filtro ebook
+  let filtroEbookActivo = false;
 
   // Traer datos de stock desde localStorage
   function obtenerProductos() {
@@ -15,17 +20,46 @@ document.addEventListener("DOMContentLoaded", () => {
     return productos ? JSON.parse(productos) : [];
   }
 
-  // Dibujar las tarjetas dinámicas
+  // Dibujar las tarjetas dinámicas (con ordenamiento y descuentos integrados)
   function renderizarCatalogo() {
     if (!catalogContainer) return;
 
-    const productos = obtenerProductos();
+    let productos = obtenerProductos();
     catalogContainer.innerHTML = "";
 
     if (productos.length === 0) {
       catalogContainer.innerHTML = `<p class="text-center text-muted w-100 my-4">No hay libros cargados en el stock actualmente.</p>`;
       return;
     }
+
+    // ==================== LÓGICA DE ORDENAMIENTO ====================
+    // Si sortSelect no existe o el valor es "predeterminado", no aplica ningún .sort() (mantiene el orden original)
+    const criterio = sortSelect ? sortSelect.value : "predeterminado";
+
+    if (criterio !== "predeterminado") {
+      productos.sort((a, b) => {
+        if (criterio === "az") {
+          return a.titulo.localeCompare(b.titulo); // Orden alfabético A-Z
+        }
+        if (criterio === "za") {
+          return b.titulo.localeCompare(a.titulo); // Orden alfabético Z-A
+        }
+        if (criterio === "precio-desc") {
+          return b.precio - a.precio; // Mayor a Menor precio
+        }
+        if (criterio === "precio-asc") {
+          return a.precio - b.precio; // Menor a Mayor precio
+        }
+        return 0;
+      });
+    }
+    // ================================================================
+
+    // Verificar si el filtro "Ebook" está activo
+    const checkboxEbook = Array.from(checkboxesFormato).find(
+      (cb) => cb.value.toLowerCase().trim() === "ebook",
+    );
+    filtroEbookActivo = checkboxEbook ? checkboxEbook.checked : false;
 
     productos.forEach((libro) => {
       const categoriasArray = Array.isArray(libro.categoria)
@@ -35,6 +69,32 @@ document.addEventListener("DOMContentLoaded", () => {
         ? libro.formato
         : [libro.formato];
 
+      // ==================== LÓGICA DE DESCUENTOS ====================
+      // Evaluamos si entre sus formatos se encuentra "Ebook"
+      const esEbook = formatosArray.some(
+        (f) => f.toLowerCase().trim() === "ebook",
+      );
+      // El descuento ebook se aplica si es Ebook Y el filtro Ebook está activo
+      const aplicarDescuentoEbook = esEbook && filtroEbookActivo;
+
+      // Evaluamos si el libro es Usado
+      const esUsado = libro.tipo === "Usado";
+
+      // Determinamos el descuento a aplicar
+      let descuentoPorcentaje = 0;
+      let precioFinal = libro.precio;
+
+      if (aplicarDescuentoEbook) {
+        descuentoPorcentaje = 40; // 40% descuento para ebooks
+        precioFinal = libro.precio * 0.6;
+      } else if (esUsado) {
+        descuentoPorcentaje = 50; // 50% descuento para libros usados
+        precioFinal = libro.precio * 0.5;
+      }
+
+      const tieneDescuento = descuentoPorcentaje > 0;
+      // =========================================================================
+
       const col = document.createElement("div");
       col.className = "col book-item";
 
@@ -42,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
       col.setAttribute("data-format", formatosArray.join(","));
       col.setAttribute("data-type", libro.tipo || "Nuevo");
 
-      // Modificamos el diseño de la card agregándole interacción con el Modal
       col.innerHTML = `
                 <div class="card h-100 shadow-sm border-1 catalog-card" 
                      style="cursor: pointer;" 
@@ -69,6 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
       catalogContainer.appendChild(col);
     });
+
+    // Ejecutar el filtrado del buscador y los checkboxes sobre la lista ya ordenada
+    filtrarLibros();
   }
 
   // ==================== FUNCIÓN DINÁMICA DE RELLENO DEL MODAL ====================
@@ -84,16 +146,18 @@ document.addEventListener("DOMContentLoaded", () => {
         `Portada de ${libro.titulo}`;
       document.getElementById("modalLibroAutor").textContent = libro.autor;
       document.getElementById("modalLibroTitulo").textContent = libro.titulo;
-      document.getElementById("modalLibroPrecio").textContent =
-        `$${libro.precio.toLocaleString("es-AR")}`;
 
-      // Carga condicional de la descripción
+      // Mostrar precio con tachado si tiene descuento
+      document.getElementById("modalLibroPrecio").innerHTML =
+        aplicarDescuentoEbook
+          ? `$${precioFinal.toLocaleString("es-AR")}`
+          : tieneDescuento
+            ? `<span style="text-decoration: line-through; color: #999;">$${libro.precio.toLocaleString("es-AR")}</span> $${precioFinal.toLocaleString("es-AR")}`
+            : `$${precioFinal.toLocaleString("es-AR")}`;
+
       document.getElementById("modalLibroDescripcion").textContent =
-        libro.descripcion && libro.descripcion.trim() !== ""
-          ? libro.descripcion
-          : "Este maravilloso título no cuenta con descripción de momento.";
+        libro.descripcion || "No hay descripción disponible para este libro.";
 
-      // Control dinámico de las insignias de Stock
       const stockBadge = document.getElementById("modalLibroStock");
       const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
@@ -120,23 +184,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Procesar filtros simultáneos
+  // ==================== LÓGICA DE FILTRADO (CHECKBOXES Y BUSCADOR) ====================
   function filtrarLibros() {
     const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
     const categoriesMarcadas = Array.from(checkboxesCategoria)
       .filter((cb) => cb.checked)
-      .map((cb) => cb.value.trim());
+      .map((cb) => cb.value);
     const formatosMarcados = Array.from(checkboxesFormato)
       .filter((cb) => cb.checked)
-      .map((cb) => cb.value.trim());
+      .map((cb) => cb.value);
     const tiposMarcados = Array.from(checkboxesTipo)
       .filter((cb) => cb.checked)
-      .map((cb) => cb.value.trim());
+      .map((cb) => cb.value);
 
-    const bookItems = document.querySelectorAll(".book-item");
+    const cards = document.querySelectorAll(".book-item");
 
-    bookItems.forEach((item) => {
+    cards.forEach((item) => {
       const title = item
         .querySelector(".card-title-book")
         .textContent.toLowerCase();
@@ -177,20 +241,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Vincular escuchadores
-  searchInput?.addEventListener("input", filtrarLibros);
+  // ==================== EVENT LISTENERS ====================
+  // Escuchar el cambio de ordenamiento para redibujar la grilla físicamente
+  if (sortSelect) {
+    sortSelect.addEventListener("change", renderizarCatalogo);
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", filtrarLibros);
+  }
+
   checkboxesCategoria.forEach((cb) =>
     cb.addEventListener("change", filtrarLibros),
   );
   checkboxesFormato.forEach((cb) =>
-    cb.addEventListener("change", filtrarLibros),
+    cb.addEventListener("change", renderizarCatalogo),
   );
   checkboxesTipo.forEach((cb) => cb.addEventListener("change", filtrarLibros));
 
-  // Render inicial
+  // Carga inicial del catálogo
   renderizarCatalogo();
 
-  // Interceptar parámetros URL
+  // Lógica para procesar los parámetros automáticos que llegan desde la URL
   const urlParams = new URLSearchParams(window.location.search);
   const filtroURL = urlParams.get("filtro");
 
@@ -211,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (checkboxEncontrado) {
         todosLosInputs.forEach((cb) => (cb.checked = false));
         checkboxEncontrado.checked = true;
-        filtrarLibros();
+        renderizarCatalogo();
       }
     }, 100);
   }

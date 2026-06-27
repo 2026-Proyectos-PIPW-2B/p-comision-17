@@ -75,4 +75,3 @@ function mostrarExito(input, divError) {
 
   divError.textContent = "";
 }
-

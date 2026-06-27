@@ -64,7 +64,8 @@ function guardarUsuario(rol) {
   // Validar campos antes de guardar (protección extra)
   if (typeof validarNombre === "function" && !validarNombre()) return false;
   if (typeof validarEmail === "function" && !validarEmail()) return false;
-  if (typeof validarContraseña === "function" && !validarContraseña()) return false;
+  if (typeof validarContraseña === "function" && !validarContraseña())
+    return false;
 
   const usuarios = obtenerUsuarios();
   const nombre = inputNombre.value.trim();
