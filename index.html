@@ -1,28 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librarium | Tienda online</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <header>
-      <nav
-        class="navbar navbar-expand-lg navbar-light bg-light p-3"
-        id="main-navbar"
-      >
+    <!-- Link de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Link de CSS personalizado -->
+    <link rel="stylesheet" href="css/index.css">
+    <!-- Link de íconos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Link de CSS con SCSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    
+
+</head>
+<body>
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3" id="main-navbar">
+
         <div class="container-fluid">
         <!-- Logo de la empresa -->
         <section>
@@ -121,407 +119,448 @@
           <div class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center" style="margin-right: 5px;">
             <img src="https://cdn-icons-png.flaticon.com/512/1669/1669386.png" class="img-fluid" style="width: 30px;">
           </div>
-        </div>
-      </nav>
-    </header>
-
-    <main class="container-fluid my-3" style="max-width: 90%">
-      <div class="row g-2 align-items-stretch">
-        <div class="col-12 col-md-5 d-flex">
-          <div
-            class="w-100 border p-4 d-flex align-items-center justify-content-center bg-light rounded text-center custom-logo-box"
-          >
-            <div>
-              <img
-                src="img/logo-primario.png"
-                alt="Logo de Librarium"
-                class="img-fluid"
-                style="width: 500px"
-              />
-              <p style="font-size: small">
-                El refugio de los que aman perderse en un buen libro
-              </p>
-            </div>
-          </div>
+        </a>
         </div>
 
-        <div class="col-12 col-md-7">
-          <div
-            class="d-flex flex-column flex-md-row h-100 text-center fw-bold custom-books-container"
-            id="categories-section"
-          >
-            <div
-              class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar"
-              style="background-color: #d4bba9"
-            >
-              <a
-                href="categorias.html?filtro=Packs"
-                class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0"
-                style="text-decoration: none; color: inherit"
-              >
-                <span class="vertical-text fs-5 fs-md-4 mb-0 mb-md-5"
-                  >Packs</span
-                >
-                <div
-                  class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center"
-                  style="margin-right: 5px"
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/3330/3330300.png"
-                    class="img-fluid"
-                    style="width: 30px"
-                  />
-                </div>
-              </a>
-            </div>
-
-            <div
-              class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar"
-              style="background-color: #b09079"
-            >
-              <a
-                href="categorias.html?filtro=Terror"
-                class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0"
-                style="text-decoration: none; color: inherit"
-              >
-                <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5"
-                  >Terror</span
-                >
-                <div
-                  class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center"
-                  style="margin-right: 5px"
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5810/5810118.png"
-                    class="img-fluid"
-                    style="width: 30px"
-                  />
-                </div>
-              </a>
-            </div>
-
-            <div
-              class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar"
-              style="background-color: #916d54"
-            >
-              <a
-                href="categorias.html?filtro=Clásico"
-                class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0"
-                style="text-decoration: none; color: inherit"
-              >
-                <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5"
-                  >Clásicos</span
-                >
-                <div
-                  class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center"
-                  style="margin-right: 5px"
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5318/5318807.png"
-                    class="img-fluid"
-                    style="width: 30px"
-                  />
-                </div>
-              </a>
-            </div>
-
-            <div
-              class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar"
-              style="background-color: #bd7d79"
-            >
-              <a
-                href="categorias.html?filtro=Juvenil"
-                class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0"
-                style="text-decoration: none; color: inherit"
-              >
-                <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5"
-                  >Juveniles</span
-                >
-                <div
-                  class="icon-circle text-white rounded-circle d-flex align-items-center justify-content-center"
-                  style="margin-right: 5px"
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/1669/1669386.png"
-                    class="img-fluid"
-                    style="width: 30px"
-                  />
-                </div>
-              </a>
-            </div>
-
-            <div
-              class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar"
-              style="background-color: #dfa0aa"
-            >
-              <a
-                href="categorias.html?filtro=Infantil"
-                class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0"
-                style="text-decoration: none; color: inherit"
-              >
-                <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5"
-                  >Infantiles</span
-                >
-                <div
-                  class="icon-circle text-dark rounded-circle d-flex align-items-center justify-content-center"
-                  style="margin-right: 5px"
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/1643/1643220.png"
-                    class="img-fluid"
-                    style="width: 30px"
-                  />
-                </div>
-              </a>
-            </div>
+        <div class="flex-fill d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center pb-md-5 pt-md-4 book-pillar" style="background-color: #dfa0aa;">
+        <a href="categorias.html?filtro=Infantil" class="w-100 h-100 d-flex flex-row flex-md-column justify-content-between justify-content-md-end align-items-center p-3 p-md-0" style="text-decoration: none; color: inherit;">
+          <span class="vertical-text text-dark fs-5 fs-md-4 mb-0 mb-md-5">Infantiles</span>
+          <div class="icon-circle text-dark rounded-circle d-flex align-items-center justify-content-center" style="margin-right: 5px;">
+            <img src="https://cdn-icons-png.flaticon.com/128/1643/1643220.png" class="img-fluid" style="width: 30px;">
           </div>
+        </a>
         </div>
-      </div>
 
-      <section
-        class="container-fluid py-3 my-4 bg-white border-top border-bottom"
-        id="info-section"
-      >
-        <div class="container px-md-0">
-          <div
-            class="row text-center g-3 align-items-center justify-content-center"
-          >
-            <div class="col-12 col-md-4 border-end-md">
-              <div
-                class="d-flex align-items-center justify-content-center justify-content-md-start px-3 gap-3"
-              >
-                <div class="info-icon-circle">
-                  <i class="bi bi-credit-card text-info"></i>
-                </div>
-                <div class="text-start">
-                  <span class="d-block fw-bold text-dark fs-7"
-                    >Promociones</span
-                  >
-                  <p class="mb-0">Conocé nuestras promociones bancarias</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-4 border-end-md">
-              <div
-                class="d-flex align-items-center justify-content-center justify-content-md-start px-3 gap-3"
-              >
-                <div class="info-icon-circle">
-                  <i class="bi bi-truck text-info"></i>
-                </div>
-                <div class="text-start">
-                  <span class="d-block fw-bold text-dark fs-7"
-                    >Envíos Gratuitos</span
-                  >
-                  <p class="mb-0">En compras superiores a $80.000.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-              <div
-                class="d-flex align-items-center justify-content-center justify-content-md-start px-3 gap-3"
-              >
-                <div class="info-icon-circle">
-                  <i class="bi bi-shield-check text-info"></i>
-                </div>
-                <div class="text-start">
-                  <span class="d-block fw-bold text-dark fs-7"
-                    >Sitio 100% Seguro</span
-                  >
-                  <p class="mb-0">Tu compra está protegida siempre.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="my-4" id="catalog-section">
-        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
-          Recomendados
-          <span class="border-top flex-grow-1 border-primary-subtle"></span>
-        </h4>
-        <div class="container px-0">
-          <div
-            id="contenedor-recomendados"
-            class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center"
-          ></div>
-        </div>
-      </section>
-
-      <section class="my-4" id="catalog-section">
-        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
-          Novedades
-          <span class="border-top flex-grow-1 border-primary-subtle"></span>
-        </h4>
-        <div class="container px-0">
-          <div
-            id="contenedor-novedades"
-            class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center"
-          ></div>
-        </div>
-      </section>
-
-      <section class="my-4" id="catalog-section">
-        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
-          Importados más vendidos
-          <span class="border-top flex-grow-1 border-primary-subtle"></span>
-        </h4>
-        <div class="container px-0">
-          <div
-            id="contenedor-importados"
-            class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center"
-          ></div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="pt-3 bg-secondary">
-      <div class="container px-0">
-        <div class="row g-5 justify-content-center">
-          <div class="col-12 col-md-4 text-center">
-            <h5 class="fw-bold text-info">Servicio de atencion al cliente</h5>
-            <ul class="list-unstyled d-flex flex-column gap-2">
-              <li><i class="bi bi-whatsapp"> 291-6574839</i></li>
-              <li>
-                <i class="bi bi-envelope-at">
-                  atencion-al-cliente@librarium.com</i
-                >
-              </li>
-              <li>
-                <i class="bi bi-clock-history"></i> Horario de atencion: 09:00 a
-                18:00 Hs. Lunes a viernes
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-12 col-md-4 text-center">
-            <h5 class="fw-bold text-info">Sobre nosotros</h5>
-            <ul class="list-unstyled d-flex flex-column gap-2">
-              <li><a href="informacion.html#conocenos">Conocenos</a></li>
-            </ul>
-          </div>
-
-          <div class="col-12 col-md-4 text-center">
-            <h5 class="fw-bold text-info">Ayuda</h5>
-            <ul class="list-unstyled d-flex flex-column gap-2">
-              <li>
-                <a href="informacion.html#preguntas-frecuentes"
-                  >Preguntas Frecuentes</a
-                >
-              </li>
-              <li><a href="informacion.html#medios-pago">Medios de pago</a></li>
-              <li><a href="informacion.html#devoluciones">Devoluciones</a></li>
-            </ul>
-          </div>
-
-          <div class="mt-1 col-12 text-center">
-            <span class="text-center d-block mb-2">Seguinos</span>
-            <div class="border p-2 text-center rounded small custom-social-box">
-              <a href="#"><i class="bi bi-facebook"></i></a>
-              <a href="#"><i class="bi bi-instagram"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <div
-      class="modal fade"
-      id="modalDetalleLibro"
-      tabindex="-1"
-      aria-labelledby="modalDetalleLibroLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header border-0">
-            <h5
-              class="modal-title fw-bold text-primary"
-              id="modalDetalleLibroLabel"
-            >
-              Detalle del Libro
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-shadow="none"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body p-4">
-            <div class="row g-4">
-              <div
-                class="col-12 col-md-5 d-flex align-items-center justify-content-center bg-light rounded p-3"
-                style="max-height: 350px; overflow: hidden"
-              >
-                <img
-                  id="modalLibroImagen"
-                  src=""
-                  class="img-fluid object-fit-contain h-100"
-                  alt="Portada"
-                  style="max-height: 300px"
-                />
-              </div>
-              <div class="col-12 col-md-7 d-flex flex-column">
-                <span
-                  id="modalLibroAutor"
-                  class="text-muted small fw-semibold mb-1"
-                  >Autor</span
-                >
-                <h3 id="modalLibroTitulo" class="fw-bold text-dark mb-2">
-                  Título del Libro
-                </h3>
-
-                <p class="stars-rating text-warning small mb-3">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star"></i>
-                </p>
-
-                <h4 id="modalLibroPrecio" class="fw-bold text-primary mb-3">
-                  $0.00
-                </h4>
-
-                <div class="mb-3">
-                  <h6 class="fw-bold mb-1 text-info">Sinopsis</h6>
-                  <p id="modalLibroDescripcion" class="text-muted small">
-                    No hay descripción disponible para este libro.
-                  </p>
-                </div>
-
-                <div
-                  class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    <span class="small text-muted d-block">Disponibilidad</span>
-                    <span
-                      id="modalLibroStock"
-                      class="badge bg-success-subtle text-success fw-bold"
-                      >0 unidades</span
-                    >
-                  </div>
-                  <button
-                    id="modalBtnAgregarCarrito"
-                    class="btn btn-primary rounded-pill px-4"
-                  >
-                    <i class="bi bi-cart-plus me-2"></i>Agregar al carrito
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/sesion.js"></script>
-    <script src="js/categorias.js"></script>
-    <script src="js/index.js"></script>
-  </body>
+  </div>
+
+<!-- Sección de información -->
+<section class="container-fluid py-3 my-4 bg-white border-top border-bottom" id="info-section">
+    <div class="container px-md-0">
+        <div class="row text-center g-3 align-items-center justify-content-center">
+            
+            <div class="col-12 col-md-4 border-end-md">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-start px-3 gap-3">
+                    <div class="info-icon-circle">
+                        <i class="bi bi-credit-card text-info"></i>
+                    </div>
+                    <div class="text-start">
+                        <span class="d-block fw-bold text-dark fs-7">Promociones</span>
+                        <p class="mb-0">Conocé nuestras promociones bancarias</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-4 border-end-md">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-start px-3 gap-3">
+                    <div class="info-icon-circle">
+                        <i class="bi bi-truck text-info"></i>
+                    </div>
+                    <div class="text-start">
+                        <span class="d-block fw-bold text-dark fs-7">Envíos Gratuitos</span>
+                        <p class="mb-0">En compras superiores a $80.000.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-4">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-start px-3 gap-3">
+                    <div class="info-icon-circle">
+                        <i class="bi bi-shield-check text-info"></i> 
+                    </div>
+                    <div class="text-start">
+                        <span class="d-block fw-bold text-dark fs-7">Sitio 100% Seguro</span>
+                        <p class="mb-0">Tu compra está protegida siempre.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Recomendados -->
+     <section class="my-4" id="catalog-section">
+        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
+        Recomendados
+            <span class="border-top flex-grow-1 border-primary-subtle"></span>
+        </h4>
+    <div class="container px-0">
+    <div class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center">
+        <!-- Card 1 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Una corte de rosas y espinas.webp" class="catalog-card-img" alt="Portada de 'Una corte de rosas y espinas'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">Sarah J. Maas</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Una corte de rosas y espinas</p>
+                        
+                        <p class="stars-rating text-warning small mb-2">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                        </p>
+                        
+                        <p class="price fw-bold text-dark mb-3">$60.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+         <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Alchemised.webp" class="catalog-card-img" alt="Portada de 'Alchemised'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">SenLiYu</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Alchemised</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$70.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    
+
+    <!-- Card 3 -->
+    <div class="col">
+        <div class="card h-100 shadow-sm border-1 catalog-card">
+            <div class="catalog-img-container">
+                <img src="img-portadas/Orgullo y prejuicio.webp" class="catalog-card-img" alt="Portada de 'Orgullo y prejuicio'">
+            </div>
+            <div class="card-body d-flex flex-column p-3">
+                <span class="text-muted small fw-semibold mb-1">Jane Austen</span>
+                <p class="card-title-book fw-bold mb-1">Orgullo y prejuicio</p>
+                <p class="stars-rating text-warning small mb-2">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                </p>
+                <p class="price fw-bold text-dark mb-3">$80.000</p>
+
+                <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col">
+        <div class="card h-100 shadow-sm border-1 catalog-card">
+            <div class="catalog-img-container">
+                <img src="img-portadas/El brillo de las luciérnagas.webp" class="catalog-card-img" alt="Portada de 'El brillo de las luciérnagas'">
+            </div>
+            <div class="card-body d-flex flex-column p-3">
+                <span class="text-muted small fw-semibold mb-1">Paul Pen</span>
+                <p class="card-title-book fw-bold mb-1">El brillo de las luciérnagas</p>
+                <p class="stars-rating text-warning small mb-2">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                </p>
+                <p class="price fw-bold text-dark mb-3">$40.000</p>
+
+                <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 5 -->
+    </div>
+    </div>
+    </section>
+        
+    <!-- Novedades -->
+    <section  class= "my-4" id="catalog-section">
+        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
+        Novedades
+            <span class="border-top flex-grow-1 border-primary-subtle"></span>
+        </h4>
+
+        <div class="container px-0">
+    <div class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center">
+        <!-- Card 1 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Princesas Disney pop up.webp" class="catalog-card-img" alt="Portada de 'Princesas Disney pop up'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">Disney</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Princesas Disney pop-up</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$80.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Harry Potter y la piedra filosofal.webp" class="catalog-card-img" alt="Portada de 'Harry Potter y la piedra filosofal'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">J.K. Rowling</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Harry Potter y la piedra filosofal</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$70.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/El principito.webp" class="card-img-top catalog-card-img" alt="El Principito'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">Antoine de Saint-Exupéry</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">El Principito</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$60.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Pack Jane Austen.webp" class="catalog-card-img" alt="Pack Jane Austen'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">Jane Austen</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Pack Jane Austen</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$80.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Importados más vendidos -->
+    <section class="my-4" id="catalog-section">
+        <h4 class="d-flex align-items-center gap-3 w-100 class-titles mt-3">
+        Importados más vendidos
+            <span class="border-top flex-grow-1 border-primary-subtle"></span>
+        </h4>
+
+        <div class="container px-0">
+    <div class="row g-3 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 align-items-stretch justify-content-center">
+        <!-- Card 1 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Orgullo y prejuicio.webp" class="catalog-card-img" alt="Portada de 'Orgullo y prejuicio'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">Jane Austen</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Orgullo y prejuicio</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$80.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Drácula.webp" class="catalog-card-img" alt="Portada de 'Dracula'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">Bram Stocker</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Drácula (Edicion especial)</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$80.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Harry Potter y el prisionero de Azkaban.webp" class="catalog-card-img" alt="Portada de 'Harry Potter y el prisionero de Azkaban'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">J. K. Rowling</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Harry Potter y el prisionero de Azkaban</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$70.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-1 catalog-card">
+                <div class="catalog-img-container">
+                    <img src="img-portadas/Stranger Things pop up.webp" class="catalog-card-img" alt="Portada de 'Stranger Things pop up'">
+                </div>
+                <div class="card-body d-flex flex-column p-3">
+                    <span class="text-muted small fw-semibold mb-1">Simon Arizpe</span>
+                    
+                    <p class="card-title-book fw-bold mb-1">Stranger Things pop-up</p>
+                    <p class="stars-rating text-warning small mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        
+                    </p>
+                    <p class="price fw-bold text-dark mb-3">$90.000</p>
+
+                    <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="pt-3 bg-secondary">
+    <div class="container px-0">
+        <div class="row g-5 justify-content-center">
+                        <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info">
+                    Servicio de atencion al cliente
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><i class="bi bi-whatsapp"> 291-6574839</i></li>
+                    <li><i class="bi bi-envelope-at"> atencion-al-cliente@librarium.com</i></li>
+                    <li><i class="bi bi-clock-history"></i> Horario de atencion: 09:00 a 18:00 Hs. Lunes a viernes</li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info">
+                    Sobre nosotros
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><a href="informacion.html#conocenos">Conocenos</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 text-center">
+                <h5 class="fw-bold text-info">
+                    Ayuda
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><a href="informacion.html#preguntas-frecuentes">Preguntas Frecuentes</a></li>
+                    <li><a href="informacion.html#medios-pago">Medios de pago</a></li>
+                    <li><a href="informacion.html#devoluciones">Devoluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="mt-1 col-12 text-center">
+                    <span class="text-center d-block mb-2">Seguinos</span>
+                    <div class="border p-2 text-center rounded small custom-social-box">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</footer> 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/sesion.js"></script>
+<script src="js/categorias.js"></script>
+</body>
 </html>
+
