@@ -200,20 +200,20 @@
 
                   <div class="d-flex justify-content-around text-center">
                     <div class="px-3">
-                      <h6 class="card-subtitle mb-2 text-nowrap">Mes actual</h6>
+                      <h6 class="card-subtitle mb-2 text-nowrap">Total</h6>
 
-                      <span id="ventasMes" class="fs-1 fw-bold"> 0 </span>
+                      <span id="totalVentas" class="fs-3 fw-bold"> </span>
                     </div>
 
                     <div class="px-3">
                       <h6 class="card-subtitle mb-2">Ingresos</h6>
 
-                      <span id="ingresosMes" class="fs-1 fw-bold"> $0 </span>
+                      <span id="totalIngresos" class="fs-3 fw-bold"> $</span>
                     </div>
                   </div>
 
                   <div class="text-center">
-                    <a href="" class="text-white">ver todas</a>
+                    <a href="historial-pedidos.html" class="text-white">ver todas</a>
                   </div>
                 </div>
               </div>
@@ -229,11 +229,11 @@
                   <h6 class="card-subtitle text-center mb-2">Total</h6>
 
                   <div class="text-center">
-                    <span id="clientes" class="fs-1 fw-bold"> 0 </span>
+                    <span id="clientes" class="fs-3 fw-bold">  </span>
                   </div>
 
                   <div class="text-center">
-                    <a href="" class="text-white">ver todas</a>
+                    <a href="gestion-clientes.html" class="text-white">ver todos</a>
                   </div>
                 </div>
               </div>
@@ -257,11 +257,11 @@
                           <th>Total</th>
                         </tr>
                       </thead>
-                      <tbody id="tablaPedidos"></tbody>
+                      <tbody id="ultimosPedidos"></tbody>
                     </table>
                   </div>
                   <div class="text-end d-block mt-4">
-                    <a href="" class="text-info">ver todos</a>
+                    <a href="historial-pedidos.html" class="text-info">ver todos</a>
                   </div>
                 </div>
               </div>
@@ -276,6 +276,8 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/sesion.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/localstorage.js"></script>
+    <script src="js/panel-admin.js"></script>
   </body>
 </html>
