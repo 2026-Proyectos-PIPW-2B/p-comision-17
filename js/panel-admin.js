@@ -1,5 +1,6 @@
 const shop = JSON.parse(localStorage.getItem("shop"));
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+const productos = JSON.parse(localStorage.getItem("librarium_stock")) || [];
 
 let paginaActual = 1;
 const pedidosPorPagina = 10;
@@ -55,15 +56,40 @@ function renderPedidos() {
           $${pedido.total.toLocaleString("es-AR")}
         </td>
 
-        <td>
-          <span class="badge bg-warning text-dark">
-            ${pedido.estado}
-          </span>
-        </td>
+       <td>
+  <select
+    class="form-select form-select-sm estado-pedido"
+    data-id="${pedido.id}">
 
+    <option
+      value="Pendiente"
+      ${pedido.estado === "Pendiente" ? "selected" : ""}>
+      Pendiente
+    </option>
+
+    <option
+      value="Preparando"
+      ${pedido.estado === "Preparando" ? "selected" : ""}>
+      Preparando
+    </option>
+
+    <option
+      value="Entregado"
+      ${pedido.estado === "Entregado" ? "selected" : ""}>
+      Entregado
+    </option>
+
+    <option
+      value="Cancelado"
+      ${pedido.estado === "Cancelado" ? "selected" : ""}>
+      Cancelado
+    </option>
+
+  </select>
+</td>
         <td>
           <button
-            class="btn btn-link text-info p-0"
+            class="btn btn-link btn-detalle text-info p-0"
             data-id="${pedido.id}">
             Ver detalle
           </button>
@@ -73,6 +99,115 @@ function renderPedidos() {
     `;
   });
 }
+
+document.addEventListener("change", (e) => {
+  if (e.target.classList.contains("estado-pedido")) {
+    const idPedido = Number(e.target.dataset.id);
+
+    const pedido = shop.orders.find((p) => Number(p.id) === idPedido);
+
+    if (!pedido) return;
+
+    pedido.estado = e.target.value;
+
+    guardarShop();
+
+    renderPedidos();
+  }
+});
+
+//Modal Ver Detalle
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-detalle")) {
+    mostrarDetallePedido(Number(e.target.dataset.id));
+  }
+});
+
+function mostrarDetallePedido(idPedido) {
+  const pedido = shop.orders.find((p) => Number(p.id) === Number(idPedido));
+
+  if (!pedido) return;
+
+  const usuario = usuarios.find((u) => Number(u.id) === Number(pedido.userId));
+  document.getElementById("detallePedidoId").textContent = pedido.id;
+
+  document.getElementById("detallePedidoCliente").textContent =
+    usuario?.usuario;
+
+  document.getElementById("detallePedidoFecha").textContent = pedido.fecha;
+
+  document.getElementById("detallePedidoSubtotal").textContent =
+    `$${pedido.subtotal.toLocaleString("es-AR")}`;
+
+  document.getElementById("detallePedidoDescuento").textContent =
+    `-$${pedido.descuento.toLocaleString("es-AR")}`;
+
+  document.getElementById("detallePedidoTotal").textContent =
+    `$${pedido.total.toLocaleString("es-AR")}`;
+
+  const contenedor = document.getElementById("detallePedidoProductos");
+
+  //Estado del pedido
+
+  const badgeEstado = document.getElementById("detallePedidoEstado");
+
+  badgeEstado.textContent = pedido.estado;
+
+  if (pedido.estado === "Pendiente") {
+    badgeEstado.className = "badge bg-warning text-dark fs-6";
+  }
+
+  if (pedido.estado === "Preparando") {
+    badgeEstado.className = "badge bg-info fs-6";
+  }
+
+  if (pedido.estado === "Entregado") {
+    badgeEstado.className = "badge bg-success fs-6";
+  }
+
+  if (pedido.estado === "Cancelado") {
+    badgeEstado.className = "badge bg-danger fs-6";
+  }
+
+  contenedor.innerHTML = "";
+
+  pedido.items.forEach((item) => {
+    const producto = productos.find(
+      (p) => Number(p.id) === Number(item.productId),
+    );
+
+    if (!producto) return;
+
+    contenedor.innerHTML += `
+  <div class="d-flex justify-content-between align-items-center border rounded-3 p-3 mb-2">
+
+    <div>
+      <h6 class="mb-1">
+        ${producto.titulo}
+      </h6>
+
+      <small class="text-muted">
+        ${producto.autor}
+      </small>
+    </div>
+
+    <span class="badge bg-primary rounded-pill">
+      x${item.quantity}
+    </span>
+
+  </div>
+`;
+  });
+
+  const modal = new bootstrap.Modal(
+    document.getElementById("modalDetallePedido"),
+  );
+
+  modal.show();
+}
+
+//Paginación
 
 function renderPaginacion() {
   const paginacion = document.getElementById("paginacionPedidos");
@@ -98,17 +233,92 @@ function renderPaginacion() {
   }
 }
 
-document.addEventListener("click", (e) =>{
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-pagina")) {
+    paginaActual = Number(e.target.dataset.page);
 
-    if (e.target.classList.contains("btn-pagina")) {
-        paginaActual = Number(
-            e.target.dataset.page
-        );
+    renderPedidos();
+    renderPaginacion();
+  }
+});
 
-        renderPedidos();
-        renderPaginacion();
-    }
-})
+//Render estadisticas
 
+function renderEstadisticas() {
+  const totalVentas = document.getElementById("totalVentas");
+
+  const ingresos = document.getElementById("totalIngresos");
+
+  const clientes = document.getElementById("clientes");
+
+  if (!totalVentas || !ingresos || !clientes) {
+    return;
+  }
+
+  //Cantidad de ventas
+
+  totalVentas.textContent = shop.orders.length;
+
+  // Ingresos
+
+  const totalIngresos = shop.orders.reduce(
+    (acum, pedido) => acum + pedido.total,
+    0,
+  );
+
+  ingresos.textContent = `$${totalIngresos.toLocaleString("es-AR")}`;
+
+  // Clientes
+
+  const totalClientes = usuarios.filter((u) => u.rol === "cliente").length;
+
+  clientes.textContent = totalClientes;
+}
+
+// Render Tabla Ultimos Pedidos
+
+function renderUltimosPedidos() {
+  const tbody = document.getElementById("ultimosPedidos");
+
+  if (!tbody) return;
+
+  tbody.innerHTML = "";
+
+  const utlimosPedidos = [...shop.orders].reverse().slice(0, 5);
+
+  utlimosPedidos.forEach((pedido) => {
+    const usuario = usuarios.find(
+      (u) => Number(u.id) === Number(pedido.userId),
+    );
+    tbody.innerHTML += `
+      <tr>
+
+        <td>
+          ${pedido.id}
+        </td>
+
+        <td>
+          ${usuario?.usuario || "Usuario"}
+        </td>
+
+        <td>
+          ${pedido.fecha}
+        </td>
+
+        <td>
+          ${pedido.items.length}
+        </td>
+
+        <td>
+          $${pedido.total.toLocaleString("es-AR")}
+        </td>
+
+      </tr>
+    `;
+  });
+}
+
+renderEstadisticas();
+renderUltimosPedidos();
 renderPedidos();
 renderPaginacion();
