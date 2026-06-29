@@ -11,14 +11,58 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkboxesFormato = document.querySelectorAll(".checkbox-formato");
   const checkboxesTipo = document.querySelectorAll(".checkbox-tipo");
 
-  // Variables globales para recordar el estado del filtro ebook
-  let filtroEbookActivo = false;
-
   // Traer datos de stock desde localStorage
   function obtenerProductos() {
     const productos = localStorage.getItem("librarium_stock");
     return productos ? JSON.parse(productos) : [];
   }
+
+  // ==================== FUNCIÓN REUTILIZABLE DE DESCUENTOS ====================
+  function calcularDescuentoLibro(libro) {
+    const formatosArray = Array.isArray(libro.formato)
+      ? libro.formato
+      : [libro.formato];
+
+    // Verificar si el formato contiene "Ebook"
+    const esEbook = formatosArray.some(
+      (f) => f.toLowerCase().trim() === "ebook",
+    );
+
+    // Verificar si el filtro "Ebook" está tildado en el sidebar
+    const checkboxEbook = Array.from(checkboxesFormato).find(
+      (cb) => cb.value.toLowerCase().trim() === "ebook",
+    );
+    const filtroEbookActivo = checkboxEbook ? checkboxEbook.checked : false;
+
+    // Verificar si el libro es Usado o pertenece a Outlet
+    const tipoNormalizado = (libro.tipo || "").toLowerCase().trim();
+    const esOutletOUsado =
+      tipoNormalizado === "usado" || tipoNormalizado === "outlet";
+
+    let descuentoPorcentaje = 0;
+    let precioFinal = libro.precio;
+    let ocultarEtiquetasPromo = false; // Nueva variable de control requerida
+
+    // Aplicar descuento de Ebook (si es ebook y el filtro está activo)
+    if (esEbook && filtroEbookActivo) {
+      descuentoPorcentaje = 40; // 40% descuento
+      precioFinal = libro.precio * 0.6;
+      ocultarEtiquetasPromo = true; // Forzar a ocultar carteles y precios originales
+    }
+    // Si no es un ebook con descuento activo, evaluar si es Outlet/Usado
+    else if (esOutletOUsado) {
+      descuentoPorcentaje = 50; // 50% descuento
+      precioFinal = libro.precio * 0.5;
+    }
+
+    return {
+      tieneDescuento: descuentoPorcentaje > 0,
+      descuentoPorcentaje,
+      precioFinal,
+      ocultarEtiquetasPromo,
+    };
+  }
+  // ============================================================================
 
   // Dibujar las tarjetas dinámicas (con ordenamiento y descuentos integrados)
   function renderizarCatalogo() {
@@ -33,33 +77,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================== LÓGICA DE ORDENAMIENTO ====================
-    // Si sortSelect no existe o el valor es "predeterminado", no aplica ningún .sort() (mantiene el orden original)
     const criterio = sortSelect ? sortSelect.value : "predeterminado";
 
     if (criterio !== "predeterminado") {
       productos.sort((a, b) => {
-        if (criterio === "az") {
-          return a.titulo.localeCompare(b.titulo); // Orden alfabético A-Z
-        }
-        if (criterio === "za") {
-          return b.titulo.localeCompare(a.titulo); // Orden alfabético Z-A
-        }
+        if (criterio === "az") return a.titulo.localeCompare(b.titulo);
+        if (criterio === "za") return b.titulo.localeCompare(a.titulo);
         if (criterio === "precio-desc") {
-          return b.precio - a.precio; // Mayor a Menor precio
+          return (
+            calcularDescuentoLibro(b).precioFinal -
+            calcularDescuentoLibro(a).precioFinal
+          );
         }
         if (criterio === "precio-asc") {
-          return a.precio - b.precio; // Menor a Mayor precio
+          return (
+            calcularDescuentoLibro(a).precioFinal -
+            calcularDescuentoLibro(b).precioFinal
+          );
         }
         return 0;
       });
     }
     // ================================================================
-
-    // Verificar si el filtro "Ebook" está activo
-    const checkboxEbook = Array.from(checkboxesFormato).find(
-      (cb) => cb.value.toLowerCase().trim() === "ebook",
-    );
-    filtroEbookActivo = checkboxEbook ? checkboxEbook.checked : false;
 
     productos.forEach((libro) => {
       const categoriasArray = Array.isArray(libro.categoria)
@@ -69,31 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ? libro.formato
         : [libro.formato];
 
-      // ==================== LÓGICA DE DESCUENTOS ====================
-      // Evaluamos si entre sus formatos se encuentra "Ebook"
-      const esEbook = formatosArray.some(
-        (f) => f.toLowerCase().trim() === "ebook",
-      );
-      // El descuento ebook se aplica si es Ebook Y el filtro Ebook está activo
-      const aplicarDescuentoEbook = esEbook && filtroEbookActivo;
-
-      // Evaluamos si el libro es Usado
-      const esUsado = libro.tipo === "Usado";
-
-      // Determinamos el descuento a aplicar
-      let descuentoPorcentaje = 0;
-      let precioFinal = libro.precio;
-
-      if (aplicarDescuentoEbook) {
-        descuentoPorcentaje = 40; // 40% descuento para ebooks
-        precioFinal = libro.precio * 0.6;
-      } else if (esUsado) {
-        descuentoPorcentaje = 50; // 50% descuento para libros usados
-        precioFinal = libro.precio * 0.5;
-      }
-
-      const tieneDescuento = descuentoPorcentaje > 0;
-      // =========================================================================
+      // Calcular descuento para la tarjeta actual
+      const infoDescuento = calcularDescuentoLibro(libro);
 
       const col = document.createElement("div");
       col.className = "col book-item";
@@ -112,7 +128,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${libro.imagen}" class="catalog-card-img" alt="Portada de '${libro.titulo}'">
                     </div>
                     <div class="card-body d-flex flex-column p-3">
-                        <span class="book-author text-muted small fw-semibold mb-1">${libro.autor}</span>
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                          <span class="book-author text-muted small fw-semibold">${libro.autor}</span>
+                          ${
+                            infoDescuento.tieneDescuento &&
+                            !infoDescuento.ocultarEtiquetasPromo
+                              ? `<span class="badge bg-danger rounded-pill small">-${infoDescuento.descuentoPorcentaje}%</span>`
+                              : ""
+                          }
+                        </div>
                         <p class="card-title-book fw-bold mb-1">${libro.titulo}</p>
                         <p class="stars-rating text-warning small mb-2">
                             <i class="bi bi-star-fill"></i>
@@ -121,8 +145,16 @@ document.addEventListener("DOMContentLoaded", () => {
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star"></i>
                         </p>
-                        <p class="price fw-bold text-dark mb-3">$${libro.precio.toLocaleString("es-AR")}</p>
-                        <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill" >Ver Detalles</button>
+                        <p class="price fw-bold text-dark mb-3">
+                          ${
+                            infoDescuento.tieneDescuento
+                              ? infoDescuento.ocultarEtiquetasPromo
+                                ? `<span>$${infoDescuento.precioFinal.toLocaleString("es-AR")}</span>`
+                                : `<span class="text-muted small text-decoration-line-through me-2">$${libro.precio.toLocaleString("es-AR")}</span><span class="text-primary">$${infoDescuento.precioFinal.toLocaleString("es-AR")}</span>`
+                              : `$${libro.precio.toLocaleString("es-AR")}`
+                          }
+                        </p>
+                        <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Ver Detalles</button>
                     </div>
                 </div>
             `;
@@ -140,6 +172,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (libro) {
       libroActual = libro;
+
+      // Volvemos a calcular el descuento dinámicamente para el libro seleccionado
+      const infoDescuento = calcularDescuentoLibro(libro);
+
       // Mapear elementos del modal
       document.getElementById("modalLibroImagen").src = libro.imagen;
       document.getElementById("modalLibroImagen").alt =
@@ -147,20 +183,31 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("modalLibroAutor").textContent = libro.autor;
       document.getElementById("modalLibroTitulo").textContent = libro.titulo;
 
-      // Mostrar precio con tachado si tiene descuento
-      document.getElementById("modalLibroPrecio").innerHTML =
-        aplicarDescuentoEbook
-          ? `$${precioFinal.toLocaleString("es-AR")}`
-          : tieneDescuento
-            ? `<span style="text-decoration: line-through; color: #999;">$${libro.precio.toLocaleString("es-AR")}</span> $${precioFinal.toLocaleString("es-AR")}`
-            : `$${precioFinal.toLocaleString("es-AR")}`;
+      // Mostrar precio adaptado de forma inteligente según las preferencias del formato
+      if (infoDescuento.tieneDescuento) {
+        if (infoDescuento.ocultarEtiquetasPromo) {
+          // Vista limpia para Ebooks: Sin tachado, sin badge y color común
+          document.getElementById("modalLibroPrecio").innerHTML = `
+            <span>$${infoDescuento.precioFinal.toLocaleString("es-AR")}</span>
+          `;
+        } else {
+          // Vista comercial para Outlet / Usados
+          document.getElementById("modalLibroPrecio").innerHTML = `
+            <span style="text-decoration: line-through; color: #999; font-size: 0.9rem;" class="me-2">$${libro.precio.toLocaleString("es-AR")}</span> 
+            <span>$${infoDescuento.precioFinal.toLocaleString("es-AR")}</span>
+            <span class="badge bg-danger ms-2" style="font-size: 0.75rem;">¡Promo ${infoDescuento.descuentoPorcentaje}% Off!</span>
+          `;
+        }
+      } else {
+        document.getElementById("modalLibroPrecio").textContent =
+          `$${libro.precio.toLocaleString("es-AR")}`;
+      }
 
       document.getElementById("modalLibroDescripcion").textContent =
         libro.descripcion || "No hay descripción disponible para este libro.";
 
       const stockBadge = document.getElementById("modalLibroStock");
       const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
-
 
       btnCarrito.dataset.id = libro.id;
 
@@ -225,11 +272,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const pasaCategoria =
         categoriesMarcadas.length === 0 ||
         categoriesMarcadas.some((c) => catLibroArray.includes(c));
-
       const pasaFormato =
         formatosMarcados.length === 0 ||
         formatosMarcados.some((f) => formLibroArray.includes(f));
-
       const pasaTipo =
         tiposMarcados.length === 0 || tiposMarcados.includes(tipoLibro);
 
@@ -242,7 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==================== EVENT LISTENERS ====================
-  // Escuchar el cambio de ordenamiento para redibujar la grilla físicamente
   if (sortSelect) {
     sortSelect.addEventListener("change", renderizarCatalogo);
   }
@@ -294,20 +338,16 @@ document.addEventListener("DOMContentLoaded", () => {
 const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
 btnCarrito?.addEventListener("click", () => {
-
   if (!libroActual) return;
 
   window.agregarCart(libroActual.id);
   const toastBody = document.querySelector("#toastCarrito .toast-body");
 
-toastBody.innerHTML = `
-  <i class="bi bi-check-circle-fill me-2"></i>
-  <strong>¡${libroActual.titulo}</strong> agregado al carrito!
-`;
+  toastBody.innerHTML = `
+    <i class="bi bi-check-circle-fill me-2"></i>
+    <strong>¡${libroActual.titulo}</strong> agregado al carrito!
+  `;
 
-const toast = new bootstrap.Toast(
-  document.getElementById("toastCarrito"),
-);
-
-toast.show();
+  const toast = new bootstrap.Toast(document.getElementById("toastCarrito"));
+  toast.show();
 });
