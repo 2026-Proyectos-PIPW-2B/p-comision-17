@@ -289,6 +289,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Boton Agregar al carrito
+
 const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
 btnCarrito?.addEventListener("click", () => {

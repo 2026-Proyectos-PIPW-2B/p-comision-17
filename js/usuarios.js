@@ -7,7 +7,7 @@ const errorContraseña = document.getElementById("errorContraseña");
 const formUsuario = document.getElementById("formUsuario");
 const formClientes = document.getElementById("formClientes");
 const inputBuscarUsuario = document.getElementById("inputBuscarUsuario");
-const btnBuscarUsuario = document.getElementById("btnBuscarUsuario");
+
 let adminIdABorrar = null; // a quien voy a eliminar
 let idUsuarioSeleccionado = null; // quien edito
 let clienteIdABorrar = null; // cliente a borrar
@@ -317,11 +317,6 @@ function estadoUsuario(id, isChecked) {
 
 // buscar usuario
 
-if (btnBuscarUsuario) {
-  btnBuscarUsuario.addEventListener("click", () => {
-    cargarAdmins(inputBuscarUsuario ? inputBuscarUsuario.value : "");
-  });
-}
 
 if (inputBuscarUsuario) {
   inputBuscarUsuario.addEventListener("input", () => {
@@ -331,11 +326,6 @@ if (inputBuscarUsuario) {
 
 // buscar cliente
 
-if (btnBuscarUsuario) {
-  btnBuscarUsuario.addEventListener("click", () => {
-    cargarClientes(inputBuscarUsuario ? inputBuscarUsuario.value : "");
-  });
-}
 
 if (inputBuscarUsuario) {
   inputBuscarUsuario.addEventListener("input", () => {
