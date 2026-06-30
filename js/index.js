@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         contenedor.appendChild(col);
       }
+      
     });
   }
 
