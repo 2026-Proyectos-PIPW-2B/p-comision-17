@@ -1,10 +1,26 @@
-
 // Variable global para saber qué ID se está editando o borrando
 let idProductoSeleccionado = null;
+let filtroEstadoActual = ""; // Variable global para el filtro de estado
 
 function obtenerTerminoBusqueda() {
   const buscador = document.getElementById("buscador-stock");
   return buscador ? buscador.value.toLowerCase().trim() : "";
+}
+
+function obtenerFiltroEstado() {
+  return filtroEstadoActual;
+}
+
+function cambiarFiltroEstado(nuevoEstado) {
+  filtroEstadoActual = nuevoEstado;
+  renderizarTablaStock();
+}
+
+function determinarEstadoStock(stock) {
+  if (stock === 0) return "sinstock";
+  if (stock > 0 && stock <= 5) return "critico";
+  if (stock > 5 && stock < 10) return "alerta";
+  return "normal";
 }
 
 // Obtener productos de localStorage o inicializar con los datos por defecto
@@ -29,23 +45,29 @@ function renderizarTablaStock() {
 
   const productos = obtenerProductos();
   const terminoBusqueda = obtenerTerminoBusqueda();
+  const filtroEstado = obtenerFiltroEstado();
   tablaBody.innerHTML = ""; // Limpiar contenido previo
 
   const productosFiltrados = productos.filter((prod) => {
     const titulo = (prod.titulo || "").toLowerCase();
     const autor = (prod.autor || "").toLowerCase();
-    return (
+    const coincideTermino =
       terminoBusqueda === "" ||
       titulo.includes(terminoBusqueda) ||
-      autor.includes(terminoBusqueda)
-    );
+      autor.includes(terminoBusqueda);
+
+    const estadoProducto = determinarEstadoStock(prod.stock);
+    const coincideEstado =
+      filtroEstado === "" || estadoProducto === filtroEstado;
+
+    return coincideTermino && coincideEstado;
   });
 
   if (productosFiltrados.length === 0) {
     tablaBody.innerHTML = `
       <tr>
         <td colspan="7" class="text-center text-muted py-4">
-          No se encontraron libros con ese criterio de búsqueda.
+          No se encontraron libros con ese criterio de búsqueda o filtro.
         </td>
       </tr>
     `;
@@ -312,4 +334,22 @@ document
   });
 
 // Inicializar el script cargando la tabla apenas se procese el documento
-document.addEventListener("DOMContentLoaded", renderizarTablaStock);
+document.addEventListener("DOMContentLoaded", () => {
+  // Listeners para el filtro de estado
+  const filtroItems = document.querySelectorAll(
+    ".dropdown-menu .dropdown-item",
+  );
+  filtroItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const estado = item.getAttribute("data-estado");
+      cambiarFiltroEstado(estado);
+
+      // Actualizar el texto del botón
+      const btnFiltro = document.getElementById("btnFiltroEstadoStock");
+      btnFiltro.textContent = item.textContent;
+    });
+  });
+
+  renderizarTablaStock();
+});

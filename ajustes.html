@@ -20,7 +20,9 @@
   <body style="font-family: &quot;Questrial&quot;, sans-serif">
     <header>
       <nav class="navbar bg-primary p-4 fw-bold">
-        <div class="container-fluid position-relative">
+        <div
+          class="container-fluid position-relative d-flex align-items-center justify-content-between"
+        >
           <button
             class="btn btn-outline-light d-lg-none position-absolute start-0 top-50 translate-middle-y ms-3"
             type="button"
@@ -30,7 +32,7 @@
             ☰
           </button>
 
-          <div class="w-100 text-center text-lg-start">
+          <div class="text-center text-lg-start">
             <section>
               <a href="index.html">
                 <img
@@ -41,6 +43,23 @@
                 />
               </a>
             </section>
+          </div>
+
+          <div class="d-flex align-items-center gap-3">
+            <span class="text-white" id="nombreUsuarioNav"></span>
+            <img
+              id="fotoPerfilNav"
+              src="img/avatar-default.png"
+              alt="Perfil"
+              class="rounded-circle border border-light"
+              style="
+                width: 45px;
+                height: 45px;
+                object-fit: cover;
+                cursor: pointer;
+              "
+              title="Ir a ajustes"
+            />
           </div>
         </div>
       </nav>
@@ -181,6 +200,13 @@
                     class="form-control"
                     accept="image/*"
                   />
+
+                  <button
+                    class="btn btn-outline-danger btn-sm mt-2"
+                    id="btnEliminarFoto"
+                  >
+                    Eliminar foto
+                  </button>
                 </div>
 
                 <!-- DATOS -->
@@ -227,37 +253,47 @@
               <h2 class="h4 mb-4">Seguridad</h2>
 
               <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
+                  <label for="contrasenaActual" class="form-label">
+                    Contraseña actual
+                  </label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="contrasenaActual"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-4 mb-3">
                   <label for="nuevaContrasena" class="form-label">
                     Nueva contraseña
                   </label>
-
                   <input
                     type="password"
                     class="form-control"
                     id="nuevaContrasena"
+                    required
                   />
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                   <label for="confirmarContrasena" class="form-label">
-                    Confirmar contraseña
+                    Confirmar nueva contraseña
                   </label>
-
                   <input
                     type="password"
                     class="form-control"
                     id="confirmarContrasena"
+                    required
                   />
                 </div>
               </div>
 
-              <button class="btn btn-primary" id="btnActualizarContrasena">
+              <button class="btn btn-primary mb-5" id="btnActualizarContrasena">
                 Actualizar contraseña
               </button>
             </section>
-
-            <hr class="my-5" />
 
             <!-- INFORMACIÓN DE LA CUENTA -->
 
@@ -266,14 +302,14 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <p>
+                  <p style="font-size: 1.1rem">
                     <strong>Rol:</strong>
                     <span id="rolUsuario"> Administrador </span>
                   </p>
                 </div>
 
                 <div class="col-md-6">
-                  <p>
+                  <p style="font-size: 1.1rem">
                     <strong>Fecha de registro:</strong>
                     <span id="fechaRegistro"> 15/06/2026 </span>
                   </p>
@@ -288,10 +324,60 @@
             <section>
               <h2 class="h4 mb-4">Sesión</h2>
 
-              <button class="btn btn-outline-danger" id="btnCerrarSesion">
-                Cerrar sesión
+              <button
+                class="btn btn-outline-danger"
+                id="btnEliminarCuenta"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEliminarCuenta"
+              >
+                Eliminar cuenta
               </button>
             </section>
+
+            <!-- Modal Eliminar Cuenta -->
+            <div
+              class="modal fade"
+              id="modalEliminarCuenta"
+              tabindex="-1"
+              aria-labelledby="modalEliminarCuentaLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalEliminarCuentaLabel">
+                      Eliminar cuenta
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar tu cuenta? Esta acción
+                    no se puede deshacer.
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      No, cancelar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      id="btnConfirmarEliminarCuenta"
+                    >
+                      Sí, eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
         </main>
       </div>
@@ -303,5 +389,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="./js/sesion.js"></script>
+    <script src="./js/usuarios.js"></script>
+    <script src="./js/ajustes.js"></script>
+    <script src="./js/navbar-perfil.js"></script>
   </body>
 </html>
