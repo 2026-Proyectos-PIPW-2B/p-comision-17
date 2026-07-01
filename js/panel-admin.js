@@ -6,7 +6,7 @@ const shop = JSON.parse(localStorage.getItem("shop")) || {
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 const productos = JSON.parse(localStorage.getItem("librarium_stock")) || [];
 let paginaActual = 1;
-const pedidosPorPagina = 10;
+const pedidosPorPagina = 7;
 const inputBuscarPedido = document.getElementById("inputBuscarPedido");
 let textoBusqueda = "";
 const filtroEstado = document.getElementById("filtroEstado");
@@ -21,6 +21,7 @@ function guardarShop() {
 function obtenerPedidosFiltrados() {
   const busqueda = textoBusqueda.trim().toLowerCase();
 
+
   return shop.orders.filter((pedido) => {
     const usuario = usuarios.find(
       (u) => Number(u.id) === Number(pedido.userId),
@@ -31,7 +32,7 @@ function obtenerPedidosFiltrados() {
       usuario?.usuario?.toLowerCase().includes(busqueda);
 
     const coincideEstado =
-      filtroSelect === "" || pedido.estado === filtroSelect;
+      estadoFiltro === "" || pedido.estado === estadoFiltro;
 
     return coincideBusqueda && coincideEstado;
   });
@@ -307,18 +308,16 @@ inputBuscarPedido?.addEventListener("input", (e) => {
 });
 
 //Filtrar por estado
-filtroEstado?.addEventListener("change", (e) => {
-  const item = e.target.closest(".dropdown-item");
+filtroEstado?.addEventListener("click", (e) => {
+  const item = e.target.closest("#menuEstado .dropdown-item");
 
   if (!item) return;
 
   e.preventDefault();
 
-  const valorTexto = item.textContent.trim();
+  estadoFiltro = item.dataset.estado;
 
-  estadoFiltro = valorTexto === "Todos" ? "" : valorTexto;
-
-  filtroEstado.textContent = valorTexto;
+  filtroEstado.textContent = item.textContent.trim();
   paginaActual = 1;
   renderPedidos();
   renderPaginacion();
