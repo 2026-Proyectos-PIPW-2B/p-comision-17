@@ -47,7 +47,9 @@ function guardarShop() {
 //Actualizar el Badge
 
 function actualizarCartBadge() {
+   console.log("Cart:", cart);
   const badge = document.getElementById("cart-badge");
+    console.log("Badge:", badge);
 
   if (!badge || !cart) return;
 
@@ -103,6 +105,8 @@ function renderCart() {
     );
 
     if (!producto) return;
+
+     const precioFinal = calcularPrecioCarrito(producto);
 
     cartContainer.innerHTML += `
 <div class="border-bottom pb-3 mb-3">

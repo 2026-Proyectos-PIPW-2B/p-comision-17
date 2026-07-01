@@ -1,4 +1,8 @@
-let libroActual = null;
+// Traer datos de stock desde localStorage
+function obtenerProductos() {
+  const productos = localStorage.getItem("librarium_stock");
+  return productos ? JSON.parse(productos) : [];
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const catalogContainer = document.getElementById("catalog-container");
@@ -10,12 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkboxesCategoria = document.querySelectorAll(".checkbox-categoria");
   const checkboxesFormato = document.querySelectorAll(".checkbox-formato");
   const checkboxesTipo = document.querySelectorAll(".checkbox-tipo");
-
-  // Traer datos de stock desde localStorage
-  function obtenerProductos() {
-    const productos = localStorage.getItem("librarium_stock");
-    return productos ? JSON.parse(productos) : [];
-  }
 
   // ==================== FUNCIÓN REUTILIZABLE DE DESCUENTOS ====================
   function calcularDescuentoLibro(libro) {
@@ -171,8 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const libro = productos.find((p) => p.id === id);
 
     if (libro) {
-      libroActual = libro;
-
       // Volvemos a calcular el descuento dinámicamente para el libro seleccionado
       const infoDescuento = calcularDescuentoLibro(libro);
 
@@ -338,14 +334,20 @@ document.addEventListener("DOMContentLoaded", () => {
 const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
 
 btnCarrito?.addEventListener("click", () => {
-  if (!libroActual) return;
+  console.log("CLICK", btnCarrito.dataset.id);
+  const id = Number(btnCarrito.dataset.id);
 
-  window.agregarCart(libroActual.id);
+  if (!id) return;
+
+  window.agregarCart(id);
+
+  const producto = obtenerProductos().find((p) => Number(p.id) === id);
+
   const toastBody = document.querySelector("#toastCarrito .toast-body");
 
   toastBody.innerHTML = `
     <i class="bi bi-check-circle-fill me-2"></i>
-    <strong>¡${libroActual.titulo}</strong> agregado al carrito!
+    <strong>¡${producto.titulo}</strong> agregado al carrito!
   `;
 
   const toast = new bootstrap.Toast(document.getElementById("toastCarrito"));

@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Leer las bases de datos desde LocalStorage
   const stockGeneral = localStorage.getItem("librarium_stock")
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                           <i class="bi bi-star"></i>
                       </p>
                       <p class="price fw-bold text-dark mb-3">$${libro.precio.toLocaleString("es-AR")}</p>
-                      <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill" onclick="event.stopPropagation();">Ver Detalle</button>
+                      <button class="btn btn-primary btn-sm w-100 mt-auto rounded-pill">Ver Detalle</button>
                   </div>
               </div>
           `;
@@ -94,8 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Lógica dinámica para abrir el modal de detalles desde el Index
   window.verDetalleLibroHome = function (id) {
+    console.log("Entró a verDetalleLibroHome");
     const libro = stockGeneral.find((l) => l.id === id);
     if (!libro) return;
+    libroActual = libro;
 
     document.getElementById("modalLibroImagen").src = libro.imagen;
     document.getElementById("modalLibroAutor").textContent = libro.autor;
@@ -109,6 +112,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const stockBadge = document.getElementById("modalLibroStock");
     const btnCarrito = document.getElementById("modalBtnAgregarCarrito");
+    console.log("Botón:", btnCarrito);
+    console.log("Voy a asignar el dataset");
+    btnCarrito.dataset.id = libro.id;
+    console.log("Dataset asignado:", btnCarrito.dataset.id);
+    console.log("Dataset:", btnCarrito.dataset.id);
 
     if (libro.stock >= 10) {
       stockBadge.textContent = `${libro.stock} unidades disponibles`;

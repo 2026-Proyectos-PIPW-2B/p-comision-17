@@ -97,6 +97,7 @@
               >
                 <i class="bi bi-cart"></i>
                 <span
+                  id="cart-badge"
                   class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                 >
                   0
@@ -367,6 +368,27 @@
         </div>
       </section>
     </main>
+
+    <!-- Toast -->
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="toastCarrito"
+        class="toast text-bg-success border-0"
+        role="alert"
+        data-bs-delay="2500"
+      >
+        <div class="d-flex">
+          <div class="toast-body"></div>
+
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+      </div>
+    </div>
 
     <footer class="pt-3 bg-secondary">
       <div class="container px-0">
