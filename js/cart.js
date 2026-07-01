@@ -97,6 +97,7 @@ function renderCart() {
   cartContainer.innerHTML = "";
 
   cart.items.forEach((item) => {
+    
     const producto = productos.find(
       (p) => Number(p.id) === Number(item.productId),
     );
@@ -147,7 +148,7 @@ function renderCart() {
 </div>
 
     <div class="col-md-2 text-center">
-      $${producto.precio.toLocaleString("es-AR")}
+      $${precioFinal.toLocaleString("es-AR")}
     </div>
 
     <div class="col-md-2 text-center">
@@ -163,7 +164,32 @@ function renderCart() {
   });
 }
 
+// Calcular precio según categoría
+
+function calcularPrecioCarrito(producto) {
+  const formatos = Array.isArray(producto.formato)
+    ? producto.formato
+    : [producto.formato];
+
+  const esEbook = formatos.some((f) => f.toLowerCase().trim() === "ebook");
+
+  const tipo = (producto.tipo || "").toLowerCase().trim();
+
+  const esOutletOUsado = tipo === "outlet" || tipo === "usado";
+
+  if (esEbook) {
+    return producto.precio * 0.6; // 40% OFF
+  }
+
+  if (esOutletOUsado) {
+    return producto.precio * 0.5; // 50% OFF
+  }
+
+  return producto.precio;
+}
+
 function renderResumen() {
+  
   const subtotal = document.getElementById("subtotal");
   const descuentoEfect = document.getElementById("descuentoEfect");
   const total = document.getElementById("total");
@@ -185,7 +211,9 @@ function renderResumen() {
 
     if (!producto) return;
 
-    subtotalCompra += producto.precio * item.quantity;
+    const precioFinal = calcularPrecioCarrito(producto);
+
+      subtotalCompra += precioFinal * item.quantity;
   });
 
   const descuento = subtotalCompra * 0.1;
@@ -255,6 +283,7 @@ cartContainer?.addEventListener("click", (e) => {
 });
 
 function finalizarCompra() {
+  
   if (!cart || cart.items.length === 0) {
     return;
   }
@@ -268,7 +297,9 @@ function finalizarCompra() {
 
     if (!producto) return;
 
-    subtotal += producto.precio * item.quantity;
+    const precioFinal = calcularPrecioCarrito(producto);
+
+    subtotal += precioFinal * item.quantity;
   });
 
   const descuento = subtotal * 0.1;

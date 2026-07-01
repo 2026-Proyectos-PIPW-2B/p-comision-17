@@ -13,31 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let idCategoriaSeleccionada = null;
 
-  const categoriasIniciales = [
-    {
-      id: 1,
-
-      nombre: "Novela",
-
-      descripcion: "Libros de ficción",
-
-      estado: "Activa",
-
-      tipoIndex: "",
-    },
-
-    {
-      id: 2,
-
-      nombre: "Infantil",
-
-      descripcion: "Libros para niños",
-
-      estado: "Activa",
-
-      tipoIndex: "",
-    },
-  ];
 
   function obtenerCategorias() {
     const datos = localStorage.getItem("librarium_categorias");

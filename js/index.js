@@ -134,3 +134,18 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSeccionHome(destacados.novedades, contenedorNovedades);
   renderSeccionHome(destacados.importados, contenedorImportados);
 });
+
+
+// Boton reset
+const btnReset = document.getElementById("btnReset");
+
+btnReset?.addEventListener("click", () => {
+  const confirmar = confirm(
+    "¿Estás seguro de que querés restaurar todos los datos del sistema?",
+  );
+
+  if (!confirmar) return;
+
+  restaurarDatos();
+  location.reload();
+});

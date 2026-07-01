@@ -313,12 +313,8 @@ filtroEstado?.addEventListener("click", (e) => {
   e.preventDefault();
 
   const valorTexto = item.textContent.trim();
-  estadoFiltro =
-    valorTexto === "Todos"
-      ? ""
-      : valorTexto === "Completado"
-        ? "Entregado"
-        : valorTexto;
+
+  estadoFiltro = valorTexto === "Todos" ? "" : valorTexto;
 
   filtroEstado.textContent = valorTexto;
   paginaActual = 1;
@@ -336,6 +332,8 @@ document.addEventListener("change", (e) => {
     pedido.estado = e.target.value;
     guardarShop();
     renderPedidos();
+    renderUltimosPedidos();
+    renderEstadisticas();
     renderPaginacion();
   }
 });
