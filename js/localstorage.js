@@ -152,6 +152,83 @@ const stockInicial = [
     stock: 12,
     imagen: "img-portadas/Gaturro y el misterio de las cinco Agathas.webp",
   },
+  {
+    id: 11,
+    titulo: "Princesas Disney:pop-up",
+    autor: "Disney",
+    categoria: ["Infantil", "Importado"],
+    formato: ["Tapa dura"],
+    tipo: "Nuevo",
+    precio: 80000,
+    stock: 7,
+    imagen: "img-portadas/Princesas Disney pop up.webp",
+  },
+  {
+    id: 12,
+    titulo: "Stranger Things:pop-up",
+    autor: "Simon Arizpe",
+    categoria: ["Importado"],
+    formato: ["Tapa dura"],
+    tipo: "Nuevo",
+    precio: 90000,
+    stock: 7,
+    imagen: "img-portadas/Stranger Things pop up.webp",
+  },
+  {
+    id: 13,
+    titulo: "Harry Potter y el prisionero de Azkaban",
+    autor: "J. K. Rowling",
+    categoria: ["Importado"],
+    formato: ["Tapa dura"],
+    tipo: "Nuevo",
+    precio: 70000,
+    stock: 7,
+    imagen: "img-portadas/Harry Potter y el prisionero de Azkaban.webp",
+  },
+  {
+    id: 14,
+    titulo: "Cuentos macabros",
+    autor: "Edgar Allan Poe",
+    categoria: ["Terror", "Clásico"],
+    formato: ["Tapa blanda"],
+    tipo: "Usado",
+    precio: 40000,
+    stock: 3,
+    imagen: "img-portadas/Cuentos macabros.webp",
+  },
+  {
+    id: 15,
+    titulo: "La Odisea",
+    autor: "Homero",
+    categoria: ["Clásico"],
+    formato: ["Tapa blanda"],
+    tipo: "Usado",
+    precio: 40000,
+    stock: 3,
+    imagen: "img-portadas/La Odisea.webp",
+  },
+  {
+    id: 16,
+    titulo: "A pesar de ti",
+    autor: "Collen Hoover",
+    categoria: ["Juvenil"],
+    formato: ["Ebook"],
+    tipo: "Digital",
+    precio: 30000,
+    stock: 3,
+    imagen: "img-portadas/A pesar de ti.webp",
+  },
+  {
+    id: 17,
+    titulo: "Cementerio de animales",
+    autor: "Stephen King",
+    categoria: ["Terror"],
+    formato: ["Ebook"],
+    tipo: "Digital",
+    precio: 40000,
+    stock: 3,
+    imagen: "img-portadas/Cementerio de animales.webp",
+  },
 ];
 
 const categoriasIniciales = [
@@ -181,7 +258,7 @@ const categoriasIniciales = [
 const destacadosIniciales = {
   recomendados: [1, 2, 8, 9],
   novedades: [2, 6, 5, 4],
-  importados: [7],
+  importados: [7,11,12,13],
 };
 
 const shopInicial = {
@@ -200,7 +277,10 @@ function inicializarDatos() {
   }
 
   if (!localStorage.getItem("librarium_categorias")) {
-    localStorage.setItem("librarium_categorias",JSON.stringify(categoriasIniciales));
+    localStorage.setItem(
+      "librarium_categorias",
+      JSON.stringify(categoriasIniciales),
+    );
   }
 
   if (!localStorage.getItem("shop")) {
@@ -219,8 +299,14 @@ function restaurarDatos() {
   localStorage.setItem("usuarios", JSON.stringify(usuariosIniciales));
   localStorage.setItem("shop", JSON.stringify(shopInicial));
   localStorage.setItem("librarium_stock", JSON.stringify(stockInicial));
-  localStorage.setItem("librarium_categorias",JSON.stringify(categoriasIniciales));
-  localStorage.setItem("librarium_destacados",JSON.stringify(destacadosIniciales));
+  localStorage.setItem(
+    "librarium_categorias",
+    JSON.stringify(categoriasIniciales),
+  );
+  localStorage.setItem(
+    "librarium_destacados",
+    JSON.stringify(destacadosIniciales),
+  );
 
   localStorage.removeItem("UsuarioLoggeado");
 }
