@@ -16,7 +16,7 @@ function guardarShop() {
   localStorage.setItem("shop", JSON.stringify(shop));
 }
 
-//Render pedidos filtrados
+//Pedidos filtrados
 
 function obtenerPedidosFiltrados() {
   const busqueda = textoBusqueda.trim().toLowerCase();
@@ -31,11 +31,13 @@ function obtenerPedidosFiltrados() {
       usuario?.usuario?.toLowerCase().includes(busqueda);
 
     const coincideEstado =
-      estadoFiltro === "" || pedido.estado === estadoFiltro;
+      filtroSelect === "" || pedido.estado === filtroSelect;
 
     return coincideBusqueda && coincideEstado;
   });
 }
+
+
 
 //Render estadisticas
 
@@ -305,7 +307,7 @@ inputBuscarPedido?.addEventListener("input", (e) => {
 });
 
 //Filtrar por estado
-filtroEstado?.addEventListener("click", (e) => {
+filtroEstado?.addEventListener("change", (e) => {
   const item = e.target.closest(".dropdown-item");
 
   if (!item) return;
