@@ -88,14 +88,14 @@ const stockInicial = [
   },
   {
     id: 5,
-    titulo: "La vida invisible de Addie Larue",
-    autor: "V. E. Schwab ",
+    titulo: "No te olvidare",
+    autor: "Collen Hoover",
     categoria: ["Juvenil"],
-    formato: ["Ebook"],
+    formato: ["Importado"],
     tipo: "Digital",
     precio: 30000,
     stock: 13,
-    imagen: "img-portadas/la vida invisible de Addie Larue.webp",
+    imagen: "img-portadas/No te olvidare.webp",
   },
   {
     id: 6,
